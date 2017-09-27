@@ -1,0 +1,10 @@
+# config
+.DS_Store
+.sass-cache
+
+# design data
+.psd
+.ai
+
+# node.js
+node_modules
