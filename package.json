@@ -1,0 +1,40 @@
+{
+  "name": "dev-template-gulp",
+  "version": "0.0.1",
+  "description": "Development environment for web site development",
+  "keywords": "web gulp template",
+  "author": "yama-dev",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install && gulp",
+    "gulp": "gulp",
+    "release": "gulp release",
+    "php-twig": "gulp php-twig"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yama-dev/dev-template-gulp"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "browser-sync": "^2.7.13",
+    "css-mqpacker": "^6.0.1",
+    "del": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-eslint": "^3.0.1",
+    "gulp-htmlhint": "^0.3.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.1.0",
+    "htmlhint-stylish": "^1.0.3",
+    "run-sequence": "^1.1.1"
+  }
+}

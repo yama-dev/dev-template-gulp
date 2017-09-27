@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+// Import Modules
+@import "config";
+@import "reset";
+
+// Style
+html {
+}
+body {
+  width: 100%;
+  min-width: 320px;
+  -webkit-text-size-adjust: 100%;
+  position: relative;
+}
+
+.is-pc {
+  display: block;
+}
+.is-sp {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+// PC、タブ、スマホの3形態
+@media screen and (max-width: 980px) {
+}
+@media screen and (max-width: 650px) {
+}
+@media screen and (max-width: 480px) {
+}
+
+// タブレットはPCレイアウトの場合
+@media screen and (max-width: 767px) {
+}
+
+// タブレットはスマホレイアウトの場合
+@media screen and (max-width: 768px) {
+}
+
+// ポートレート表示の場合
+@media screen and (orientation: portrait) {
+}
+// ランドスケープ表示の場合
+@media screen and (orientation: landscape) {
+}
