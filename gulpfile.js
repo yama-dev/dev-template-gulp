@@ -63,11 +63,11 @@ gulp.task('sass', function() {
       })
     }))
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}))
+    .pipe(csscomb())
     .pipe(postcss([
       require('autoprefixer')({browsers: SASS_AUTOPREFIXER_BROWSERS}),
       require('css-mqpacker')
     ]))
-    .pipe(csscomb())
     .pipe(gulp.dest(CONFIG.outputDirectory.dev))
     .pipe(browserSync.reload({stream:true}));
 });
