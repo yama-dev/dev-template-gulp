@@ -35,6 +35,7 @@
       "float",
       "clear",
       "transform",
+      "transform-style",
       "width",
       "max-width",
       "min-width",
