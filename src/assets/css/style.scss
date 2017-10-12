@@ -1,10 +1,16 @@
 @charset "utf-8";
 
+// Set Config
+$resetCss: Normalize;
+$resetCssDefault: true;
+
 // Import Modules
 @import "config";
 @import "reset";
 
-// Style
+@debug "reset-css:" + $resetCss;
+
+// Style html,body
 html {
 }
 body {
