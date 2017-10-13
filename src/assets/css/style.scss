@@ -5,21 +5,12 @@ $resetCss: Normalize;
 $resetCssDefault: true;
 
 // Import Modules
-@import "config";
 @import "reset";
 
+// Debug
 @debug "reset-css:" + $resetCss;
 
-// Style html,body
-html {
-}
-body {
-  width: 100%;
-  min-width: 320px;
-  -webkit-text-size-adjust: 100%;
-  position: relative;
-}
-
+// Style Switching Elements
 .is-pc {
   display: block;
 }
@@ -27,11 +18,15 @@ body {
   display: none;
 }
 
+// Style Image Fit
 img {
   max-width: 100%;
+  display: block;
 }
 
-// PC、タブ、スマホの3形態
+@import "modules";
+
+// 3device (PC、Tablet、Smartphone)
 @media screen and (max-width: 980px) {
 }
 @media screen and (max-width: 650px) {
@@ -39,17 +34,26 @@ img {
 @media screen and (max-width: 480px) {
 }
 
-// タブレットはPCレイアウトの場合
+// Tablet displays PC layout
 @media screen and (max-width: 767px) {
 }
 
-// タブレットはスマホレイアウトの場合
+// Tablet displays Smartphone layout
 @media screen and (max-width: 768px) {
 }
 
-// ポートレート表示の場合
+// In case of portrait display
 @media screen and (orientation: portrait) {
 }
-// ランドスケープ表示の場合
+// In case of landscape display
 @media screen and (orientation: landscape) {
 }
+
+// One Click CSS
+// -> https://css.miugle.info/
+
+// CSS validation
+// -> https://jigsaw.w3.org/css-validator/validator.html.ja
+
+// Style Sheet
+// -> style.scss
