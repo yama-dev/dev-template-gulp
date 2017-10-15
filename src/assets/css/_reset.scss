@@ -1,68 +1,886 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-.clearfix:after {
-	content: '.';
-	display: block;
-	clear: both;
-	height: 0;
-	visibility: hidden;
-}
-body {
-  // Font全般
-  // @import url(//fonts.googleapis.com/earlyaccess/notosansjapanese.css);
-	// font-family: "Noto Sans Japanese", "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
-	font-family: "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
-  // font-family: "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ 明朝", "ＭＳ Ｐ明朝", serif;
-  // font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+// Style Sheet
+// -> _reset.scss
+//
+// $resetCss == 1 or $resetCss == Normalize
+// $resetCss == 2 or $resetCss == ress
+// $resetCss == 3 or $resetCss == HTML5
+// $resetCss == 4 or $resetCss == sanitize
+// $resetCss == 5 or $resetCss == Eric
 
-  // Mobileでのフォント自動調整の設定
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+$resetCss: 1 !default;
+$resetCssDefault: 1 !default;
 
-  // Macでのアンチエイリアス設定
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
+@if $resetCss == 1 or $resetCss == Normalize {
+  /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+  html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+  }
+  article,
+  aside,
+  footer,
+  header,
+  nav,
+  section {
+    display: block;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  figcaption,
+  figure,
+  main {
+    display: block;
+  }
+  figure {
+    margin: 1em 40px;
+  }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+  }
+  b,
+  strong {
+    font-weight: inherit;
+  }
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  dfn {
+    font-style: italic;
+  }
+  mark {
+    background-color: #ff0;
+    color: #000;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+  audio,
+  video {
+    display: inline-block;
+  }
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+  img {
+    border-style: none;
+  }
+  svg:not(:root) {
+    overflow: hidden;
+  }
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+  }
+  button,
+  input {
+    overflow: visible;
+  }
+  button,
+  select {
+    text-transform: none;
+  }
+  button,
+  html [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button;
+  }
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  fieldset {
+    padding: 0.35em 0.75em 0.625em;
+  }
+  legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+  }
+  progress {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  textarea {
+    overflow: auto;
+  }
+  [type="checkbox"],
+  [type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+  }
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+  }
+  details,
+  menu {
+    display: block;
+  }
+  summary {
+    display: list-item;
+  }
+  canvas {
+    display: inline-block;
+  }
+  template {
+    display: none;
+  }
+  [hidden] {
+    display: none;
+  }
 }
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+@else if $resetCss == 2 or $resetCss == ress {
+  /*!
+   * ress.css • v1.2.2
+   * MIT License
+   * github.com/filipelinhares/ress
+   */
+  html {
+    box-sizing: border-box;
+    overflow-y: scroll; /* All browsers without overlaying scrollbars */
+    -webkit-text-size-adjust: 100%; /* iOS 8+ */
+  }
+  *,
+  ::before,
+  ::after {
+    background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+    box-sizing: inherit;
+  }
+  ::before,
+  ::after {
+    text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+    vertical-align: inherit;
+  }
+  * {
+    padding: 0; /* Reset `padding` and `margin` of all elements */
+    margin: 0;
+  }
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+  hr {
+    overflow: visible; /* Show the overflow in Edge and IE */
+  }
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  main,
+  menu,
+  nav,
+  section,
+  summary {
+    display: block;
+  }
+  summary {
+    display: list-item; /* Add the correct display in all browsers */
+  }
+  small {
+    font-size: 80%; /* Set font-size to 80% in `small` elements */
+  }
+  [hidden],
+  template {
+    display: none; /* Add the correct display in IE */
+  }
+  abbr[title] {
+    border-bottom: 1px dotted; /* Add a bordered underline effect in all browsers */
+    text-decoration: none; /* Remove text decoration in Firefox 40+ */
+  }
+  a {
+    background-color: transparent; /* Remove the gray background on active links in IE 10 */
+    -webkit-text-decoration-skip: objects; /* Remove gaps in links underline in iOS 8+ and Safari 8+ */
+  }
+  a:active,
+  a:hover {
+    outline-width: 0; /* Remove the outline when hovering in all browsers */
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace, monospace; /* Specify the font family of code elements */
+  }
+  b,
+  strong {
+    font-weight: bolder; /* Correct style set to `bold` in Edge 12+, Safari 6.2+, and Chrome 18+ */
+  }
+  dfn {
+    font-style: italic; /* Address styling not present in Safari and Chrome */
+  }
+  mark {
+    background-color: #ff0;
+    color: #000;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  input {
+    border-radius: 0;
+  }
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"],
+  [role="button"] {
+    cursor: pointer;
+  }
+  [disabled] {
+    cursor: default;
+  }
+  [type="number"] {
+    width: auto; /* Firefox 36+ */
+  }
+  [type="search"] {
+    -webkit-appearance: textfield; /* Safari 8+ */
+  }
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none; /* Safari 8 */
+  }
+  textarea {
+    overflow: auto; /* Internet Explorer 11+ */
+    resize: vertical; /* Specify textarea resizability */
+  }
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font: inherit; /* Specify font inheritance of form elements */
+  }
+  optgroup {
+    font-weight: bold; /* Restore the font weight unset by the previous rule. */
+  }
+  button {
+    overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+  }
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: 0;
+    padding: 0;
+  }
+  button:-moz-focusring,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    outline: 1px dotted ButtonText;
+  }
+  button,
+  html [type="button"], /* Prevent a WebKit bug where (2) destroys native `audio` and `video`controls in Android 4 */
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+  }
+  button,
+  select {
+    text-transform: none; /* Firefox 40+, Internet Explorer 11- */
+  }
+  button,
+  input,
+  select,
+  textarea {
+    background-color: transparent;
+    border-style: none;
+    color: inherit;
+  }
+  select {
+    -moz-appearance: none; /* Firefox 36+ */
+    -webkit-appearance: none; /* Chrome 41+ */
+  }
+  select::-ms-expand {
+    display: none; /* Internet Explorer 11+ */
+  }
+  select::-ms-value {
+    color: currentColor; /* Internet Explorer 11+ */
+  }
+  legend {
+    border: 0; /* Correct `color` not being inherited in IE 8/9/10/11 */
+    color: inherit; /* Correct the color inheritance from `fieldset` elements in IE */
+    display: table; /* Correct the text wrapping in Edge and IE */
+    max-width: 100%; /* Correct the text wrapping in Edge and IE */
+    white-space: normal; /* Correct the text wrapping in Edge and IE */
+  }
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button; /* Correct the inability to style clickable types in iOS and Safari */
+    font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
+  }
+  [type="search"] {
+    -webkit-appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
+    outline-offset: -2px; /* Correct the outline style in Safari */
+  }
+  img {
+    border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  svg:not(:root) {
+    overflow: hidden; /* Internet Explorer 11- */
+  }
+  audio,
+  canvas,
+  progress,
+  video {
+    display: inline-block; /* Internet Explorer 11+, Windows Phone 8.1+ */
+  }
+  @media screen {
+    [hidden~="screen"] {
+      display: inherit;
+    }
+    [hidden~="screen"]:not(:active):not(:focus):not(:target) {
+      position: absolute !important;
+      clip: rect(0 0 0 0) !important;
+    }
+  }
+  [aria-busy="true"] {
+    cursor: progress;
+  }
+  [aria-controls] {
+    cursor: pointer;
+  }
+  [aria-disabled] {
+    cursor: default;
+  }
+  ::-moz-selection {
+    background-color: #b3d4fc; /* Required when declaring ::selection */
+    color: #000;
+    text-shadow: none;
+  }
+  ::selection {
+    background-color: #b3d4fc; /* Required when declaring ::selection */
+    color: #000;
+    text-shadow: none;
+  }
+}
+@else if $resetCss == 3 or $resetCss == HTML5 {
+  /* 
+    html5doctor.com Reset Stylesheet
+    v1.6.1
+    Last Updated: 2010-09-17
+    Author: Richard Clark - http://richclarkdesign.com 
+    Twitter: @rich_clark
+    */
+  html, body, div, span, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  abbr, address, cite, code,
+  del, dfn, em, img, ins, kbd, q, samp,
+  small, strong, sub, sup, var,
+  b, i,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section, summary,
+  time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+  }
+  body {
+    line-height:1;
+  }
+  article,aside,details,figcaption,figure,
+  footer,header,hgroup,menu,nav,section { 
+    display:block;
+  }
+  nav ul {
+    list-style:none;
+  }
+  blockquote, q {
+    quotes:none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content:'';
+    content:none;
+  }
+  a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+  }
+  ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+  }
+  mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+  }
+  table {
+    border-collapse:collapse;
+    border-spacing:0;
+  }
+  hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+  }
+  input, select {
+    vertical-align:middle;
+  }
+}
+@else if $resetCss == 4 or $resetCss == sanitize {
+  /*! sanitize.css v5.0.0 | CC0 License | github.com/jonathantneal/sanitize.css */
+  *,
+  ::before,
+  ::after {
+    background-repeat: no-repeat;
+    box-sizing: inherit;
+  }
+  ::before,
+  ::after {
+    text-decoration: inherit;
+    vertical-align: inherit;
+  }
+  html {
+    box-sizing: border-box;
+    cursor: default;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  article,
+  aside,
+  footer,
+  header,
+  nav,
+  section {
+    display: block;
+  }
+  body {
+    margin: 0;
+  }
+  h1 {
+    font-size: 2em;
+    margin: .67em 0;
+  }
+  figcaption,
+  figure,
+  main {
+    display: block;
+  }
+  figure {
+    margin: 1em 40px;
+  }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  nav ol,
+  nav ul {
+    list-style: none;
+  }
+  pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+  }
+  b,
+  strong {
+    font-weight: inherit;
+  }
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  dfn {
+    font-style: italic;
+  }
+  mark {
+    background-color: #ffff00;
+    color: #000000;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -.25em;
+  }
+  sup {
+    top: -.5em;
+  }
+  ::-moz-selection {
+    background-color: #b3d4fc;
+    color: #000000;
+    text-shadow: none;
+  }
+  ::selection {
+    background-color: #b3d4fc;
+    color: #000000;
+    text-shadow: none;
+  }
+  audio,
+  canvas,
+  iframe,
+  img,
+  svg,
+  video {
+    vertical-align: middle;
+  }
+  audio,
+  video {
+    display: inline-block;
+  }
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+  img {
+    border-style: none;
+  }
+  svg {
+    fill: currentColor;
+  }
+  svg:not(:root) {
+    overflow: hidden;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    margin: 0;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  button,
+  input {
+    overflow: visible;
+  }
+  button,
+  select {
+    text-transform: none;
+  }
+  button,
+  html [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button;
+  }
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+  }
+  progress {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  textarea {
+    overflow: auto;
+    resize: vertical;
+  }
+  [type="checkbox"],
+  [type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+  }
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+  }
+  details,
+  menu {
+    display: block;
+  }
+  summary {
+    display: list-item;
+  }
+  canvas {
+    display: inline-block;
+  }
+  template {
+    display: none;
+  }
+  a,
+  area,
+  button,
+  input,
+  label,
+  select,
+  summary,
+  textarea,
+  [tabindex] {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+  [hidden] {
+    display: none;
+  }
+  [aria-busy="true"] {
+    cursor: progress;
+  }
+  [aria-controls] {
+    cursor: pointer;
+  }
+  [aria-hidden="false"][hidden]:not(:focus) {
+    clip: rect(0, 0, 0, 0);
+    display: inherit;
+    position: absolute;
+  }
+  [aria-disabled] {
+    cursor: default;
+  }
+}
+@else if $resetCss == 5 or $resetCss == Eric {
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+    */
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+}
+@else {
 }
 
-// Form parts
-button,input,select,textarea {
-  min-height: 1.5em;
-  background-color: transparent;
+@if $resetCssDefault == true or $resetCssDefault == yama-dev {
+  body {
+    // Font全般
+    // @import url(//fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+    // font-family: "Noto Sans Japanese", "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+    font-family: "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+    // font-family: "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ 明朝", "ＭＳ Ｐ明朝", serif;
+    // font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+
+    // Mobileでのフォント自動調整の設定
+    text-size-adjust: 100%;
+
+    // Macでのアンチエイリアス設定
+    // -webkit-font-smoothing: antialiased;
+    // -moz-osx-font-smoothing: grayscale;
+  }
+  .clearfix:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  button,input,select,textarea {
+    min-height: 1.5em;
+    background-color: transparent;
+  }
+  input[type="submit"],input[type="reset"]{
+    cursor: pointer;
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  }
+  a[href^='tel'] {
+    display: inline-block;
+    color: inherit;
+  }
 }
-input[type="submit"],input[type="reset"]{
-  cursor: pointer;
-}
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-}
+
