@@ -1,4 +1,14 @@
 'use strict';
+
+/**
+ * CLIでの引数を判定
+ */
+let argv = process.argv.slice(2);
+let param = new Object();
+argv.forEach(function(item,i){
+  if(i % 2 === 0 && /\-\-/.test(item) && !/\-\-/.test(argv[i+1])) param[item] = argv[i+1];
+});
+
 /**
  * 環境設定
  */
@@ -243,13 +253,24 @@ gulp.task('watch',['server'], function() {
  * Server Task
  */
 gulp.task('server', function() {
+
+  // Set BrowserSync server.
+  if(param['--proxy']){
+    browserSync({
+      proxy: param['--proxy']
+    });
+  } else {
     browserSync({
       server: {
         baseDir: CONFIG.outputDirectory.dev
       }
     });
+  }
+
+  // Browser reload.
   gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
   gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
+
 });
 
 /**
@@ -263,11 +284,15 @@ gulp.task('default', function(callback) {
  * Release Task
  */
 gulp.task('release', function() {
+
+  // Copy Release files.
   gulp.src([CONFIG.outputDirectory.dev+'**/*','!**/*.scss','!**/*.es6'])
     .pipe(gulp.dest(CONFIG.outputDirectory.release))
+
   gulp.src('').pipe(notify({
     title: 'Finished Release-Task',
     message: new Date(),
     sound: 'Glass'
   }));
+
 });
