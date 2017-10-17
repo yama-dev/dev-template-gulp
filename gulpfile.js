@@ -114,6 +114,87 @@ gulp.task('htmllint', function() {
 });
 
 /**
+ * Js Task
+ */
+gulp.task('js', function() {
+  return gulp.src([CONFIG.sourceDirectory.js,CONFIG.watchIgnoreDirectory.js])
+    .pipe(plumber({
+      errorHandler: notify.onError({
+        title: "Js エラー",
+        message: "<%= error.message %>"
+      })
+    }))
+    .pipe(eslint({
+      globals: [
+        'jQuery',
+        '$'
+      ],
+      "env": {
+        "browser": true,
+        "es6": true
+      },
+      "rules": {
+        "comma-dangle": [1, "never"],
+        "no-console": 1,
+        "eol-last": 0,
+        "block-scoped-var": 0,
+        "complexity": 1,
+        "consistent-return": 1,
+        "default-case": 1,
+        "eqeqeq": 1,
+        "no-alert": 1,
+        "no-caller": 1,
+        "no-eval": 2,
+        "no-new": 0,
+        "no-new-func": 1,
+        "no-proto": 1,
+        "no-script-url": 1,
+        "no-self-compare": 1,
+        "no-void": 1,
+        "camelcase": [2, {"properties": "always"}],
+        "no-array-constructor": 1,
+        "quotes": [2, "single"],
+        "no-unused-vars": 1,
+        "space-after-keywords": 0,
+        "space-infix-ops": 0,
+        "space-return-throw-case": 0,
+        "comma-spacing": 0,
+        "prefer-const": 0,
+        "no-undef": 0,
+        "curly": 0
+      },
+      "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": true,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": true,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "restParams": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": true,
+        "jsx": true
+      }
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    .pipe(browserSync.reload({stream:true}));
+});
+
+/**
  * Twig Task
  * replace php-tag -> twig-tag
  */
@@ -144,14 +225,18 @@ gulp.task('reload',function() {
  * Watch Task
  */
 gulp.task('watch',['server'], function() {
+
+  // Set Watch Tasks.
   gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
-  gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
+  gulp.watch(CONFIG.watchDirectory.js,['js']);
+
   gulp.src('').pipe(notify({
     title: 'Start Gulp',
     message: new Date(),
     sound: 'Glass'
   }));
+
 });
 
 /**
@@ -171,7 +256,7 @@ gulp.task('server', function() {
  * Default Task
  */
 gulp.task('default', function(callback) {
-  return runSequence(['sass','htmllint'],'watch',callback);
+  return runSequence(['sass','htmllint','js'],'watch',callback);
 });
 
 /**
