@@ -225,13 +225,6 @@ gulp.task('php-twig-replace', function(){
 });
 
 /**
- * Reload Task
- */
-gulp.task('reload',function() {
-  gulp.src().pipe(browserSync.reload({stream:true}));
-});
-
-/**
  * Watch Task
  */
 gulp.task('watch',['server'], function() {
