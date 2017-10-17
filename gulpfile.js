@@ -12,43 +12,47 @@ var CONFIG_PATH = {
 var CONFIG = {
   outputDirectory: {
     dev     : CONFIG_PATH.src,
-    release : CONFIG_PATH.release,
+    release : CONFIG_PATH.release
   },
   sourceDirectory: {
     sass    : CONFIG_PATH.src + '**/*.scss',
+    js      : CONFIG_PATH.src + '**/*.js'
   },
   watchDirectory: {
     html    : CONFIG_PATH.src + '**/*.html',
     php     : CONFIG_PATH.src + '**/*.php',
     css     : CONFIG_PATH.src + '**/*.css',
     sass    : CONFIG_PATH.src + '**/*.scss',
-    js      : CONFIG_PATH.src + '**/*.js',
+    js      : CONFIG_PATH.src + '**/*.js'
+  },
+  watchIgnoreDirectory: {
+    js      : '!' + CONFIG_PATH.src + '**/libs/*.js'
   }
 };
-var SASS_AUTOPREFIXER_BROWSERS = [
+const SASS_AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
   'ios >= 8',
   'android >= 4.4',
   'last 2 versions'
 ];
-var SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
+const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 
 /**
  * IMPORT MODULES
  */
-var del          = require('del');
-var gulp         = require('gulp');
-var cache        = require('gulp-cached');
-var sass         = require('gulp-sass');
-var postcss      = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var csscomb      = require('gulp-csscomb');
-var plumber      = require('gulp-plumber');
-var htmlhint     = require('gulp-htmlhint');
-var notify       = require("gulp-notify");
-var replace      = require("gulp-replace");
-var browserSync  = require('browser-sync');
-var runSequence  = require('run-sequence');
+const gulp         = require('gulp');
+const cache        = require('gulp-cached');
+const sass         = require('gulp-sass');
+const postcss      = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const csscomb      = require('gulp-csscomb');
+const plumber      = require('gulp-plumber');
+const htmlhint     = require('gulp-htmlhint');
+const notify       = require("gulp-notify");
+const replace      = require("gulp-replace");
+const browserSync  = require('browser-sync');
+const runSequence  = require('run-sequence');
+const eslint       = require('gulp-eslint');
 
 /**
  * Sass Task
@@ -154,11 +158,11 @@ gulp.task('watch',['server'], function() {
  * Server Task
  */
 gulp.task('server', function() {
-  browserSync({
-    server: {
-      baseDir: CONFIG.outputDirectory.dev
-    }
-  });
+    browserSync({
+      server: {
+        baseDir: CONFIG.outputDirectory.dev
+      }
+    });
   gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
   gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
 });
