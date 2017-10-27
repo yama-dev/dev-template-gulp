@@ -36,7 +36,10 @@ var CONFIG = {
     js      : CONFIG_PATH.src + '**/*.js'
   },
   watchIgnoreDirectory: {
-    js      : '!' + CONFIG_PATH.src + '**/libs/*.js'
+    js      : [
+      '!' + CONFIG_PATH.src + '**/vender/*.js',
+      '!' + CONFIG_PATH.src + '**/libs/*.js'
+    ]
   }
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
@@ -127,7 +130,11 @@ gulp.task('htmllint', function() {
  * Js Task
  */
 gulp.task('js', function() {
-  return gulp.src([CONFIG.sourceDirectory.js,CONFIG.watchIgnoreDirectory.js])
+  return gulp.src([
+    CONFIG.sourceDirectory.js,
+    CONFIG.watchIgnoreDirectory.js[0],
+    CONFIG.watchIgnoreDirectory.js[1]
+  ])
     .pipe(plumber({
       errorHandler: notify.onError({
         title: "Js エラー",
