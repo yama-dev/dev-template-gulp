@@ -1,14 +1,28 @@
 @charset "utf-8";
 
-// Set Config
-$resetCss: Normalize;
-$resetCssDefault: true;
+// Set Reset-Css
+
+// @necolas/normalize.css 
+// @import "./vender/_normalize";
+
+// @filipelinhares/ress
+// @import "./vender/_ress";
+
+// http://html5doctor.com/
+@import "./vender/_html5reset";
+
+// @jonathantneal/sanitize
+// @import "./vender/_sanitize";
+
+// http://meyerweb.com/eric/tools/css/reset/ 
+// @import "./vender/_eric_reset";
 
 // Import Modules
-@import "reset";
+$resetCssDefault: true;
+@import "./vender/_reset.scss";
 
 // Debug
-@debug "reset-css:" + $resetCss;
+@debug "reset-css:" + $resetCssDefault;
 
 // Style Switching Elements
 .is-pc {
@@ -23,8 +37,6 @@ img {
   max-width: 100%;
   display: block;
 }
-
-@import "modules";
 
 // 3device (PC、Tablet、Smartphone)
 @media screen and (max-width: 980px) {

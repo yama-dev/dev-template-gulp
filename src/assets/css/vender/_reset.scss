@@ -1,0 +1,50 @@
+// Style Sheet
+// -> _reset.scss
+
+@if $resetCssDefault == 1 or $resetCssDefault == true or $resetCssDefault == yama-dev {
+/*!
+  Reset Stylesheet
+  Author: yama-dev - https://github.com/yama-dev
+  */
+
+  body {
+    // Font全般
+    // @import url(//fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+    // font-family: "Noto Sans Japanese", "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+    font-family: "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+    // font-family: "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ 明朝", "ＭＳ Ｐ明朝", serif;
+    // font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+
+    // Mobileでのフォント自動調整の設定
+    text-size-adjust: 100%;
+
+    // Macでのアンチエイリアス設定
+    // -webkit-font-smoothing: antialiased;
+    // -moz-osx-font-smoothing: grayscale;
+  }
+  .clearfix:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  button,input,select,textarea {
+    min-height: 1.5em;
+    background-color: transparent;
+  }
+  input[type="submit"],input[type="reset"]{
+    cursor: pointer;
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  }
+  a[href^='tel'] {
+    display: inline-block;
+    color: inherit;
+  }
+}
+
