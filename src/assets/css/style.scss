@@ -2,11 +2,8 @@
 
 // Set Reset-Css
 
-// @necolas/normalize.css 
-// @import "./vender/_normalize";
-
-// @filipelinhares/ress
-// @import "./vender/_ress";
+// http://meyerweb.com/eric/tools/css/reset/ 
+// @import "./vender/_eric_reset";
 
 // http://html5doctor.com/
 @import "./vender/_html5reset";
@@ -14,21 +11,26 @@
 // @jonathantneal/sanitize
 // @import "./vender/_sanitize";
 
-// http://meyerweb.com/eric/tools/css/reset/ 
-// @import "./vender/_eric_reset";
+// @necolas/normalize.css 
+// @import "./vender/_normalize";
 
-// Import Modules
-$resetCssDefault: true;
-@import "./vender/_reset.scss";
+// https://github.com/yama-dev
+@import "./vender/_reset";
 
 // Debug
-@debug "reset-css:" + $resetCssDefault;
+@debug "style.scss";
 
 // Style Switching Elements
 .is-pc {
   display: block;
 }
 .is-sp {
+  display: none;
+}
+.is-pc-inline {
+  display: inline-block;
+}
+.is-sp-inline {
   display: none;
 }
 
