@@ -47,3 +47,6 @@ a[href^='tel'] {
   display: inline-block;
   color: inherit;
 }
+ol, ul {
+	list-style: none;
+}
