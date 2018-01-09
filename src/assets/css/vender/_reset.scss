@@ -20,6 +20,8 @@ body {
   // Macでのアンチエイリアス設定
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
+
+  word-break: break-all;
 }
 .clearfix:after {
   content: '.';
