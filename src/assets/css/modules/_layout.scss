@@ -1,8 +1,9 @@
 // Style Sheet
 // _layout.scss
+@import "./modules/settings";
 
 // Layout
-.layout {
+.l {
   &-inline-wrap {
     letter-spacing: -.4em;
     text-align: center;
