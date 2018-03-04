@@ -3,22 +3,22 @@
 // Set Reset-Css
 
 // http://meyerweb.com/eric/tools/css/reset/ 
-// @import "./vender/_eric_reset";
+// @import "./vender/eric_reset";
 
 // http://html5doctor.com/
-@import "./vender/_html5reset";
+@import "./vender/html5reset";
 
 // @jonathantneal/sanitize
-// @import "./vender/_sanitize";
+// @import "./vender/sanitize";
 
 // @necolas/normalize.css 
-// @import "./vender/_normalize";
+// @import "./vender/normalize";
 
 // https://github.com/yama-dev
-@import "./vender/_reset";
+@import "./vender/reset";
 
 // Debug
-@debug "style.scss";
+// @debug "style.scss";
 
 // Style Switching Elements
 .is-pc {
@@ -38,7 +38,14 @@
 img {
   max-width: 100%;
   display: block;
+  vertical-align: middle;
 }
+
+// Import Modules.
+// @import "./modules/settings";
+// @import "./modules/layout";
+// @import "./modules/hover";
+// @import "./modules/button";
 
 // 3device (PC、Tablet、Smartphone)
 @media screen and (max-width: 980px) {
@@ -71,3 +78,4 @@ img {
 
 // Style Sheet
 // -> style.scss
+
