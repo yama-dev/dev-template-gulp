@@ -14,9 +14,11 @@ webサイト制作用の開発環境になります。
 
 ### 1. 各種インストール
 
+※Git、Nodejs、Gulpがインストール済みの場合は、 [2. 開発環境の構築](#2. 開発環境の構築) へ進んでください。
+
 #### 1-1. Git  
 
-<img src="https://git-for-windows.github.io/img/git_logo.png" width="120" alt="git for windows">  
+<img src="https://git-for-windows.github.io/img/git_logo.png" width="100" alt="git for windows">  
   
 ◆Windowsの場合  
 __Git for windows のダウンロード__  
@@ -30,12 +32,12 @@ __Git for windows のダウンロード__
 ``` bash
 // gitの確認
 $ git --version
-git version 1.9.5.msysgit.1
+git version 2.16.2.windows.1
 ```
 
 #### 1-2. nodejs  
 
-<img src="https://nodejs.org/static/images/logo.svg" width="150" alt="nodejs">  
+<img src="https://nodejs.org/static/images/logo.svg" width="120" alt="nodejs">  
 
 ◆Windows、Mac  
 __nodejs のダウンロード__  
@@ -46,11 +48,11 @@ __nodejs のダウンロード__
 ``` bash
 // nodejsの確認
 $ node -v
-v4.4.5
+v8.9.3
 
 // npmの確認
 $ npm -v
-v3.7.1
+v5.5.1
 ```
   
 ``` text
@@ -68,6 +70,7 @@ $ npm install -g gulp
 ```
   
 インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
+
 ``` bash
 $ gulp -v
 CLI version 3.9.0
@@ -102,15 +105,16 @@ gulp
 
 ## Gulpのタスク一覧
 
-| コマンド        | 内容                             | 補足                                                                                                                                     | 
-| ---             | ---                              | ---                                                                                                                                      | 
-| `gulp`          | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザリンク、リロード | 
-| `gulp watch`    | ファイルの変更監視               |                                                                                                                                          | 
-| `gulp htmllint` | HTMLファイルの構文チェック       |                                                                                                                                          | 
-| `gulp sass`     | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
-| `gulp js`       | javascriptファイルの構文チェック |                                                                                                                                          | 
-| `gulp release`  | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    | 
-| `gulp php-twig` |                                  |                                                                                                                                          | 
+| コマンド             | 内容                             | 補足                                                                                                                                     | 
+| ---                  | ---                              | ---                                                                                                                                      | 
+| `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザリンク、リロード | 
+| `gulp watch`         | ファイルの変更監視               |                                                                                                                                          | 
+| `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
+| `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
+| `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
+| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    | 
+| `gulp php-twig`      |                                  |                                                                                                                                          | 
+| `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
 
 <br>
 
@@ -140,31 +144,35 @@ root
 │  .gitignore
 │  gulpfile.js
 │  LICENSE
+│  package-lock.json
 │  package.json
 │  README.md
 │
 └─src
-    │  index.html
-    │
-    └─assets
-        ├─css
-        │  │  style.scss
-        │  │
-        │  ├─modules
-        │  │      _layout.scss
-        │  │
-        │  └─vender
-        │          _eric_reset.css
-        │          _html5reset.css
-        │          _normalize.css
-        │          _reset.scss
-        │          _ress.css
-        │          _sanitize.css
-        │
-        └─js
-            └─vender
-                    jquery-3.2.1.min.js
-                    jquery.easing.1.3.js
+   │  index.html
+   │
+   └─assets
+       ├─css
+       │  │  style.css
+       │  │  style.scss
+       │  │
+       │  ├─modules
+       │  │      _button.scss
+       │  │      _hover.scss
+       │  │      _layout.scss
+       │  │      _settings.scss
+       │  │
+       │  └─vender
+       │          _eric_reset.css
+       │          _html5reset.css
+       │          _normalize.css
+       │          _reset.scss
+       │          _sanitize.css
+       │
+       └─js
+           └─vender
+                   jquery-3.2.1.min.js
+                   jquery.easing.1.3.js
 ```
 
 <br>
