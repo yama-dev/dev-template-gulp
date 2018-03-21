@@ -52,19 +52,22 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 /**
  * IMPORT MODULES
  */
-const gulp         = require('gulp');
-const cache        = require('gulp-cached');
-const sass         = require('gulp-sass');
-const postcss      = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const csscomb      = require('gulp-csscomb');
-const plumber      = require('gulp-plumber');
-const htmlhint     = require('gulp-htmlhint');
-const notify       = require("gulp-notify");
-const replace      = require("gulp-replace");
-const browserSync  = require('browser-sync');
-const runSequence  = require('run-sequence');
-const eslint       = require('gulp-eslint');
+const gulp           = require('gulp');
+const cache          = require('gulp-cached');
+const sass           = require('gulp-sass');
+const postcss        = require('gulp-postcss');
+const pixrem         = require('pixrem');
+const postcssOpacity = require('postcss-opacity');
+const autoprefixer   = require('autoprefixer');
+const cssMqpacker    = require('css-mqpacker');
+const csscomb        = require('gulp-csscomb');
+const plumber        = require('gulp-plumber');
+const htmlhint       = require('gulp-htmlhint');
+const notify         = require("gulp-notify");
+const replace        = require("gulp-replace");
+const browserSync    = require('browser-sync');
+const runSequence    = require('run-sequence');
+const eslint         = require('gulp-eslint');
 
 /**
  * Sass Task
@@ -81,8 +84,10 @@ gulp.task('sass', function() {
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}))
     .pipe(csscomb())
     .pipe(postcss([
-      require('autoprefixer')({browsers: SASS_AUTOPREFIXER_BROWSERS}),
-      require('css-mqpacker')
+      autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
+      cssMqpacker(),
+      pixrem(),
+      postcssOpacity()
     ]))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev))
     .pipe(browserSync.reload({stream:true}));

@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -32,9 +32,10 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
-    "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",
     "htmlhint-stylish": "^1.0.3",
+    "pixrem": "^4.0.1",
+    "postcss-opacity": "^5.0.0",
     "run-sequence": "^2.2.0"
   }
 }
