@@ -16,8 +16,7 @@ var CONFIG_PATH = {
   src     : './src/',
   release : './release/',
   cms     : './cms/',
-  php     : './php/',
-  twig    : './src_twig/'
+  php     : './php/'
 };
 var CONFIG = {
   outputDirectory: {
@@ -209,26 +208,6 @@ gulp.task('js', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(browserSync.reload({stream:true}));
-});
-
-/**
- * Twig Task
- * replace php-tag -> twig-tag
- */
-gulp.task('php-twig', function(callback) {
-  return runSequence('php-twig-movefiles','php-twig-replace',callback);
-});
-gulp.task('php-twig-movefiles', function(){
-  gulp.src([CONFIG.outputDirectory.dev+'**/*','!**/*.html','!**/*.scss','!**/*.es6'])
-    .pipe(gulp.dest(CONFIG_PATH.twig))
-});
-gulp.task('php-twig-replace', function(){
-  gulp.src('./src/**/sp/**/*.html')
-    .pipe(replace(/\<\?php include \"\.{1,2}(.*)\";? \?\>/g, '{% include "/html/sp$1" %}'))
-    .pipe(gulp.dest(CONFIG_PATH.twig))
-  gulp.src(['./src/**/*.html','!./src/**/sp/**/*.html'])
-    .pipe(replace(/\<\?php include \"\.{1,2}(.*)\";? \?\>/g, '{% include "/html$1" %}'))
-    .pipe(gulp.dest(CONFIG_PATH.twig))
 });
 
 /**

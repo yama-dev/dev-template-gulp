@@ -10,8 +10,7 @@
     "start": "npm install && gulp",
     "develop": "gulp",
     "release": "gulp release",
-    "php:twig": "gulp php-twig",
-    "check:update": "npm outdated"
+    "update:check": "npm outdated"
   },
   "engines": {
     "node": ">=4.8.7 <=8.9.3"
