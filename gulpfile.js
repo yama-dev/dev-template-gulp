@@ -64,7 +64,6 @@ const csscomb        = require('gulp-csscomb');
 const plumber        = require('gulp-plumber');
 const htmlhint       = require('gulp-htmlhint');
 const notify         = require("gulp-notify");
-const replace        = require("gulp-replace");
 const browserSync    = require('browser-sync');
 const runSequence    = require('run-sequence');
 const eslint         = require('gulp-eslint');
