@@ -16,8 +16,7 @@ var CONFIG_PATH = {
   src     : './src/',
   release : './release/',
   cms     : './cms/',
-  php     : './php/',
-  twig    : './src_twig/'
+  php     : './php/'
 };
 var CONFIG = {
   outputDirectory: {
@@ -53,19 +52,21 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 /**
  * IMPORT MODULES
  */
-const gulp         = require('gulp');
-const cache        = require('gulp-cached');
-const sass         = require('gulp-sass');
-const postcss      = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const csscomb      = require('gulp-csscomb');
-const plumber      = require('gulp-plumber');
-const htmlhint     = require('gulp-htmlhint');
-const notify       = require("gulp-notify");
-const replace      = require("gulp-replace");
-const browserSync  = require('browser-sync');
-const runSequence  = require('run-sequence');
-const eslint       = require('gulp-eslint');
+const gulp           = require('gulp');
+const cache          = require('gulp-cached');
+const sass           = require('gulp-sass');
+const postcss        = require('gulp-postcss');
+const pixrem         = require('pixrem');
+const postcssOpacity = require('postcss-opacity');
+const autoprefixer   = require('autoprefixer');
+const cssMqpacker    = require('css-mqpacker');
+const csscomb        = require('gulp-csscomb');
+const plumber        = require('gulp-plumber');
+const htmlhint       = require('gulp-htmlhint');
+const notify         = require("gulp-notify");
+const browserSync    = require('browser-sync');
+const runSequence    = require('run-sequence');
+const eslint         = require('gulp-eslint');
 
 /**
  * Sass Task
@@ -82,8 +83,10 @@ gulp.task('sass', function() {
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}))
     .pipe(csscomb())
     .pipe(postcss([
-      require('autoprefixer')({browsers: SASS_AUTOPREFIXER_BROWSERS}),
-      require('css-mqpacker')
+      autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
+      cssMqpacker(),
+      pixrem(),
+      postcssOpacity()
     ]))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev))
     .pipe(browserSync.reload({stream:true}));
@@ -209,26 +212,6 @@ gulp.task('js', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(browserSync.reload({stream:true}));
-});
-
-/**
- * Twig Task
- * replace php-tag -> twig-tag
- */
-gulp.task('php-twig', function(callback) {
-  return runSequence('php-twig-movefiles','php-twig-replace',callback);
-});
-gulp.task('php-twig-movefiles', function(){
-  gulp.src([CONFIG.outputDirectory.dev+'**/*','!**/*.html','!**/*.scss','!**/*.es6'])
-    .pipe(gulp.dest(CONFIG_PATH.twig))
-});
-gulp.task('php-twig-replace', function(){
-  gulp.src('./src/**/sp/**/*.html')
-    .pipe(replace(/\<\?php include \"\.{1,2}(.*)\";? \?\>/g, '{% include "/html/sp$1" %}'))
-    .pipe(gulp.dest(CONFIG_PATH.twig))
-  gulp.src(['./src/**/*.html','!./src/**/sp/**/*.html'])
-    .pipe(replace(/\<\?php include \"\.{1,2}(.*)\";? \?\>/g, '{% include "/html$1" %}'))
-    .pipe(gulp.dest(CONFIG_PATH.twig))
 });
 
 /**
