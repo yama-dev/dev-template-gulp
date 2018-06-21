@@ -10,46 +10,89 @@ webサイト制作用の開発環境になります。
 
 <br>
 
-## 利用環境の構築
-
-__1. Git インストール__
-
-インストールしていない場合は下記参照
-
-[インストール方法](./docs/indtall.md)
-
-__2. Nodejs インストール__
-
-インストールしていない場合は下記参照
-
-[インストール方法](./docs/indtall.md)
-
-__3. Gulp インストール__
-
-インストールしていない場合は下記参照
-
-[インストール方法](./docs/indtall.md)
-
-<br>
-
 ## 使い方
 
-### 1. dev-template-gulp をダウンロードして、作業フォルダに配置  
+### 1. 各種インストール
+
+※Git、Nodejs、Gulpがインストール済みの場合は、 [2. 開発環境の構築](#2. 開発環境の構築) へ進んでください。
+
+#### 1-1. Git  
+
+<img src="https://git-for-windows.github.io/img/git_logo.png" width="100" alt="git for windows">  
+  
+◆Windowsの場合  
+__Git for windows のダウンロード__  
+-> https://git-scm.com/downloads/  
+  
+◆Macの場合  
+既にインストールされているはずですので新規のインストールは不要  
+  
+インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
+  
+``` bash
+// gitの確認
+$ git --version
+git version 2.16.2.windows.1
+```
+
+#### 1-2. nodejs  
+
+<img src="https://nodejs.org/static/images/logo.svg" width="120" alt="nodejs">  
+
+◆Windows、Mac  
+__nodejs のダウンロード__  
+-> https://nodejs.org/download/  
+  
+インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
+  
+``` bash
+// nodejsの確認
+$ node -v
+v8.9.3
+
+// npmの確認
+$ npm -v
+v5.5.1
+```
+  
+``` text
+◆Nodist
+windows の場合は`nodist`をインストールして、Nodejsのバージョン管理がおススメです。
+-> Nodist公式 https://github.com/marcelklehr/nodist/releases/  
+-> 参考URL http://qiita.com/yokoh9/items/20d6bdc6030a3a861189  
+```
+
+#### 1-3. Gulp (グローバルインストール)  
+
+以下のコマンドをターミナルに入力して、Gulp本体をPCのグローバルにインストール  
+``` bash
+$ npm install -g gulp
+```
+  
+インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
+
+``` bash
+$ gulp -v
+CLI version 3.9.0
+```
+
+### 2. 開発環境の構築
+
+#### 2-1. `dev-template-gulp`をダウンロードして、作業フォルダに配置  
 
 __ダウンロード__  
 -> https://github.com/yama-dev/dev-template-gulp/releases/latest  
 
-### 2. npmを使用して関連するモジュールをインストール  
+#### 2-2. npmを使用して関連するモジュールをインストール  
 
 ターミナルで以下のコマンドを入力  
-
 ``` bash
 // 作業ディレクトリに移動してから以下のコマンドを実行
 // ※ `package.json` に記述されたモジュールがインストールされる。  
 npm install
 ```
 
-### 3. Gulpを起動
+#### 2-3. Gulpを起動
 
 ターミナルで以下のコマンドを入力  
 ※コマンド一覧は「Gulpのタスク一覧」を参照  
