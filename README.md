@@ -10,89 +10,46 @@ webサイト制作用の開発環境になります。
 
 <br>
 
+## 利用環境の構築
+
+__1. Git インストール__
+
+インストールしていない場合は下記参照
+
+[インストール方法](./docs/indtall.md)
+
+__2. Nodejs インストール__
+
+インストールしていない場合は下記参照
+
+[インストール方法](./docs/indtall.md)
+
+__3. Gulp インストール__
+
+インストールしていない場合は下記参照
+
+[インストール方法](./docs/indtall.md)
+
+<br>
+
 ## 使い方
 
-### 1. 各種インストール
-
-※Git、Nodejs、Gulpがインストール済みの場合は、 [2. 開発環境の構築](#2. 開発環境の構築) へ進んでください。
-
-#### 1-1. Git  
-
-<img src="https://git-for-windows.github.io/img/git_logo.png" width="100" alt="git for windows">  
-  
-◆Windowsの場合  
-__Git for windows のダウンロード__  
--> https://git-scm.com/downloads/  
-  
-◆Macの場合  
-既にインストールされているはずですので新規のインストールは不要  
-  
-インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
-  
-``` bash
-// gitの確認
-$ git --version
-git version 2.16.2.windows.1
-```
-
-#### 1-2. nodejs  
-
-<img src="https://nodejs.org/static/images/logo.svg" width="120" alt="nodejs">  
-
-◆Windows、Mac  
-__nodejs のダウンロード__  
--> https://nodejs.org/download/  
-  
-インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
-  
-``` bash
-// nodejsの確認
-$ node -v
-v8.9.3
-
-// npmの確認
-$ npm -v
-v5.5.1
-```
-  
-``` text
-◆Nodist
-windows の場合は`nodist`をインストールして、Nodejsのバージョン管理がおススメです。
--> Nodist公式 https://github.com/marcelklehr/nodist/releases/  
--> 参考URL http://qiita.com/yokoh9/items/20d6bdc6030a3a861189  
-```
-
-#### 1-3. Gulp (グローバルインストール)  
-
-以下のコマンドをターミナルに入力して、Gulp本体をPCのグローバルにインストール  
-``` bash
-$ npm install -g gulp
-```
-  
-インストールが完了したら、以下のコマンドで、正しく動作していることを確認  
-
-``` bash
-$ gulp -v
-CLI version 3.9.0
-```
-
-### 2. 開発環境の構築
-
-#### 2-1. `dev-template-gulp`をダウンロードして、作業フォルダに配置  
+### 1. dev-template-gulp をダウンロードして、作業フォルダに配置  
 
 __ダウンロード__  
 -> https://github.com/yama-dev/dev-template-gulp/releases/latest  
 
-#### 2-2. npmを使用して関連するモジュールをインストール  
+### 2. npmで関連モジュールをインストール  
 
 ターミナルで以下のコマンドを入力  
+
 ``` bash
 // 作業ディレクトリに移動してから以下のコマンドを実行
 // ※ `package.json` に記述されたモジュールがインストールされる。  
 npm install
 ```
 
-#### 2-3. Gulpを起動
+### 3. Gulpを起動
 
 ターミナルで以下のコマンドを入力  
 ※コマンド一覧は「Gulpのタスク一覧」を参照  
@@ -101,19 +58,33 @@ npm install
 gulp
 ```
 
+正常に起動すると「localhost:3000」がブラウザに表示されます。
+
+コーディングを行ってください。
+
+### 4. 納品ファイルを生成
+
+ターミナルで以下のコマンドを入力
+
+※ *.sass拡張子のファイル、*.es6拡張子のファイル、_(アンダーバー)から始まるファイル  
+　を除くファイルが「release」フォルダにコピーされます。
+
+``` bash
+gulp release
+```
+
 <br>
 
 ## Gulpのタスク一覧
 
 | コマンド             | 内容                             | 補足                                                                                                                                     | 
 | ---                  | ---                              | ---                                                                                                                                      | 
-| `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザリンク、リロード | 
+| `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザシンク、リロード | 
 | `gulp watch`         | ファイルの変更監視               |                                                                                                                                          | 
 | `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
 | `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
-| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    | 
-| `gulp php-twig`      |                                  |                                                                                                                                          | 
+| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |                                                                                                                         | 
 | `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
 
 <br>
@@ -124,17 +95,15 @@ gulp
 | ---           | ---                | ---  | 
 | gulp          | Gulp本体           |      | 
 | gulp-sass     | Sassのコンパイル   |      | 
-| gulp-postcss  |                    |      | 
-| autoprefixer  |                    |      | 
-| gulp-csscomb  |                    |      | 
+| gulp-postcss  | css最適化 |      | 
+| autoprefixer  | プレフィックスの付与 |      | 
+| gulp-csscomb  | セレクタの整理 |      | 
 | gulp-cached   | 差分検出、更新     |      | 
 | gulp-plumber  | エラー検出、制御   |      | 
 | gulp-htmlhint | HTMLのLINT         |      | 
 | gulp-eslint   | javascriptのLINT   |      | 
 | gulp-notify   | デスクトップ通知   |      | 
-| gulp-replace  | 文字置換           |      | 
 | browser-sync  | ブラウザのリロード |      | 
-| run-sequence  |                    |      | 
 
 #### ファイル構造
 
@@ -166,12 +135,12 @@ root
        │          _eric_reset.css
        │          _html5reset.css
        │          _normalize.css
-       │          _reset.scss
+       │          _reset.css
        │          _sanitize.css
        │
        └─js
            └─vender
-                   jquery-3.2.1.min.js
+                   jquery-3.3.1.min.js
                    jquery.easing.1.3.js
 ```
 
