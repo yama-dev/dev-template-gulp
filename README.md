@@ -39,7 +39,7 @@ __3. Gulp インストール__
 __ダウンロード__  
 -> https://github.com/yama-dev/dev-template-gulp/releases/latest  
 
-### 2. npmを使用して関連するモジュールをインストール  
+### 2. npmで関連モジュールをインストール  
 
 ターミナルで以下のコマンドを入力  
 
@@ -58,19 +58,33 @@ npm install
 gulp
 ```
 
+正常に起動すると「localhost:3000」がブラウザに表示されます。
+
+コーディングを行ってください。
+
+### 4. 納品ファイルを生成
+
+ターミナルで以下のコマンドを入力
+
+※ *.sass拡張子のファイル、*.es6拡張子のファイル、_(アンダーバー)から始まるファイル  
+　を除くファイルが「release」フォルダにコピーされます。
+
+``` bash
+gulp release
+```
+
 <br>
 
 ## Gulpのタスク一覧
 
 | コマンド             | 内容                             | 補足                                                                                                                                     | 
 | ---                  | ---                              | ---                                                                                                                                      | 
-| `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザリンク、リロード | 
+| `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザシンク、リロード | 
 | `gulp watch`         | ファイルの変更監視               |                                                                                                                                          | 
 | `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
 | `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
-| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    | 
-| `gulp php-twig`      |                                  |                                                                                                                                          | 
+| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |                                                                                                                         | 
 | `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
 
 <br>
@@ -81,17 +95,15 @@ gulp
 | ---           | ---                | ---  | 
 | gulp          | Gulp本体           |      | 
 | gulp-sass     | Sassのコンパイル   |      | 
-| gulp-postcss  |                    |      | 
-| autoprefixer  |                    |      | 
-| gulp-csscomb  |                    |      | 
+| gulp-postcss  | css最適化 |      | 
+| autoprefixer  | プレフィックスの付与 |      | 
+| gulp-csscomb  | セレクタの整理 |      | 
 | gulp-cached   | 差分検出、更新     |      | 
 | gulp-plumber  | エラー検出、制御   |      | 
 | gulp-htmlhint | HTMLのLINT         |      | 
 | gulp-eslint   | javascriptのLINT   |      | 
 | gulp-notify   | デスクトップ通知   |      | 
-| gulp-replace  | 文字置換           |      | 
 | browser-sync  | ブラウザのリロード |      | 
-| run-sequence  |                    |      | 
 
 #### ファイル構造
 
@@ -123,12 +135,12 @@ root
        │          _eric_reset.css
        │          _html5reset.css
        │          _normalize.css
-       │          _reset.scss
+       │          _reset.css
        │          _sanitize.css
        │
        └─js
            └─vender
-                   jquery-3.2.1.min.js
+                   jquery-3.3.1.min.js
                    jquery.easing.1.3.js
 ```
 
