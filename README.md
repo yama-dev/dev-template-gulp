@@ -1,5 +1,7 @@
 # dev template gulp
 
+<br>
+
 ## 概要
 
 webサイト制作用の開発環境になります。  
@@ -16,19 +18,19 @@ __1. Git インストール__
 
 インストールしていない場合は下記参照
 
-[インストール方法](./docs/install)
+[インストール方法](./docs/install.md)
 
 __2. Nodejs インストール__
 
 インストールしていない場合は下記参照
 
-[インストール方法](./docs/install)
+[インストール方法](./docs/install.md)
 
 __3. Gulp インストール__
 
 インストールしていない場合は下記参照
 
-[インストール方法](./docs/install)
+[インストール方法](./docs/install.md)
 
 <br>
 
@@ -43,9 +45,9 @@ __ダウンロード__
 
 ターミナルで以下のコマンドを入力  
 
+※作業ディレクトリに移動してから以下のコマンドを実行  
+※`package.json` に記述されたモジュールがインストールされる。  
 ``` bash
-// 作業ディレクトリに移動してから以下のコマンドを実行
-// ※ `package.json` に記述されたモジュールがインストールされる。  
 npm install
 ```
 
@@ -84,26 +86,26 @@ gulp release
 | `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
 | `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
-| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |                                                                                                                         | 
+| `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |
 | `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
 
 <br>
 
 ## 主な仕様
 
-| パッケージ    | 役割               | 補足 | 
-| ---           | ---                | ---  | 
-| gulp          | Gulp本体           |      | 
-| gulp-sass     | Sassのコンパイル   |      | 
-| gulp-postcss  | css最適化 |      | 
+| パッケージ    | 役割                 | 補足 | 
+| ---           | ---                  | ---  | 
+| gulp          | Gulp本体             |      | 
+| gulp-sass     | Sassのコンパイル     |      | 
+| gulp-postcss  | css最適化            |      | 
 | autoprefixer  | プレフィックスの付与 |      | 
-| gulp-csscomb  | セレクタの整理 |      | 
-| gulp-cached   | 差分検出、更新     |      | 
-| gulp-plumber  | エラー検出、制御   |      | 
-| gulp-htmlhint | HTMLのLINT         |      | 
-| gulp-eslint   | javascriptのLINT   |      | 
-| gulp-notify   | デスクトップ通知   |      | 
-| browser-sync  | ブラウザのリロード |      | 
+| gulp-csscomb  | セレクタの整理       |      | 
+| gulp-cached   | 差分検出、更新       |      | 
+| gulp-plumber  | エラー検出、制御     |      | 
+| gulp-htmlhint | HTMLのLINT           |      | 
+| gulp-eslint   | javascriptのLINT     |      | 
+| gulp-notify   | デスクトップ通知     |      | 
+| browser-sync  | ブラウザのリロード   |      | 
 
 #### ファイル構造
 
@@ -146,10 +148,9 @@ root
 
 <br>
 
-## インストール
+## Download
 
-__ダウンロード__  
--> https://github.com/yama-dev/dev-template-gulp/releases/latest
+Zip -> https://github.com/yama-dev/dev-template-gulp/releases/latest
 
 <br>
 
