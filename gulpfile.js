@@ -67,6 +67,7 @@ const notify         = require("gulp-notify");
 const browserSync    = require('browser-sync');
 const runSequence    = require('run-sequence');
 const eslint         = require('gulp-eslint');
+const ignore         = require("gulp-ignore");
 
 /**
  * Sass Task
@@ -269,7 +270,8 @@ gulp.task('default', function(callback) {
 gulp.task('release', function() {
 
   // Copy Release files.
-  gulp.src([CONFIG.outputDirectory.dev+'**/*','!**/*.scss','!**/*.es6'])
+  gulp.src([CONFIG.outputDirectory.dev+'**/*','!'+CONFIG.outputDirectory.dev+'**/_*','!**/*.scss','!**/*.es6'])
+    .pipe(ignore.include({isFile: true}))
     .pipe(gulp.dest(CONFIG.outputDirectory.release))
 
   gulp.src('').pipe(notify({
