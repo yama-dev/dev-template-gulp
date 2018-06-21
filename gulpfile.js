@@ -42,7 +42,7 @@ var CONFIG = {
   }
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
-  'ie >= 8',
+  'ie >= 10',
   'ios >= 8',
   'android >= 4.4',
   'last 2 versions'
