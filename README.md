@@ -1,11 +1,11 @@
-# dev template gulp
+# DEV TEMPLATE GULP
 
 <br>
 
 ## 概要
 
 webサイト制作用の開発環境になります。  
-※[@gulp](https://github.com/gulpjs/gulp)の利用を前提に作成してありますが、どちらでも利用可能です。  
+※[@gulp](https://github.com/gulpjs/gulp)の利用を前提に作成してありますが、そのままでも利用可能です。  
   
  - 可能な限りミニマムな構成としています。
  - 初期のHTML,Sass,javascriptファイルが同梱されています。
