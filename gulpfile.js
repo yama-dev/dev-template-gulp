@@ -25,14 +25,16 @@ var CONFIG = {
   },
   sourceDirectory: {
     sass    : CONFIG_PATH.src + '**/*.scss',
-    js      : CONFIG_PATH.src + '**/*.js'
+    js      : CONFIG_PATH.src + '**/*.js',
+    es6     : CONFIG_PATH.src + '**/*.es6'
   },
   watchDirectory: {
     html    : CONFIG_PATH.src + '**/*.html',
     php     : CONFIG_PATH.src + '**/*.php',
     css     : CONFIG_PATH.src + '**/*.css',
     sass    : CONFIG_PATH.src + '**/*.scss',
-    js      : CONFIG_PATH.src + '**/*.js'
+    js      : CONFIG_PATH.src + '**/*.js',
+    es6     : CONFIG_PATH.src + '**/*.es6'
   },
   watchIgnoreDirectory: {
     js      : [
@@ -42,7 +44,7 @@ var CONFIG = {
   }
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
-  'ie >= 8',
+  'ie >= 10',
   'ios >= 8',
   'android >= 4.4',
   'last 2 versions'
@@ -53,21 +55,22 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
  * IMPORT MODULES
  */
 const gulp           = require('gulp');
-const cache          = require('gulp-cached');
 const sass           = require('gulp-sass');
 const postcss        = require('gulp-postcss');
+const csscomb        = require('gulp-csscomb');
+const babel          = require("gulp-babel");
+const eslint         = require('gulp-eslint');
+const htmlhint       = require('gulp-htmlhint');
+const cache          = require('gulp-cached');
+const plumber        = require('gulp-plumber');
+const notify         = require("gulp-notify");
+const ignore         = require("gulp-ignore");
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
-const csscomb        = require('gulp-csscomb');
-const plumber        = require('gulp-plumber');
-const htmlhint       = require('gulp-htmlhint');
-const notify         = require("gulp-notify");
 const browserSync    = require('browser-sync');
 const runSequence    = require('run-sequence');
-const eslint         = require('gulp-eslint');
-const ignore         = require("gulp-ignore");
 
 /**
  * Sass Task
@@ -133,12 +136,28 @@ gulp.task('htmllint', function() {
 /**
  * Js Task
  */
+gulp.task('js_babel', function() {
+  return gulp.src([ CONFIG.sourceDirectory.es6 ])
+    .pipe(plumber({
+      errorHandler: notify.onError({
+        title: "Js エラー",
+        message: "<%= error.message %>"
+      })
+    }))
+    .pipe(babel())
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev))
+    .pipe(browserSync.reload({stream:true}));
+});
+
+/**
+ * Js Task
+ */
 gulp.task('js', function() {
   return gulp.src([
-    CONFIG.sourceDirectory.js,
-    CONFIG.watchIgnoreDirectory.js[0],
-    CONFIG.watchIgnoreDirectory.js[1]
-  ])
+      CONFIG.sourceDirectory.js,
+      CONFIG.watchIgnoreDirectory.js[0],
+      CONFIG.watchIgnoreDirectory.js[1]
+    ])
     .pipe(plumber({
       errorHandler: notify.onError({
         title: "Js エラー",
@@ -150,64 +169,49 @@ gulp.task('js', function() {
         'jQuery',
         '$'
       ],
-      "env": {
-        "browser": true,
-        "es6": true
+      "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "script",
+        "ecmaFeatures": {}
       },
+      envs: [
+        'browser'
+      ],
       "rules": {
-        "comma-dangle": [1, "never"],
+        "comma-dangle": 1,
+        "no-cond-assign": 1,
         "no-console": 1,
-        "eol-last": 0,
-        "block-scoped-var": 0,
-        "complexity": 1,
-        "consistent-return": 1,
-        "default-case": 1,
+        "no-constant-condition": 1,
+        "no-control-regex": 1,
+        "no-debugger": 1,
+        "no-dupe-args": 1,
+        "no-dupe-keys": 1,
+        "no-duplicate-case": 1,
+        "no-empty-character-class": 1,
+        "no-empty": 1,
+        "no-ex-assign": 1,
+        "no-extra-boolean-cast": 1,
+        "no-extra-parens": 1,
+        "no-extra-semi": 1,
+        "no-func-assign": 1,
+        "no-inner-declarations": 1,
+        "no-invalid-regexp": 1,
+        "no-irregular-whitespace": 1,
+        "no-negated-in-lhs": 1,
+        "no-obj-calls": 1,
+        "no-regex-spaces": 1,
+        "no-sparse-arrays": 1,
+        "no-unreachable": 1,
+        "use-isnan": 1,
+        "valid-typeof": 1,
         "eqeqeq": 1,
-        "no-alert": 1,
-        "no-caller": 1,
-        "no-eval": 2,
-        "no-new": 0,
-        "no-new-func": 1,
-        "no-proto": 1,
-        "no-script-url": 1,
-        "no-self-compare": 1,
-        "no-void": 1,
-        "camelcase": [2, {"properties": "always"}],
-        "no-array-constructor": 1,
-        "quotes": [2, "single"],
+        "no-fallthrough": 1,
+        "no-octal": 1,
+        "no-redeclare": 1,
+        "no-delete-var": 1,
+        "no-undef": 1,
         "no-unused-vars": 1,
-        "space-after-keywords": 0,
-        "space-infix-ops": 0,
-        "space-return-throw-case": 0,
-        "comma-spacing": 0,
-        "prefer-const": 0,
-        "no-undef": 0,
-        "curly": 0
-      },
-      "ecmaFeatures": {
-        "arrowFunctions": true,
-        "binaryLiterals": true,
-        "blockBindings": true,
-        "classes": true,
-        "defaultParams": true,
-        "destructuring": true,
-        "forOf": true,
-        "generators": true,
-        "modules": true,
-        "objectLiteralComputedProperties": true,
-        "objectLiteralDuplicateProperties": true,
-        "objectLiteralShorthandMethods": true,
-        "objectLiteralShorthandProperties": true,
-        "octalLiterals": true,
-        "regexUFlag": true,
-        "regexYFlag": true,
-        "restParams": true,
-        "spread": true,
-        "superInFunctions": true,
-        "templateStrings": true,
-        "unicodeCodePointEscapes": true,
-        "globalReturn": true,
-        "jsx": true
+        "no-mixed-spaces-and-tabs": 1
       }
     }))
     .pipe(eslint.format())
@@ -221,8 +225,9 @@ gulp.task('js', function() {
 gulp.task('watch',['server'], function() {
 
   // Set Watch Tasks.
-  gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
+  gulp.watch(CONFIG.watchDirectory.es6,['js_babel']);
+  gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.js,['js']);
 
   gulp.src('').pipe(notify({
@@ -261,7 +266,7 @@ gulp.task('server', function() {
  * Default Task
  */
 gulp.task('default', function(callback) {
-  return runSequence(['sass','htmllint','js'],'watch',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js'],'watch',callback);
 });
 
 /**
