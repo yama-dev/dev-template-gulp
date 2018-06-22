@@ -13,7 +13,7 @@
     "update:check": "npm outdated"
   },
   "engines": {
-    "node": ">=4.8.7 <=8.9.3"
+    "node": ">=4.8.7 <=10.5.0"
   },
   "repository": {
     "type": "git",
