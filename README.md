@@ -85,6 +85,7 @@ gulp release
 | `gulp watch`         | ファイルの変更監視               |                                                                                                                                          | 
 | `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
 | `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
+| `gulp js_babel`      | javascriptファイルのコンパイル   |                                                                                                                                          | 
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
 | `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |
 | `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
@@ -93,19 +94,20 @@ gulp release
 
 ## 主な仕様
 
-| パッケージ    | 役割                 | 補足 | 
-| ---           | ---                  | ---  | 
-| gulp          | Gulp本体             |      | 
-| gulp-sass     | Sassのコンパイル     |      | 
-| gulp-postcss  | css最適化            |      | 
-| autoprefixer  | プレフィックスの付与 |      | 
-| gulp-csscomb  | セレクタの整理       |      | 
-| gulp-cached   | 差分検出、更新       |      | 
-| gulp-plumber  | エラー検出、制御     |      | 
-| gulp-htmlhint | HTMLのLINT           |      | 
-| gulp-eslint   | javascriptのLINT     |      | 
-| gulp-notify   | デスクトップ通知     |      | 
-| browser-sync  | ブラウザのリロード   |      | 
+| パッケージ    | 役割                 | 補足                                        | 
+| ---           | ---                  | ---                                         | 
+| gulp          | Gulp本体             | https://www.npmjs.com/package/gulp          | 
+| gulp-htmlhint | HTMLのLINT           | https://www.npmjs.com/package/gulp-htmlhint | 
+| gulp-sass     | Sassのコンパイル     | https://www.npmjs.com/package/gulp-sass     | 
+| gulp-postcss  | css最適化            | https://www.npmjs.com/package/gulp-postcss  | 
+| autoprefixer  | プレフィックスの付与 | https://www.npmjs.com/package/autoprefixer  | 
+| gulp-csscomb  | セレクタの整理       | https://www.npmjs.com/package/gulp-csscomb  | 
+| gulp-babel    | ECMAScriptコンパイル | https://www.npmjs.com/package/gulp-babel    | 
+| gulp-eslint   | javascriptのLINT     | https://www.npmjs.com/package/gulp-eslint   | 
+| gulp-cached   | 差分検出、更新       | https://www.npmjs.com/package/gulp-cached   | 
+| gulp-plumber  | エラー検出、制御     | https://www.npmjs.com/package/gulp-plumber  | 
+| gulp-notify   | デスクトップ通知     | https://www.npmjs.com/package/gulp-notify   | 
+| browser-sync  | ブラウザのリロード   | https://www.npmjs.com/package/browser-sync  | 
 
 #### ファイル構造
 
@@ -115,35 +117,44 @@ root
 │  .gitignore
 │  gulpfile.js
 │  LICENSE
-│  package-lock.json
 │  package.json
 │  README.md
 │
+├─docs
+│      install.md
+│
 └─src
-   │  index.html
-   │
-   └─assets
-       ├─css
-       │  │  style.css
-       │  │  style.scss
-       │  │
-       │  ├─modules
-       │  │      _button.scss
-       │  │      _hover.scss
-       │  │      _layout.scss
-       │  │      _settings.scss
-       │  │
-       │  └─vender
-       │          _eric_reset.css
-       │          _html5reset.css
-       │          _normalize.css
-       │          _reset.css
-       │          _sanitize.css
-       │
-       └─js
-           └─vender
-                   jquery-3.3.1.min.js
-                   jquery.easing.1.3.js
+    │  index.html
+    │
+    └─assets
+        ├─css
+        │  │  style.css
+        │  │  style.scss
+        │  │
+        │  ├─modules
+        │  │      _button.scss
+        │  │      _hover.scss
+        │  │      _layout.scss
+        │  │      _settings.scss
+        │  │      
+        │  └─vender
+        │          _eric_reset.css
+        │          _eric_reset_scss.scss
+        │          _html5reset.css
+        │          _html5reset_scss.scss
+        │          _normalize.css
+        │          _normalize_scss.scss
+        │          _reset.css
+        │          _reset_scss.scss
+        │          _sanitize.css
+        │          _sanitize_scss.scss
+        │          
+        └─js
+            │  script.js
+            │  
+            └─vender
+                    jquery-3.3.1.min.js
+                    jquery.easing.1.3.js
 ```
 
 <br>
