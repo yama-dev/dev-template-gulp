@@ -25,14 +25,16 @@ var CONFIG = {
   },
   sourceDirectory: {
     sass    : CONFIG_PATH.src + '**/*.scss',
-    js      : CONFIG_PATH.src + '**/*.js'
+    js      : CONFIG_PATH.src + '**/*.js',
+    es6     : CONFIG_PATH.src + '**/*.es6'
   },
   watchDirectory: {
     html    : CONFIG_PATH.src + '**/*.html',
     php     : CONFIG_PATH.src + '**/*.php',
     css     : CONFIG_PATH.src + '**/*.css',
     sass    : CONFIG_PATH.src + '**/*.scss',
-    js      : CONFIG_PATH.src + '**/*.js'
+    js      : CONFIG_PATH.src + '**/*.js',
+    es6     : CONFIG_PATH.src + '**/*.es6'
   },
   watchIgnoreDirectory: {
     js      : [
@@ -53,21 +55,22 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
  * IMPORT MODULES
  */
 const gulp           = require('gulp');
-const cache          = require('gulp-cached');
 const sass           = require('gulp-sass');
 const postcss        = require('gulp-postcss');
+const csscomb        = require('gulp-csscomb');
+const babel          = require("gulp-babel");
+const eslint         = require('gulp-eslint');
+const htmlhint       = require('gulp-htmlhint');
+const cache          = require('gulp-cached');
+const plumber        = require('gulp-plumber');
+const notify         = require("gulp-notify");
+const ignore         = require("gulp-ignore");
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
-const csscomb        = require('gulp-csscomb');
-const plumber        = require('gulp-plumber');
-const htmlhint       = require('gulp-htmlhint');
-const notify         = require("gulp-notify");
 const browserSync    = require('browser-sync');
 const runSequence    = require('run-sequence');
-const eslint         = require('gulp-eslint');
-const ignore         = require("gulp-ignore");
 
 /**
  * Sass Task
@@ -133,12 +136,28 @@ gulp.task('htmllint', function() {
 /**
  * Js Task
  */
+gulp.task('js_babel', function() {
+  return gulp.src([ CONFIG.sourceDirectory.es6 ])
+    .pipe(plumber({
+      errorHandler: notify.onError({
+        title: "Js エラー",
+        message: "<%= error.message %>"
+      })
+    }))
+    .pipe(babel())
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev))
+    .pipe(browserSync.reload({stream:true}));
+});
+
+/**
+ * Js Task
+ */
 gulp.task('js', function() {
   return gulp.src([
-    CONFIG.sourceDirectory.js,
-    CONFIG.watchIgnoreDirectory.js[0],
-    CONFIG.watchIgnoreDirectory.js[1]
-  ])
+      CONFIG.sourceDirectory.js,
+      CONFIG.watchIgnoreDirectory.js[0],
+      CONFIG.watchIgnoreDirectory.js[1]
+    ])
     .pipe(plumber({
       errorHandler: notify.onError({
         title: "Js エラー",
@@ -206,8 +225,9 @@ gulp.task('js', function() {
 gulp.task('watch',['server'], function() {
 
   // Set Watch Tasks.
-  gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
+  gulp.watch(CONFIG.watchDirectory.es6,['js_babel']);
+  gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.js,['js']);
 
   gulp.src('').pipe(notify({
@@ -246,7 +266,7 @@ gulp.task('server', function() {
  * Default Task
  */
 gulp.task('default', function(callback) {
-  return runSequence(['sass','htmllint','js'],'watch',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js'],'watch',callback);
 });
 
 /**
