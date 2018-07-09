@@ -1,5 +1,8 @@
 'use strict';
 
+const pkg = require('./package.json');
+console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-'.repeat(38));
+
 /**
  * CLIでの引数を判定
  */

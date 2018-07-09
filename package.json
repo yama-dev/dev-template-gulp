@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.0.9",
+  "version": "0.1.1",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -10,6 +10,7 @@
     "start": "npm install && gulp",
     "develop": "gulp",
     "release": "gulp release",
+    "proxy": "gulp --proxy",
     "update:check": "npm outdated"
   },
   "engines": {
