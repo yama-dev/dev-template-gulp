@@ -138,24 +138,38 @@ ol, ul {
   list-style: none;
 }
 
-.is-pc {
-  display: block;
-}
-
-.is-sp {
-  display: none;
-}
-
-.is-pc-inline {
-  display: inline-block;
-}
-
-.is-sp-inline {
-  display: none;
-}
-
 img {
   display: block;
   max-width: 100%;
   vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
 }
