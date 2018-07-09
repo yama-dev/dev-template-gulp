@@ -3,35 +3,51 @@
 // Set Reset-Css
 
 // http://meyerweb.com/eric/tools/css/reset/ 
-// @import "./vender/eric_reset_scss";
+// @import "./vender_sass/eric_reset_scss";
 
 // http://html5doctor.com/
-@import "./vender/html5reset_scss";
+@import "./vender_sass/html5reset_scss";
 
 // @jonathantneal/sanitize
-// @import "./vender/sanitize_scss";
+// @import "./vender_sass/sanitize_scss";
 
 // @necolas/normalize.css 
-// @import "./vender/normalize_scss";
+// @import "./vender_sass/normalize_scss";
 
 // https://github.com/yama-dev
-@import "./vender/reset_scss";
+@import "./vender_sass/reset_scss";
 
 // Debug
 // @debug "style.scss";
 
 // Style Switching Elements
-.is-pc {
-  display: block;
+@media screen and (min-width: 768px) {
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
 }
-.is-sp {
-  display: none;
-}
-.is-pc-inline {
-  display: inline-block;
-}
-.is-sp-inline {
-  display: none;
+@media screen and (max-width: 767px) {
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
 }
 
 // Style Image Fit
