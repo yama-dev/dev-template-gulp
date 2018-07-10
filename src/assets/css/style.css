@@ -94,8 +94,8 @@ input, select {
   Reset Stylesheet
   Author: yama-dev - https://github.com/yama-dev
   */
-body {
-  font-family: "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+body, button, input, select, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
