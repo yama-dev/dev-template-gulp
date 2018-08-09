@@ -72,7 +72,7 @@ const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
-const browserSync    = require('browser-sync');
+const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
 
 /**
@@ -96,7 +96,7 @@ gulp.task('sass', function() {
       postcssOpacity()
     ]))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev))
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(browserSync.stream());
 });
 
 /**
@@ -149,7 +149,6 @@ gulp.task('js_babel', function() {
     }))
     .pipe(babel())
     .pipe(gulp.dest(CONFIG.outputDirectory.dev))
-    .pipe(browserSync.reload({stream:true}));
 });
 
 /**
@@ -219,7 +218,6 @@ gulp.task('js', function() {
     }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .pipe(browserSync.reload({stream:true}));
 });
 
 /**
@@ -248,11 +246,11 @@ gulp.task('server', function() {
 
   // Set BrowserSync server.
   if(param['--proxy']){
-    browserSync({
+    browserSync.init({
       proxy: param['--proxy']
     });
   } else {
-    browserSync({
+    browserSync.init({
       server: {
         baseDir: CONFIG.outputDirectory.dev
       }
@@ -261,6 +259,7 @@ gulp.task('server', function() {
 
   // Browser reload.
   gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
+  gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
   gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
 
 });
