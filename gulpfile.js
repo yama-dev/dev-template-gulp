@@ -95,8 +95,7 @@ gulp.task('sass', function() {
       pixrem(),
       postcssOpacity()
     ]))
-    .pipe(gulp.dest(CONFIG.outputDirectory.dev))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
 /**
@@ -261,6 +260,9 @@ gulp.task('server', function() {
   gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
   gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
   gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
+  gulp.watch(CONFIG.watchDirectory.css, ()=>{
+    gulp.src(CONFIG.watchDirectory.css).pipe(browserSync.stream());
+  });
 
 });
 
