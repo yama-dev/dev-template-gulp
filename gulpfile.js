@@ -6,22 +6,22 @@ console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-
 /**
  * CLIでの引数を判定
  */
-let argv = process.argv.slice(2);
+const argv = process.argv.slice(2);
 let param = new Object();
-argv.forEach(function(item,i){
+argv.forEach((item,i)=>{
   if(i % 2 === 0 && /\-\-/.test(item) && !/\-\-/.test(argv[i+1])) param[item] = argv[i+1];
 });
 
 /**
  * 環境設定
  */
-var CONFIG_PATH = {
+const CONFIG_PATH = {
   src     : './src/',
   release : './release/',
   cms     : './cms/',
   php     : './php/'
 };
-var CONFIG = {
+const CONFIG = {
   outputDirectory: {
     dev     : CONFIG_PATH.src,
     release : CONFIG_PATH.release
@@ -78,7 +78,7 @@ const runSequence    = require('run-sequence');
 /**
  * Sass Task
  */
-gulp.task('sass', function() {
+gulp.task('sass', ()=>{
   gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
     .pipe(plumber({
@@ -101,7 +101,7 @@ gulp.task('sass', function() {
 /**
  * HtmlLint Task
  */
-gulp.task('htmllint', function() {
+gulp.task('htmllint', ()=>{
   return gulp.src([CONFIG.watchDirectory.html])
     .pipe(plumber({
       errorHandler: notify.onError({
@@ -138,7 +138,7 @@ gulp.task('htmllint', function() {
 /**
  * Js Task
  */
-gulp.task('js_babel', function() {
+gulp.task('js_babel', ()=>{
   return gulp.src([ CONFIG.sourceDirectory.es6 ])
     .pipe(plumber({
       errorHandler: notify.onError({
@@ -153,7 +153,7 @@ gulp.task('js_babel', function() {
 /**
  * Js Task
  */
-gulp.task('js', function() {
+gulp.task('js', ()=>{
   return gulp.src([
       CONFIG.sourceDirectory.js,
       CONFIG.watchIgnoreDirectory.js[0],
@@ -222,7 +222,7 @@ gulp.task('js', function() {
 /**
  * Watch Task
  */
-gulp.task('watch',['server'], function() {
+gulp.task('watch',['server'], ()=>{
 
   // Set Watch Tasks.
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
@@ -241,7 +241,7 @@ gulp.task('watch',['server'], function() {
 /**
  * Server Task
  */
-gulp.task('server', function() {
+gulp.task('server', ()=>{
 
   // Set BrowserSync server.
   if(param['--proxy']){
@@ -269,14 +269,14 @@ gulp.task('server', function() {
 /**
  * Default Task
  */
-gulp.task('default', function(callback) {
+gulp.task('default', (callback)=>{
   return runSequence(['js_babel','sass'],['htmllint','js'],'watch',callback);
 });
 
 /**
  * Release Task
  */
-gulp.task('release', function() {
+gulp.task('release', ()=>{
 
   // Copy Release files.
   gulp.src([CONFIG.outputDirectory.dev+'**/*','!'+CONFIG.outputDirectory.dev+'**/_*','!**/*.scss','!**/*.es6'])
