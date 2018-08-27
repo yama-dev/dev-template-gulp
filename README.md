@@ -126,37 +126,37 @@ root
 └─src
     │  index.html
     │
-└─assets
-    ├─css
-    │  │  style.css
-    │  │  style.scss
-    │  │  
-    │  ├─modules
-    │  │      _button.scss
-    │  │      _hover.scss
-    │  │      _layout.scss
-    │  │      _settings.scss
-    │  │      
-    │  ├─vender
-    │  │      eric_reset.css
-    │  │      html5reset.css
-    │  │      normalize.css
-    │  │      reset.css
-    │  │      sanitize.css
-    │  │      
-    │  └─vender_sass
-    │          _eric_reset.scss
-    │          _html5reset.scss
-    │          _normalize.scss
-    │          _reset.scss
-    │          _sanitize.scss
-    │          
-    └─js
-        │  script.js
-        │  
-        └─vender
-                jquery-3.3.1.min.js
-                jquery.easing.1.3.js
+    └─assets
+        ├─css
+        │  │  style.css
+        │  │  style.scss
+        │  │  
+        │  ├─modules
+        │  │      _button.scss
+        │  │      _hover.scss
+        │  │      _layout.scss
+        │  │      _settings.scss
+        │  │      
+        │  ├─vender
+        │  │      eric_reset.css
+        │  │      html5reset.css
+        │  │      normalize.css
+        │  │      reset.css
+        │  │      sanitize.css
+        │  │      
+        │  └─vender_sass
+        │          _eric_reset.scss
+        │          _html5reset.scss
+        │          _normalize.scss
+        │          _reset.scss
+        │          _sanitize.scss
+        │          
+        └─js
+            │  script.js
+            │  
+            └─vender
+                    jquery-3.3.1.min.js
+                    jquery.easing.1.3.js
 ```
 
 <br>
