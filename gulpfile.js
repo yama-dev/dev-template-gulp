@@ -16,10 +16,10 @@ argv.forEach((item,i)=>{
  * 環境設定
  */
 const CONFIG_PATH = {
-  src     : './src/',
-  release : './release/',
-  cms     : './cms/',
-  php     : './php/'
+  src     : 'src/',
+  release : 'release/',
+  cms     : 'cms/',
+  php     : 'php/'
 };
 const CONFIG = {
   outputDirectory: {
