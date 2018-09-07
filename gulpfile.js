@@ -132,7 +132,7 @@ gulp.task('htmllint', ()=>{
       'href-abs-or-rel': false,
       'attr-unsafe-chars': true
     }))
-    .pipe(htmlhint.reporter('htmlhint-stylish'))
+    .pipe(htmlhint.failReporter());
 });
 
 /**
