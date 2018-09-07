@@ -66,8 +66,8 @@ const eslint         = require('gulp-eslint');
 const htmlhint       = require('gulp-htmlhint');
 const cache          = require('gulp-cached');
 const plumber        = require('gulp-plumber');
-const notify         = require("gulp-notify");
-const ignore         = require("gulp-ignore");
+const ignore         = require('gulp-ignore');
+const notifier       = require('node-notifier');
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
@@ -82,10 +82,12 @@ gulp.task('sass', ()=>{
   gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
     .pipe(plumber({
-      errorHandler: notify.onError({
-        title: "Sass コンパイル エラー",
-        message: "<%= error.message %>"
-      })
+      errorHandler(error){
+        notifier.notify({
+          title: 'Sass コンパイル エラー',
+          message: error.message
+        });
+      }
     }))
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}))
     .pipe(csscomb())
@@ -104,10 +106,12 @@ gulp.task('sass', ()=>{
 gulp.task('htmllint', ()=>{
   return gulp.src([CONFIG.watchDirectory.html])
     .pipe(plumber({
-      errorHandler: notify.onError({
-        title: "HTML LINT エラー",
-        message: "<%= error.message %>"
-      })
+      errorHandler(error){
+        notifier.notify({
+          title: 'HTML LINT エラー',
+          message: error.message
+        });
+      }
     }))
     .pipe(htmlhint({
       'tagname-lowercase': true,
@@ -141,10 +145,12 @@ gulp.task('htmllint', ()=>{
 gulp.task('js_babel', ()=>{
   return gulp.src([ CONFIG.sourceDirectory.es6 ])
     .pipe(plumber({
-      errorHandler: notify.onError({
-        title: "Js エラー",
-        message: "<%= error.message %>"
-      })
+      errorHandler(error){
+        notifier.notify({
+          title: 'BABEL コンパイル エラー',
+          message: error.message
+        });
+      }
     }))
     .pipe(babel())
     .pipe(gulp.dest(CONFIG.outputDirectory.dev));
@@ -155,10 +161,10 @@ gulp.task('js_babel', ()=>{
  */
 gulp.task('js', ()=>{
   return gulp.src([
-      CONFIG.sourceDirectory.js,
-      CONFIG.watchIgnoreDirectory.js[0],
-      CONFIG.watchIgnoreDirectory.js[1]
-    ])
+    CONFIG.sourceDirectory.js,
+    CONFIG.watchIgnoreDirectory.js[0],
+    CONFIG.watchIgnoreDirectory.js[1]
+  ])
     .pipe(plumber({
       errorHandler(error) {
         notifier.notify({
@@ -184,11 +190,11 @@ gulp.task('watch',['server'], ()=>{
   gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.js,['js']);
 
-  gulp.src('').pipe(notify({
+  notifier.notify({
     title: 'Start Gulp',
     message: new Date(),
     sound: 'Glass'
-  }));
+  });
 
 });
 
@@ -237,10 +243,10 @@ gulp.task('release', ()=>{
     .pipe(ignore.include({isFile: true}))
     .pipe(gulp.dest(CONFIG.outputDirectory.release));
 
-  gulp.src('').pipe(notify({
+  notifier.notify({
     title: 'Finished Release-Task',
     message: new Date(),
     sound: 'Glass'
-  }));
+  });
 
 });

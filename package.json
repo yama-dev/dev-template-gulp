@@ -37,10 +37,10 @@
     "gulp-eslint": "^5.0.0",
     "gulp-htmlhint": "^2.1.1",
     "gulp-ignore": "^2.0.2",
-    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
+    "node-notifier": "^5.2.1",
     "pixrem": "^4.0.1",
     "postcss-opacity": "^5.0.0",
     "run-sequence": "^2.2.0"
