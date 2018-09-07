@@ -9,7 +9,7 @@ console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-
 const argv = process.argv.slice(2);
 let param = new Object();
 argv.forEach((item,i)=>{
-  if(i % 2 === 0 && /\-\-/.test(item) && !/\-\-/.test(argv[i+1])) param[item] = argv[i+1];
+  if(i % 2 === 0 && /--/.test(item) && !/--/.test(argv[i+1])) param[item] = argv[i+1];
 });
 
 /**
@@ -61,7 +61,7 @@ const gulp           = require('gulp');
 const sass           = require('gulp-sass');
 const postcss        = require('gulp-postcss');
 const csscomb        = require('gulp-csscomb');
-const babel          = require("gulp-babel");
+const babel          = require('gulp-babel');
 const eslint         = require('gulp-eslint');
 const htmlhint       = require('gulp-htmlhint');
 const cache          = require('gulp-cached');
@@ -110,27 +110,27 @@ gulp.task('htmllint', ()=>{
       })
     }))
     .pipe(htmlhint({
-      "tagname-lowercase": true,
-      "attr-lowercase": true,
-      "attr-value-double-quotes": true,
-      "attr-value-not-empty": false,
-      "attr-no-duplication": true,
-      "doctype-first": true,
-      "tag-pair": true,
-      "tag-self-close": false,
-      "spec-char-escape": true,
-      "id-unique": true,
-      "src-not-empty": true,
-      "alt-require": true,
-      "head-script-disabled": false,
-      "img-alt-require": true,
-      "doctype-html5": true,
-      "id-class-value": "false",
-      "style-disabled": false,
-      "space-tab-mixed-disabled": true,
-      "id-class-ad-disabled": true,
-      "href-abs-or-rel": false,
-      "attr-unsafe-chars": true
+      'tagname-lowercase': true,
+      'attr-lowercase': true,
+      'attr-value-double-quotes': true,
+      'attr-value-not-empty': false,
+      'attr-no-duplication': true,
+      'doctype-first': true,
+      'tag-pair': true,
+      'tag-self-close': false,
+      'spec-char-escape': true,
+      'id-unique': true,
+      'src-not-empty': true,
+      'alt-require': true,
+      'head-script-disabled': false,
+      'img-alt-require': true,
+      'doctype-html5': true,
+      'id-class-value': 'false',
+      'style-disabled': false,
+      'space-tab-mixed-disabled': true,
+      'id-class-ad-disabled': true,
+      'href-abs-or-rel': false,
+      'attr-unsafe-chars': true
     }))
     .pipe(htmlhint.reporter('htmlhint-stylish'))
 });
@@ -147,7 +147,7 @@ gulp.task('js_babel', ()=>{
       })
     }))
     .pipe(babel())
-    .pipe(gulp.dest(CONFIG.outputDirectory.dev))
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
 /**
@@ -235,7 +235,7 @@ gulp.task('release', ()=>{
   // Copy Release files.
   gulp.src([CONFIG.outputDirectory.dev+'**/*','!'+CONFIG.outputDirectory.dev+'**/_*','!**/*.scss','!**/*.es6'])
     .pipe(ignore.include({isFile: true}))
-    .pipe(gulp.dest(CONFIG.outputDirectory.release))
+    .pipe(gulp.dest(CONFIG.outputDirectory.release));
 
   gulp.src('').pipe(notify({
     title: 'Finished Release-Task',
