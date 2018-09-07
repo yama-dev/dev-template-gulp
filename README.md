@@ -1,5 +1,9 @@
 # DEV TEMPLATE GULP
 
+[![Build Status](https://travis-ci.org/yama-dev/dev-template-gulp.svg?branch=master)](https://travis-ci.org/yama-dev/dev-template-gulp)
+
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/yama-dev/dev-template-gulp/blob/master/LICENSE)
+
 <br>
 
 ## 概要

@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -11,7 +11,9 @@
     "develop": "gulp",
     "release": "gulp release",
     "proxy": "gulp --proxy",
-    "update:check": "npm outdated"
+    "update:check": "npm outdated",
+    "lint": "eslint gulpfile.js",
+    "test": "npm run lint && gulp release"
   },
   "engines": {
     "node": ">=4.8.7 <=10.5.0"
@@ -27,18 +29,18 @@
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.24.6",
     "css-mqpacker": "^6.0.1",
+    "eslint": "^5.5.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-cached": "^1.1.1",
     "gulp-csscomb": "^3.0.8",
-    "gulp-eslint": "^4.0.2",
+    "gulp-eslint": "^5.0.0",
     "gulp-htmlhint": "^2.1.1",
     "gulp-ignore": "^2.0.2",
-    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
-    "htmlhint-stylish": "^1.0.3",
+    "node-notifier": "^5.2.1",
     "pixrem": "^4.0.1",
     "postcss-opacity": "^5.0.0",
     "run-sequence": "^2.2.0"
