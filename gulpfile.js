@@ -160,63 +160,17 @@ gulp.task('js', ()=>{
       CONFIG.watchIgnoreDirectory.js[1]
     ])
     .pipe(plumber({
-      errorHandler: notify.onError({
-        title: "Js エラー",
-        message: "<%= error.message %>"
-      })
-    }))
-    .pipe(eslint({
-      globals: [
-        'jQuery',
-        '$'
-      ],
-      "parserOptions": {
-        "ecmaVersion": 5,
-        "sourceType": "script",
-        "ecmaFeatures": {}
-      },
-      envs: [
-        'browser'
-      ],
-      "rules": {
-        "comma-dangle": 1,
-        "no-cond-assign": 1,
-        "no-console": 1,
-        "no-constant-condition": 1,
-        "no-control-regex": 1,
-        "no-debugger": 1,
-        "no-dupe-args": 1,
-        "no-dupe-keys": 1,
-        "no-duplicate-case": 1,
-        "no-empty-character-class": 1,
-        "no-empty": 1,
-        "no-ex-assign": 1,
-        "no-extra-boolean-cast": 1,
-        "no-extra-parens": 1,
-        "no-extra-semi": 1,
-        "no-func-assign": 1,
-        "no-inner-declarations": 1,
-        "no-invalid-regexp": 1,
-        "no-irregular-whitespace": 1,
-        "no-negated-in-lhs": 1,
-        "no-obj-calls": 1,
-        "no-regex-spaces": 1,
-        "no-sparse-arrays": 1,
-        "no-unreachable": 1,
-        "use-isnan": 1,
-        "valid-typeof": 1,
-        "eqeqeq": 1,
-        "no-fallthrough": 1,
-        "no-octal": 1,
-        "no-redeclare": 1,
-        "no-delete-var": 1,
-        "no-undef": 1,
-        "no-unused-vars": 1,
-        "no-mixed-spaces-and-tabs": 1
+      errorHandler(error) {
+        notifier.notify({
+          title: 'Js エラー',
+          message: error.message
+        });
+        this.emit('end');
       }
     }))
+    .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+    .pipe(eslint.failAfterError());
 });
 
 /**
