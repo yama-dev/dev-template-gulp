@@ -1,7 +1,6 @@
 # DEV TEMPLATE GULP
 
 [![Build Status](https://travis-ci.org/yama-dev/dev-template-gulp.svg?branch=master)](https://travis-ci.org/yama-dev/dev-template-gulp)
-
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/yama-dev/dev-template-gulp/blob/master/LICENSE)
 
 <br>
@@ -104,13 +103,13 @@ gulp release
 | gulp-htmlhint | HTMLのLINT           | https://www.npmjs.com/package/gulp-htmlhint | 
 | gulp-sass     | Sassのコンパイル     | https://www.npmjs.com/package/gulp-sass     | 
 | gulp-postcss  | css最適化            | https://www.npmjs.com/package/gulp-postcss  | 
-| autoprefixer  | プレフィックスの付与 | https://www.npmjs.com/package/autoprefixer  | 
+| autoprefixer  | プレフィックスの付与  | https://www.npmjs.com/package/autoprefixer  | 
 | gulp-csscomb  | セレクタの整理       | https://www.npmjs.com/package/gulp-csscomb  | 
 | gulp-babel    | ECMAScriptコンパイル | https://www.npmjs.com/package/gulp-babel    | 
-| gulp-eslint   | javascriptのLINT     | https://www.npmjs.com/package/gulp-eslint   | 
+| gulp-eslint   | javascriptのLINT    | https://www.npmjs.com/package/gulp-eslint   | 
 | gulp-cached   | 差分検出、更新       | https://www.npmjs.com/package/gulp-cached   | 
 | gulp-plumber  | エラー検出、制御     | https://www.npmjs.com/package/gulp-plumber  | 
-| gulp-notify   | デスクトップ通知     | https://www.npmjs.com/package/gulp-notify   | 
+| node-notifier | デスクトップ通知     | https://www.npmjs.com/package/node-notifier  | 
 | browser-sync  | ブラウザのリロード   | https://www.npmjs.com/package/browser-sync  | 
 
 #### ファイル構造
