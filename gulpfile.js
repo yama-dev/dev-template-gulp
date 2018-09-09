@@ -40,7 +40,11 @@ const CONFIG = {
     es6     : CONFIG_PATH.src + '**/*.es6'
   },
   watchIgnoreDirectory: {
-    js      : [
+    html : [
+      '!' + CONFIG_PATH.src + '**/vender/*.html',
+      '!' + CONFIG_PATH.src + '_**/*.html'
+    ],
+    js : [
       '!' + CONFIG_PATH.src + '**/vender/*.js',
       '!' + CONFIG_PATH.src + '**/libs/*.js'
     ]
@@ -79,17 +83,17 @@ const runSequence    = require('run-sequence');
  * Sass Task
  */
 gulp.task('sass', ()=>{
-  gulp.src(CONFIG.sourceDirectory.sass)
+  return gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
     .pipe(plumber({
-      errorHandler(error){
+      errorHandler(error) {
         notifier.notify({
           title: 'Sass コンパイル エラー',
           message: error.message
         });
       }
     }))
-    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}))
+    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}).on('error', sass.logError))
     .pipe(csscomb())
     .pipe(postcss([
       autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
@@ -104,13 +108,18 @@ gulp.task('sass', ()=>{
  * HtmlLint Task
  */
 gulp.task('htmllint', ()=>{
-  return gulp.src([CONFIG.watchDirectory.html])
+  return gulp.src([
+    CONFIG.watchDirectory.html,
+    CONFIG.watchIgnoreDirectory.html[0],
+    CONFIG.watchIgnoreDirectory.html[1]
+  ])
     .pipe(plumber({
-      errorHandler(error){
+      errorHandler(error) {
         notifier.notify({
           title: 'HTML LINT エラー',
           message: error.message
         });
+        this.emit('end');
       }
     }))
     .pipe(htmlhint({
@@ -119,7 +128,7 @@ gulp.task('htmllint', ()=>{
       'attr-value-double-quotes': true,
       'attr-value-not-empty': false,
       'attr-no-duplication': true,
-      'doctype-first': true,
+      'doctype-first': false,
       'tag-pair': true,
       'tag-self-close': false,
       'spec-char-escape': true,
@@ -136,7 +145,7 @@ gulp.task('htmllint', ()=>{
       'href-abs-or-rel': false,
       'attr-unsafe-chars': true
     }))
-    .pipe(htmlhint.failReporter());
+    .pipe(htmlhint.reporter());
 });
 
 /**
