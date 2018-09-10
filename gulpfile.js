@@ -236,6 +236,27 @@ gulp.task('server', ()=>{
 });
 
 /**
+ * Deploy Task
+ */
+gulp.task('deploy', ()=>{
+  notifier.notify({
+    title: 'Deploy',
+    message: new Date(),
+    sound: 'Glass'
+  });
+  return gulp.src([
+    CONFIG.outputDirectory.dev+'**/*',
+    '!'+CONFIG.outputDirectory.dev+'_*/**',
+    '!'+CONFIG.outputDirectory.dev+'vendor/**',
+    '!'+CONFIG.outputDirectory.dev+'**/_*.css',
+    '!'+CONFIG.outputDirectory.dev+'**/*.scss',
+    '!'+CONFIG.outputDirectory.dev+'**/*.es6'
+  ])
+    .pipe(ignore.include({isFile: true}))
+    .pipe(gulp.dest(CONFIG.outputDirectory.release));
+});
+
+/**
  * Default Task
  */
 gulp.task('default', (callback)=>{
@@ -245,17 +266,6 @@ gulp.task('default', (callback)=>{
 /**
  * Release Task
  */
-gulp.task('release', ()=>{
-
-  // Copy Release files.
-  gulp.src([CONFIG.outputDirectory.dev+'**/*','!'+CONFIG.outputDirectory.dev+'**/_*','!**/*.scss','!**/*.es6'])
-    .pipe(ignore.include({isFile: true}))
-    .pipe(gulp.dest(CONFIG.outputDirectory.release));
-
-  notifier.notify({
-    title: 'Finished Release-Task',
-    message: new Date(),
-    sound: 'Glass'
-  });
-
+gulp.task('release', (callback)=>{
+  return runSequence(['js_babel','sass'],['htmllint','js'],'deploy',callback);
 });
