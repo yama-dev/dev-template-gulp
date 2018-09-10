@@ -1,8 +1,9 @@
 module.exports = {
   "env": {
+    "amd": true,
     "browser": true,
     "es6": true,
-    "amd": true,
+    "jquery": true,
     "node": true
   },
   "rules": {
