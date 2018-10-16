@@ -25,7 +25,8 @@ body, button, input, select, textarea {
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
 
-  word-break: break-all;
+  // word-break: break-all;
+  word-wrap:break-word;
 }
 .clearfix:after {
   content: '.';
