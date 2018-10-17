@@ -141,11 +141,11 @@ root
         │  │      _settings.scss
         │  │      
         │  ├─vender
-        │  │      eric_reset.css
-        │  │      html5reset.css
-        │  │      normalize.css
-        │  │      reset.css
-        │  │      sanitize.css
+        │  │      _eric_reset.css
+        │  │      _html5reset.css
+        │  │      _normalize.css
+        │  │      _reset.css
+        │  │      _sanitize.css
         │  │      
         │  └─vender_sass
         │          _eric_reset.scss
