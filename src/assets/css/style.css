@@ -100,7 +100,7 @@ body, button, input, select, textarea {
      -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
           text-size-adjust: 100%;
-  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .clearfix:after {

@@ -87,7 +87,7 @@ gulp release
 | `gulp`               | 通常の起動                       | - サーバーの起動<br> - htmlファイルの構文チェック <br>- Sassファイルのコンパイル <br>- 各種ファイルの監視 <br>- ブラウザシンク、リロード | 
 | `gulp watch`         | ファイルの変更監視               |                                                                                                                                          | 
 | `gulp htmllint`      | HTMLファイルの構文チェック       |                                                                                                                                          | 
-| `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                        | 
+| `gulp sass`          | Sassファイルのコンパイル         | ※SCSS記法<br>※gulp-sass + gulp-postcss + autoprefixer + csscomb                                                                          | 
 | `gulp js_babel`      | javascriptファイルのコンパイル   |                                                                                                                                          | 
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
 | `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |
@@ -97,20 +97,21 @@ gulp release
 
 ## 主な仕様
 
-| パッケージ    | 役割                 | 補足                                        | 
-| ---           | ---                  | ---                                         | 
-| gulp          | Gulp本体             | https://www.npmjs.com/package/gulp          | 
-| gulp-htmlhint | HTMLのLINT           | https://www.npmjs.com/package/gulp-htmlhint | 
-| gulp-sass     | Sassのコンパイル     | https://www.npmjs.com/package/gulp-sass     | 
-| gulp-postcss  | css最適化            | https://www.npmjs.com/package/gulp-postcss  | 
-| autoprefixer  | プレフィックスの付与  | https://www.npmjs.com/package/autoprefixer  | 
-| gulp-csscomb  | セレクタの整理       | https://www.npmjs.com/package/gulp-csscomb  | 
-| gulp-babel    | ECMAScriptコンパイル | https://www.npmjs.com/package/gulp-babel    | 
-| gulp-eslint   | javascriptのLINT    | https://www.npmjs.com/package/gulp-eslint   | 
-| gulp-cached   | 差分検出、更新       | https://www.npmjs.com/package/gulp-cached   | 
-| gulp-plumber  | エラー検出、制御     | https://www.npmjs.com/package/gulp-plumber  | 
-| node-notifier | デスクトップ通知     | https://www.npmjs.com/package/node-notifier  | 
-| browser-sync  | ブラウザのリロード   | https://www.npmjs.com/package/browser-sync  | 
+| パッケージ    | 役割                     | 補足                                                |
+| ---           | ---                      | ---                                                 |
+| gulp          | Gulp本体                 | https://www.npmjs.com/package/gulp                  |
+| gulp-htmlhint | HTMLのLINT               | https://www.npmjs.com/package/gulp-htmlhint         |
+| gulp-sass     | Sassのコンパイル         | https://www.npmjs.com/package/gulp-sass             |
+| gulp-postcss  | css最適化                | https://www.npmjs.com/package/gulp-postcss          |
+| autoprefixer  | プレフィックスの付与     | https://www.npmjs.com/package/autoprefixer          |
+| gulp-csscomb  | セレクタの整理           | https://www.npmjs.com/package/gulp-csscomb          |
+| gulp-babel    | ECMAScriptコンパイル     | https://www.npmjs.com/package/gulp-babel            |
+| gulp-eslint   | javascriptのLINT         | https://www.npmjs.com/package/gulp-eslint           |
+| gulp-cached   | 差分検出、更新           | https://www.npmjs.com/package/gulp-cached           |
+| gulp-progeny  | パーシャルファイルの検出 | https://github.com/HerringtonDarkholme/gulp-progeny |
+| gulp-plumber  | エラー検出、制御         | https://www.npmjs.com/package/gulp-plumber          |
+| node-notifier | デスクトップ通知         | https://www.npmjs.com/package/node-notifier         |
+| browser-sync  | ブラウザのリロード       | https://www.npmjs.com/package/browser-sync          |
 
 #### ファイル構造
 
@@ -141,11 +142,11 @@ root
         │  │      _settings.scss
         │  │      
         │  ├─vender
-        │  │      eric_reset.css
-        │  │      html5reset.css
-        │  │      normalize.css
-        │  │      reset.css
-        │  │      sanitize.css
+        │  │      _eric_reset.css
+        │  │      _html5reset.css
+        │  │      _normalize.css
+        │  │      _reset.css
+        │  │      _sanitize.css
         │  │      
         │  └─vender_sass
         │          _eric_reset.scss

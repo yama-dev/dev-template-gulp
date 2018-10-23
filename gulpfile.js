@@ -69,6 +69,7 @@ const babel          = require('gulp-babel');
 const eslint         = require('gulp-eslint');
 const htmlhint       = require('gulp-htmlhint');
 const cache          = require('gulp-cached');
+const progeny        = require('gulp-progeny');
 const plumber        = require('gulp-plumber');
 const ignore         = require('gulp-ignore');
 const notifier       = require('node-notifier');
@@ -85,6 +86,7 @@ const runSequence    = require('run-sequence');
 gulp.task('sass', ()=>{
   return gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
+    .pipe(progeny())
     .pipe(plumber({
       errorHandler(error) {
         notifier.notify({
