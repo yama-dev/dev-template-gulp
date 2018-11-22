@@ -20,49 +20,6 @@
 // Debug
 // @debug "style.scss";
 
-// Style Switching Elements
-@media screen and (min-width: 768px) {
-  .is-pc {
-    display: block;
-  }
-  .is-sp {
-    display: none;
-  }
-  .is-pc-inline {
-    display: inline-block;
-  }
-  .is-sp-inline {
-    display: none;
-  }
-}
-@media screen and (max-width: 767px) {
-  .is-pc {
-    display: none;
-  }
-  .is-sp {
-    display: block;
-  }
-  .is-pc-inline {
-    display: none;
-  }
-  .is-sp-inline {
-    display: inline-block;
-  }
-}
-
-// Style Image Fit
-img {
-  max-width: 100%;
-  display: block;
-  vertical-align: middle;
-}
-
-// Import Modules.
-// @import "./modules/settings";
-// @import "./modules/layout";
-// @import "./modules/hover";
-// @import "./modules/button";
-
 // 3device (PC、Tablet、Smartphone)
 @media screen and (max-width: 980px) {
 }
@@ -93,10 +50,54 @@ $break-point-PC: 768;
   }
 }
 @mixin sp {
-  @media screen and (max-width: #{$break-point-PC}px) {
+  @media screen and (max-width: #{$break-point-PC - 1}px) {
     @content
   }
 }
+
+// Style Switching Elements
+@include pc(){
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
+@include sp(){
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
+}
+
+// Style Image Fit
+img {
+  max-width: 100%;
+  display: block;
+  vertical-align: middle;
+}
+
+// Import Modules.
+// @import "./modules/settings";
+// @import "./modules/layout";
+// @import "./modules/hover";
+// @import "./modules/button";
+// @import "./modules/utility";
 
 // One Click CSS
 // -> https://css.miugle.info/
