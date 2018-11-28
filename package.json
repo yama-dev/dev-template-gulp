@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -16,7 +16,7 @@
     "test": "npm run lint && gulp release"
   },
   "engines": {
-    "node": ">=4.8.7 <=10.5.0"
+    "node": ">=4.8.7 <=10.14.0"
   },
   "repository": {
     "type": "git",
