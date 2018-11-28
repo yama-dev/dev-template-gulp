@@ -17,9 +17,7 @@ argv.forEach((item,i)=>{
  */
 const CONFIG_PATH = {
   src     : 'src/',
-  release : 'release/',
-  cms     : 'cms/',
-  php     : 'php/'
+  release : 'release/'
 };
 const CONFIG = {
   outputDirectory: {
