@@ -90,7 +90,13 @@ const runSequence    = require('run-sequence');
 gulp.task('sass', ()=>{
   return gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
-    .pipe(progeny())
+    .pipe(progeny({
+      multipass: [
+        /@import[^;:]+;/g,
+        /\s*['"][^'"]+['"]\s*,?/g,
+        /(?:['"])([^'"]+)/
+      ]
+    }))
     .pipe(plumber({
       errorHandler(error) {
         notifier.notify({
