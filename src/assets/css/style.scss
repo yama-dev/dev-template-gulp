@@ -20,29 +20,17 @@
 // Debug
 // @debug "style.scss";
 
-// 3device (PC、Tablet、Smartphone)
-@media screen and (max-width: 980px) {
-}
-@media screen and (max-width: 650px) {
-}
-@media screen and (max-width: 480px) {
-}
-
-// Tablet displays PC layout
+// MediaQuery.
 @media screen and (max-width: 767px) {
 }
-
-// Tablet displays Smartphone layout
-@media screen and (max-width: 768px) {
-}
-
-// In case of portrait display
+// Portrait.
 @media screen and (orientation: portrait) {
 }
-// In case of landscape display
+// Landscape.
 @media screen and (orientation: landscape) {
 }
 
+// Mixis.
 $break-point-PC: 768;
 @mixin pc {
   @media screen and (min-width: #{$break-point-PC}px) {
@@ -54,35 +42,31 @@ $break-point-PC: 768;
     @content
   }
 }
+// Portrait.
+@mixin port {
+  @media screen and (orientation: portrait) {
+    @content
+  }
+}
+// Landscape.
+@mixin land {
+  @media screen and (orientation: landscape) {
+    @content
+  }
+}
 
 // Style Switching Elements
 @include pc(){
-  .is-pc {
-    display: block;
-  }
-  .is-sp {
-    display: none;
-  }
-  .is-pc-inline {
-    display: inline-block;
-  }
-  .is-sp-inline {
-    display: none;
-  }
+  .is-pc { display: block; }
+  .is-sp { display: none; }
+  .is-pc-inline { display: inline-block; }
+  .is-sp-inline { display: none; }
 }
 @include sp(){
-  .is-pc {
-    display: none;
-  }
-  .is-sp {
-    display: block;
-  }
-  .is-pc-inline {
-    display: none;
-  }
-  .is-sp-inline {
-    display: inline-block;
-  }
+  .is-pc { display: none; }
+  .is-sp { display: block; }
+  .is-pc-inline { display: none; }
+  .is-sp-inline { display: inline-block; }
 }
 
 // Style Image Fit
