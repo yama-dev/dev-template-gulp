@@ -1,4 +1,10 @@
-'use strict';
+/*!
+ * DEV TEMPLATE GULP
+ * Version 0.2.7
+ * Repository https://github.com/yama-dev/dev-template-gulp
+ * Copyright yama-dev
+ * Licensed under the MIT license.
+ */
 
 const pkg = require('./package.json');
 console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-'.repeat(38));
