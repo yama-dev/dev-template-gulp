@@ -89,6 +89,7 @@ const cache          = require('gulp-cached');
 const progeny        = require('gulp-progeny');
 const plumber        = require('gulp-plumber');
 const ignore         = require('gulp-ignore');
+const uglify         = require('gulp-uglify');
 const notifier       = require('node-notifier');
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
@@ -212,6 +213,20 @@ gulp.task('js_lint', ()=>{
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
+});
+
+/**
+ * Minify Task */
+gulp.task('js_min', ()=>{
+  let _target = CONFIG.watchIgnoreDirectory.js.slice();
+  _target.unshift(CONFIG.sourceDirectory.js);
+
+  // Set BrowserSync server.
+  if(param['--min']){
+    return gulp.src(_target)
+      .pipe(uglify({ output: { ascii_only: true } }))
+      .pipe(gulp.dest(CONFIG.outputDirectory.dev));
+  }
 });
 
 /**
