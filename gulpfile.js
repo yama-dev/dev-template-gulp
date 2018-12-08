@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.2.7
+ * Version 0.3.0
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -89,6 +89,7 @@ const cache          = require('gulp-cached');
 const progeny        = require('gulp-progeny');
 const plumber        = require('gulp-plumber');
 const ignore         = require('gulp-ignore');
+const uglify         = require('gulp-uglify');
 const notifier       = require('node-notifier');
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
@@ -133,15 +134,10 @@ gulp.task('sass', ()=>{
  * HtmlLint Task
  */
 gulp.task('htmllint', ()=>{
-  return gulp.src([
-    CONFIG.watchDirectory.html,
-    CONFIG.watchIgnoreDirectory.html[0],
-    CONFIG.watchIgnoreDirectory.html[1],
-    CONFIG.watchIgnoreDirectory.html[2],
-    CONFIG.watchIgnoreDirectory.html[3],
-    CONFIG.watchIgnoreDirectory.html[4],
-    CONFIG.watchIgnoreDirectory.html[5]
-  ])
+  let _target = CONFIG.watchIgnoreDirectory.html.slice();
+  _target.unshift(CONFIG.watchDirectory.html);
+
+  return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
         notifier.notify({
@@ -181,7 +177,10 @@ gulp.task('htmllint', ()=>{
  * Js Task
  */
 gulp.task('js_babel', ()=>{
-  return gulp.src([ CONFIG.sourceDirectory.es6 ])
+  let _target = CONFIG.watchIgnoreDirectory.js.slice();
+  _target.unshift(CONFIG.sourceDirectory.es6);
+
+  return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error){
         notifier.notify({
@@ -197,18 +196,15 @@ gulp.task('js_babel', ()=>{
 /**
  * Js Task
  */
-gulp.task('js', ()=>{
-  return gulp.src([
-    CONFIG.sourceDirectory.js,
-    CONFIG.watchIgnoreDirectory.js[0],
-    CONFIG.watchIgnoreDirectory.js[1],
-    CONFIG.watchIgnoreDirectory.js[2],
-    CONFIG.watchIgnoreDirectory.js[3]
-  ])
+gulp.task('js_lint', ()=>{
+  let _target = CONFIG.watchIgnoreDirectory.js.slice();
+  _target.unshift(CONFIG.sourceDirectory.js);
+
+  return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
         notifier.notify({
-          title: 'Js エラー',
+          title: 'LINT エラー',
           message: error.message
         });
         this.emit('end');
@@ -217,6 +213,20 @@ gulp.task('js', ()=>{
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
+});
+
+/**
+ * Minify Task */
+gulp.task('js_min', ()=>{
+  let _target = CONFIG.watchIgnoreDirectory.js.slice();
+  _target.unshift(CONFIG.sourceDirectory.js);
+
+  // Set BrowserSync server.
+  if(param['--min']){
+    return gulp.src(_target)
+      .pipe(uglify({ output: { ascii_only: true } }))
+      .pipe(gulp.dest(CONFIG.outputDirectory.dev));
+  }
 });
 
 /**
@@ -291,12 +301,12 @@ gulp.task('deploy', ()=>{
  * Default Task
  */
 gulp.task('default', (callback)=>{
-  return runSequence(['js_babel','sass'],['htmllint','js'],'watch',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js_lint'],'watch',callback);
 });
 
 /**
  * Release Task
  */
 gulp.task('release', (callback)=>{
-  return runSequence(['js_babel','sass'],['htmllint','js'],'deploy',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js_lint'],'js_min','deploy',callback);
 });
