@@ -1,4 +1,10 @@
-'use strict';
+/*!
+ * DEV TEMPLATE GULP
+ * Version 0.2.7
+ * Repository https://github.com/yama-dev/dev-template-gulp
+ * Copyright yama-dev
+ * Licensed under the MIT license.
+ */
 
 const pkg = require('./package.json');
 console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-'.repeat(38));
@@ -8,8 +14,15 @@ console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-
  */
 const argv = process.argv.slice(2);
 let param = new Object();
-argv.forEach((item,i)=>{
-  if(i % 2 === 0 && /--/.test(item) && !/--/.test(argv[i+1])) param[item] = argv[i+1];
+argv.map((item,i)=>{
+  if(/--/.test(item)){
+    if(argv[i+1]){
+      if(!/--/.test(argv[i+1])) param[item] = argv[i+1];
+      else param[item] = true;
+    } else {
+      param[item] = true;
+    }
+  }
 });
 
 /**
