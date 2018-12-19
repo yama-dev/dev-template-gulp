@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -10,8 +10,7 @@
     "start": "npm install && gulp",
     "develop": "gulp",
     "release": "gulp release",
-    "proxy": "gulp --proxy",
-    "update:check": "npm outdated",
+    "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release"
   },
@@ -41,6 +40,7 @@
     "gulp-postcss": "^7.0.1",
     "gulp-progeny": "^0.4.1",
     "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.1",
     "node-notifier": "^5.2.1",
     "pixrem": "^4.0.1",
     "postcss-opacity": "^5.0.0",
