@@ -238,7 +238,7 @@ gulp.task('watch',['server'], ()=>{
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
   gulp.watch(CONFIG.watchDirectory.es6,['js_babel']);
   gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
-  gulp.watch(CONFIG.watchDirectory.js,['js']);
+  gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
 
   notifier.notify({
     title: 'Start Gulp',
