@@ -82,6 +82,7 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
  */
 const gulp           = require('gulp');
 const sass           = require('gulp-sass');
+sass.compiler        = require('node-sass');
 const postcss        = require('gulp-postcss');
 const csscomb        = require('gulp-csscomb');
 const babel          = require('gulp-babel');
@@ -121,7 +122,7 @@ gulp.task('sass', ()=>{
         });
       }
     }))
-    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}).on('error', sass.logError))
+    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
     .pipe(csscomb())
     .pipe(postcss([
       autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
