@@ -30,7 +30,9 @@ argv.map((item,i)=>{
  */
 const CONFIG_PATH = {
   src     : 'src/',
-  release : 'release/'
+  release : 'release/',
+  build   : 'build/',
+  dist    : 'dist/'
 };
 const CONFIG = {
   outputDirectory: {
