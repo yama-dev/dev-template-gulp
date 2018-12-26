@@ -291,6 +291,7 @@ gulp.task('deploy', ()=>{
   return gulp.src([
     CONFIG.outputDirectory.dev+'**/*',
     '!'+CONFIG.outputDirectory.dev+'_*/**',
+    '!'+CONFIG.outputDirectory.dev+'vender/**',
     '!'+CONFIG.outputDirectory.dev+'vendor/**',
     '!'+CONFIG.outputDirectory.dev+'**/_*.css',
     '!'+CONFIG.outputDirectory.dev+'**/*.scss',
