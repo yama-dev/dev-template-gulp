@@ -1,4 +1,4 @@
-@charset "utf-8";
+// -> site.default.scss
 
 // Set Reset-Css
 
@@ -83,12 +83,22 @@ img {
 // @import "./modules/button";
 // @import "./modules/utility";
 
-// One Click CSS
+// One Click CSS.
 // -> https://css.miugle.info/
 
-// CSS validation
+// CSS validation.
 // -> https://jigsaw.w3.org/css-validator/validator.html.ja
 
-// Style Sheet
-// -> style.scss
+// CSS Design.
+// BEM    -> https://en.bem.info/
+// FLOCSS -> https://github.com/hiloki/flocss
+
+// js- | javascript 対象要素   | id="js-modal-btn"
+// l-  | Layoutレイヤー要素    | class="l-header"
+// c-  | Componentレイヤー要素 | class="c-btn"
+// p-  | Projectレイヤー要素   | class="p-btn--primary"
+// u-  | Utilityレイヤー要素   | class="u-hover"
+// t-  | 状態(比較的広い範囲)  | class="t-blue"
+// is- | 状態(比較的狭い範囲)  | class="is-active"
+// m-  | modal要素             | class="m-default"
 

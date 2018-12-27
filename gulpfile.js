@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.3.1
+ * Version 0.3.2
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -30,7 +30,9 @@ argv.map((item,i)=>{
  */
 const CONFIG_PATH = {
   src     : 'src/',
-  release : 'release/'
+  release : 'release/',
+  build   : 'build/',
+  dist    : 'dist/'
 };
 const CONFIG = {
   outputDirectory: {
@@ -80,6 +82,7 @@ const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
  */
 const gulp           = require('gulp');
 const sass           = require('gulp-sass');
+sass.compiler        = require('node-sass');
 const postcss        = require('gulp-postcss');
 const csscomb        = require('gulp-csscomb');
 const babel          = require('gulp-babel');
@@ -119,7 +122,7 @@ gulp.task('sass', ()=>{
         });
       }
     }))
-    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE}).on('error', sass.logError))
+    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
     .pipe(csscomb())
     .pipe(postcss([
       autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
@@ -288,6 +291,7 @@ gulp.task('deploy', ()=>{
   return gulp.src([
     CONFIG.outputDirectory.dev+'**/*',
     '!'+CONFIG.outputDirectory.dev+'_*/**',
+    '!'+CONFIG.outputDirectory.dev+'vender/**',
     '!'+CONFIG.outputDirectory.dev+'vendor/**',
     '!'+CONFIG.outputDirectory.dev+'**/_*.css',
     '!'+CONFIG.outputDirectory.dev+'**/*.scss',
