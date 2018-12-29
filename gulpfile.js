@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.3.2
+ * Version 0.3.3
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
