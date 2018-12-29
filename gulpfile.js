@@ -116,10 +116,7 @@ gulp.task('sass', ()=>{
     }))
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'Sass コンパイル エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'Sass コンパイル エラー', message: error.message });
       }
     }))
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
@@ -143,10 +140,7 @@ gulp.task('htmllint', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'HTML LINT エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'HTML LINT エラー', message: error.message });
         this.emit('end');
       }
     }))
@@ -186,10 +180,7 @@ gulp.task('js_babel', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error){
-        notifier.notify({
-          title: 'BABEL コンパイル エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'BABEL コンパイル エラー', message: error.message });
       }
     }))
     .pipe(babel())
@@ -206,10 +197,7 @@ gulp.task('js_lint', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'LINT エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'LINT エラー', message: error.message });
         this.emit('end');
       }
     }))
@@ -224,7 +212,6 @@ gulp.task('js_min', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.sourceDirectory.js);
 
-  // Set BrowserSync server.
   if(param['--min']){
     return gulp.src(_target)
       .pipe(uglify({ output: { ascii_only: true } }))
@@ -243,11 +230,7 @@ gulp.task('watch',['server'], ()=>{
   gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
 
-  notifier.notify({
-    title: 'Start Gulp',
-    message: new Date(),
-    sound: 'Glass'
-  });
+  notifier.notify({ title: 'Start Gulp', message: new Date(), sound: 'Glass' });
 
 });
 
