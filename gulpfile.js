@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.3.2
+ * Version 0.3.3
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -67,15 +67,24 @@ const CONFIG = {
       '!' + CONFIG_PATH.src + '**/lib/**/*.js',
       '!' + CONFIG_PATH.src + '**/libs/**/*.js'
     ]
-  }
+  },
+  deployDirectory: [
+    CONFIG_PATH.src + '**/*',
+    '!' + CONFIG_PATH.src + '_*/**',
+    '!' + CONFIG_PATH.src + 'vender/**',
+    '!' + CONFIG_PATH.src + 'vendor/**',
+    '!' + CONFIG_PATH.src + '**/_*.css',
+    '!' + CONFIG_PATH.src + '**/*.scss',
+    '!' + CONFIG_PATH.src + '**/*.es6'
+  ]
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
-  'ios >= 8',
+  'ios >= 9',
   'android >= 4.4',
   'last 2 versions'
 ];
-const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
+let SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 
 /**
  * IMPORT MODULES
@@ -100,6 +109,7 @@ const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
+runSequence.options.ignoreUndefinedTasks = true;
 
 /**
  * Sass Task
@@ -116,10 +126,7 @@ gulp.task('sass', ()=>{
     }))
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'Sass コンパイル エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'Sass コンパイル エラー', message: error.message });
       }
     }))
     .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
@@ -143,10 +150,7 @@ gulp.task('htmllint', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'HTML LINT エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'HTML LINT エラー', message: error.message });
         this.emit('end');
       }
     }))
@@ -186,10 +190,7 @@ gulp.task('js_babel', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error){
-        notifier.notify({
-          title: 'BABEL コンパイル エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'BABEL コンパイル エラー', message: error.message });
       }
     }))
     .pipe(babel())
@@ -206,10 +207,7 @@ gulp.task('js_lint', ()=>{
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
-        notifier.notify({
-          title: 'LINT エラー',
-          message: error.message
-        });
+        notifier.notify({ title: 'LINT エラー', message: error.message });
         this.emit('end');
       }
     }))
@@ -224,12 +222,9 @@ gulp.task('js_min', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.sourceDirectory.js);
 
-  // Set BrowserSync server.
-  if(param['--min']){
-    return gulp.src(_target)
-      .pipe(uglify({ output: { ascii_only: true } }))
-      .pipe(gulp.dest(CONFIG.outputDirectory.dev));
-  }
+  return gulp.src(_target)
+    .pipe(uglify({ output: { ascii_only: true } }))
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
 /**
@@ -243,11 +238,7 @@ gulp.task('watch',['server'], ()=>{
   gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
   gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
 
-  notifier.notify({
-    title: 'Start Gulp',
-    message: new Date(),
-    sound: 'Glass'
-  });
+  notifier.notify({ title: 'Start Gulp', message: new Date(), sound: 'Glass' });
 
 });
 
@@ -283,20 +274,11 @@ gulp.task('server', ()=>{
  * Deploy Task
  */
 gulp.task('deploy', ()=>{
-  notifier.notify({
-    title: 'Deploy',
-    message: new Date(),
-    sound: 'Glass'
-  });
-  return gulp.src([
-    CONFIG.outputDirectory.dev+'**/*',
-    '!'+CONFIG.outputDirectory.dev+'_*/**',
-    '!'+CONFIG.outputDirectory.dev+'vender/**',
-    '!'+CONFIG.outputDirectory.dev+'vendor/**',
-    '!'+CONFIG.outputDirectory.dev+'**/_*.css',
-    '!'+CONFIG.outputDirectory.dev+'**/*.scss',
-    '!'+CONFIG.outputDirectory.dev+'**/*.es6'
-  ])
+  notifier.notify({ title: 'Deploy', message: new Date(), sound: 'Glass' });
+
+  let _target = CONFIG.deployDirectory.slice();
+
+  return gulp.src(_target)
     .pipe(ignore.include({isFile: true}))
     .pipe(gulp.dest(CONFIG.outputDirectory.release));
 });
@@ -311,6 +293,11 @@ gulp.task('default', (callback)=>{
 /**
  * Release Task
  */
+let releaseTaskAdd = [];
+if(param['--jsmin']) releaseTaskAdd.push('js_min');
+if(param['--cssmin']) SASS_OUTPUT_STYLE = 'compressed';
+if(!releaseTaskAdd.length) releaseTaskAdd = null;
+console.log(releaseTaskAdd);
 gulp.task('release', (callback)=>{
-  return runSequence(['js_babel','sass'],['htmllint','js_lint'],'js_min','deploy',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'deploy',callback);
 });
