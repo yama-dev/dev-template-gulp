@@ -80,11 +80,11 @@ const CONFIG = {
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
-  'ios >= 8',
+  'ios >= 9',
   'android >= 4.4',
   'last 2 versions'
 ];
-const SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
+let SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 
 /**
  * IMPORT MODULES
