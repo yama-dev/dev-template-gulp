@@ -109,6 +109,7 @@ const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
+runSequence.options.ignoreUndefinedTasks = true;
 
 /**
  * Sass Task
@@ -221,11 +222,9 @@ gulp.task('js_min', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.sourceDirectory.js);
 
-  if(param['--min']){
-    return gulp.src(_target)
-      .pipe(uglify({ output: { ascii_only: true } }))
-      .pipe(gulp.dest(CONFIG.outputDirectory.dev));
-  }
+  return gulp.src(_target)
+    .pipe(uglify({ output: { ascii_only: true } }))
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
 /**
@@ -294,6 +293,11 @@ gulp.task('default', (callback)=>{
 /**
  * Release Task
  */
+let releaseTaskAdd = [];
+if(param['--jsmin']) releaseTaskAdd.push('js_min');
+if(param['--cssmin']) SASS_OUTPUT_STYLE = 'compressed';
+if(!releaseTaskAdd.length) releaseTaskAdd = null;
+console.log(releaseTaskAdd);
 gulp.task('release', (callback)=>{
-  return runSequence(['js_babel','sass'],['htmllint','js_lint'],'js_min','deploy',callback);
+  return runSequence(['js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'deploy',callback);
 });
