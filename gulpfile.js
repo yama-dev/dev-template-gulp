@@ -67,7 +67,16 @@ const CONFIG = {
       '!' + CONFIG_PATH.src + '**/lib/**/*.js',
       '!' + CONFIG_PATH.src + '**/libs/**/*.js'
     ]
-  }
+  },
+  deployDirectory: [
+    CONFIG_PATH.src + '**/*',
+    '!' + CONFIG_PATH.src + '_*/**',
+    '!' + CONFIG_PATH.src + 'vender/**',
+    '!' + CONFIG_PATH.src + 'vendor/**',
+    '!' + CONFIG_PATH.src + '**/_*.css',
+    '!' + CONFIG_PATH.src + '**/*.scss',
+    '!' + CONFIG_PATH.src + '**/*.es6'
+  ]
 };
 const SASS_AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -266,20 +275,11 @@ gulp.task('server', ()=>{
  * Deploy Task
  */
 gulp.task('deploy', ()=>{
-  notifier.notify({
-    title: 'Deploy',
-    message: new Date(),
-    sound: 'Glass'
-  });
-  return gulp.src([
-    CONFIG.outputDirectory.dev+'**/*',
-    '!'+CONFIG.outputDirectory.dev+'_*/**',
-    '!'+CONFIG.outputDirectory.dev+'vender/**',
-    '!'+CONFIG.outputDirectory.dev+'vendor/**',
-    '!'+CONFIG.outputDirectory.dev+'**/_*.css',
-    '!'+CONFIG.outputDirectory.dev+'**/*.scss',
-    '!'+CONFIG.outputDirectory.dev+'**/*.es6'
-  ])
+  notifier.notify({ title: 'Deploy', message: new Date(), sound: 'Glass' });
+
+  let _target = CONFIG.deployDirectory.slice();
+
+  return gulp.src(_target)
     .pipe(ignore.include({isFile: true}))
     .pipe(gulp.dest(CONFIG.outputDirectory.release));
 });
