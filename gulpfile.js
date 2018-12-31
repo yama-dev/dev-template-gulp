@@ -298,9 +298,7 @@ gulp.task('default', (callback)=>{
  */
 let releaseTaskAdd = [];
 if(param['--jsmin']) releaseTaskAdd.push('js_min');
-if(param['--cssmin']) SASS_OUTPUT_STYLE = 'compressed';
 if(!releaseTaskAdd.length) releaseTaskAdd = null;
-console.log(releaseTaskAdd);
 gulp.task('release', (callback)=>{
   return runSequence(['js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'deploy',callback);
 });
