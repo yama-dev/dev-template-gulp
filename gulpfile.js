@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.3.3
+ * Version 0.3.4
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -78,13 +78,6 @@ const CONFIG = {
     '!' + CONFIG_PATH.src + '**/*.es6'
   ]
 };
-const SASS_AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ios >= 9',
-  'android >= 4.4',
-  'last 2 versions'
-];
-let SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 
 /**
  * IMPORT MODULES
@@ -107,6 +100,7 @@ const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
+const cssnano        = require('cssnano');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
 runSequence.options.ignoreUndefinedTasks = true;
@@ -115,6 +109,27 @@ runSequence.options.ignoreUndefinedTasks = true;
  * Sass Task
  */
 gulp.task('sass', ()=>{
+
+  const SASS_CONFIG = {
+    outputStyle: 'expanded', //nested, compact, compressed, expanded.
+    indentType: 'space',
+    indentWidth: 2,
+    precision: 3
+  };
+  const SASS_AUTOPREFIXER_BROWSERS = [
+    'ie >= 10',
+    'ios >= 9',
+    'android >= 4.4',
+    'last 2 versions'
+  ];
+  let POSTCSS_PLUGINS = [
+    autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
+    cssMqpacker(),
+    pixrem(),
+    postcssOpacity()
+  ];
+  if(param['--cssmin']) POSTCSS_PLUGINS.push( cssnano({autoprefixer: false}) );
+
   return gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
     .pipe(progeny({
@@ -129,14 +144,9 @@ gulp.task('sass', ()=>{
         notifier.notify({ title: 'Sass コンパイル エラー', message: error.message });
       }
     }))
-    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
+    .pipe(sass(SASS_CONFIG).on('error', sass.logError))
     .pipe(csscomb())
-    .pipe(postcss([
-      autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
-      cssMqpacker(),
-      pixrem(),
-      postcssOpacity()
-    ]))
+    .pipe(postcss(POSTCSS_PLUGINS))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
@@ -144,6 +154,31 @@ gulp.task('sass', ()=>{
  * HtmlLint Task
  */
 gulp.task('htmllint', ()=>{
+
+  const HTMLLINT_CONFIG = {
+    'tagname-lowercase': true,
+    'attr-lowercase': true,
+    'attr-value-double-quotes': true,
+    'attr-value-not-empty': false,
+    'attr-no-duplication': true,
+    'doctype-first': false,
+    'tag-pair': true,
+    'tag-self-close': false,
+    'spec-char-escape': true,
+    'id-unique': true,
+    'src-not-empty': true,
+    'alt-require': true,
+    'head-script-disabled': false,
+    'img-alt-require': true,
+    'doctype-html5': true,
+    'id-class-value': 'false',
+    'style-disabled': false,
+    'space-tab-mixed-disabled': true,
+    'id-class-ad-disabled': true,
+    'href-abs-or-rel': false,
+    'attr-unsafe-chars': true
+  };
+
   let _target = CONFIG.watchIgnoreDirectory.html.slice();
   _target.unshift(CONFIG.watchDirectory.html);
 
@@ -154,29 +189,7 @@ gulp.task('htmllint', ()=>{
         this.emit('end');
       }
     }))
-    .pipe(htmlhint({
-      'tagname-lowercase': true,
-      'attr-lowercase': true,
-      'attr-value-double-quotes': true,
-      'attr-value-not-empty': false,
-      'attr-no-duplication': true,
-      'doctype-first': false,
-      'tag-pair': true,
-      'tag-self-close': false,
-      'spec-char-escape': true,
-      'id-unique': true,
-      'src-not-empty': true,
-      'alt-require': true,
-      'head-script-disabled': false,
-      'img-alt-require': true,
-      'doctype-html5': true,
-      'id-class-value': 'false',
-      'style-disabled': false,
-      'space-tab-mixed-disabled': true,
-      'id-class-ad-disabled': true,
-      'href-abs-or-rel': false,
-      'attr-unsafe-chars': true
-    }))
+    .pipe(htmlhint(HTMLLINT_CONFIG))
     .pipe(htmlhint.reporter());
 });
 
@@ -295,9 +308,7 @@ gulp.task('default', (callback)=>{
  */
 let releaseTaskAdd = [];
 if(param['--jsmin']) releaseTaskAdd.push('js_min');
-if(param['--cssmin']) SASS_OUTPUT_STYLE = 'compressed';
 if(!releaseTaskAdd.length) releaseTaskAdd = null;
-console.log(releaseTaskAdd);
 gulp.task('release', (callback)=>{
   return runSequence(['js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'deploy',callback);
 });
