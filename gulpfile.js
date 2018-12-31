@@ -78,13 +78,6 @@ const CONFIG = {
     '!' + CONFIG_PATH.src + '**/*.es6'
   ]
 };
-const SASS_AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ios >= 9',
-  'android >= 4.4',
-  'last 2 versions'
-];
-let SASS_OUTPUT_STYLE = 'expanded'; //nested, compact, compressed, expanded.
 
 /**
  * IMPORT MODULES
@@ -107,6 +100,7 @@ const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
+const cssnano        = require('cssnano');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
 runSequence.options.ignoreUndefinedTasks = true;
@@ -115,6 +109,27 @@ runSequence.options.ignoreUndefinedTasks = true;
  * Sass Task
  */
 gulp.task('sass', ()=>{
+
+  const SASS_CONFIG = {
+    outputStyle: 'expanded', //nested, compact, compressed, expanded.
+    indentType: 'space',
+    indentWidth: 2,
+    precision: 3
+  };
+  const SASS_AUTOPREFIXER_BROWSERS = [
+    'ie >= 10',
+    'ios >= 9',
+    'android >= 4.4',
+    'last 2 versions'
+  ];
+  let POSTCSS_PLUGINS = [
+    autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
+    cssMqpacker(),
+    pixrem(),
+    postcssOpacity()
+  ];
+  if(param['--cssmin']) POSTCSS_PLUGINS.push( cssnano({autoprefixer: false}) );
+
   return gulp.src(CONFIG.sourceDirectory.sass)
     .pipe(cache('sass'))
     .pipe(progeny({
@@ -129,14 +144,9 @@ gulp.task('sass', ()=>{
         notifier.notify({ title: 'Sass コンパイル エラー', message: error.message });
       }
     }))
-    .pipe(sass({outputStyle: SASS_OUTPUT_STYLE,indentType: 'space',indentWidth: 2,precision: 3}).on('error', sass.logError))
+    .pipe(sass(SASS_CONFIG).on('error', sass.logError))
     .pipe(csscomb())
-    .pipe(postcss([
-      autoprefixer({browsers: SASS_AUTOPREFIXER_BROWSERS}),
-      cssMqpacker(),
-      pixrem(),
-      postcssOpacity()
-    ]))
+    .pipe(postcss(POSTCSS_PLUGINS))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
