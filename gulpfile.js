@@ -144,6 +144,31 @@ gulp.task('sass', ()=>{
  * HtmlLint Task
  */
 gulp.task('htmllint', ()=>{
+
+  const HTMLLINT_CONFIG = {
+    'tagname-lowercase': true,
+    'attr-lowercase': true,
+    'attr-value-double-quotes': true,
+    'attr-value-not-empty': false,
+    'attr-no-duplication': true,
+    'doctype-first': false,
+    'tag-pair': true,
+    'tag-self-close': false,
+    'spec-char-escape': true,
+    'id-unique': true,
+    'src-not-empty': true,
+    'alt-require': true,
+    'head-script-disabled': false,
+    'img-alt-require': true,
+    'doctype-html5': true,
+    'id-class-value': 'false',
+    'style-disabled': false,
+    'space-tab-mixed-disabled': true,
+    'id-class-ad-disabled': true,
+    'href-abs-or-rel': false,
+    'attr-unsafe-chars': true
+  };
+
   let _target = CONFIG.watchIgnoreDirectory.html.slice();
   _target.unshift(CONFIG.watchDirectory.html);
 
@@ -154,29 +179,7 @@ gulp.task('htmllint', ()=>{
         this.emit('end');
       }
     }))
-    .pipe(htmlhint({
-      'tagname-lowercase': true,
-      'attr-lowercase': true,
-      'attr-value-double-quotes': true,
-      'attr-value-not-empty': false,
-      'attr-no-duplication': true,
-      'doctype-first': false,
-      'tag-pair': true,
-      'tag-self-close': false,
-      'spec-char-escape': true,
-      'id-unique': true,
-      'src-not-empty': true,
-      'alt-require': true,
-      'head-script-disabled': false,
-      'img-alt-require': true,
-      'doctype-html5': true,
-      'id-class-value': 'false',
-      'style-disabled': false,
-      'space-tab-mixed-disabled': true,
-      'id-class-ad-disabled': true,
-      'href-abs-or-rel': false,
-      'attr-unsafe-chars': true
-    }))
+    .pipe(htmlhint(HTMLLINT_CONFIG))
     .pipe(htmlhint.reporter());
 });
 
