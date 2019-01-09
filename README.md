@@ -1,7 +1,7 @@
 # DEV TEMPLATE GULP
 
 [![Build Status](https://travis-ci.org/yama-dev/dev-template-gulp.svg?branch=master)](https://travis-ci.org/yama-dev/dev-template-gulp)
-![](https://img.shields.io/github/repo-size/yama-dev/dev-template-gulp.svg)
+[![](https://img.shields.io/github/repo-size/yama-dev/dev-template-gulp.svg)](https://github.com/yama-dev/dev-template-gulp/releases/latest)
 ![](https://img.shields.io/github/release/yama-dev/dev-template-gulp.svg)
 ![](https://img.shields.io/david/yama-dev/dev-template-gulp.svg)
 ![](https://img.shields.io/david/dev/yama-dev/dev-template-gulp.svg)
