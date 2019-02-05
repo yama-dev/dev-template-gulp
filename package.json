@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && gulp",
+    "start": "npm install && npm run develop",
     "develop": "gulp",
     "release": "gulp release",
     "check": "npm outdated",
@@ -15,7 +15,7 @@
     "test": "npm run lint && gulp release"
   },
   "engines": {
-    "node": ">=4.8.7 <=10.14.0"
+    "node": ">=6.10.0 <=11.9.0"
   },
   "repository": {
     "type": "git",
@@ -34,12 +34,15 @@
     "gulp-babel": "^7.0.1",
     "gulp-cached": "^1.1.1",
     "gulp-csscomb": "^3.0.8",
+    "gulp-ejs": "^3.3.0",
     "gulp-eslint": "^5.0.0",
     "gulp-htmlhint": "^2.2.1",
     "gulp-ignore": "^2.0.2",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^7.0.1",
     "gulp-progeny": "^0.4.1",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.1",
     "node-notifier": "^5.3.0",
