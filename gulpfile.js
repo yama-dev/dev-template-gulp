@@ -37,10 +37,11 @@ try {
 }
 
 CONFIG_PATH = {
-  source  : 'src/',
+  source      : 'src/',
   sourceBuild : '',
-  release : 'release/'
+  release     : 'release/'
 };
+
 if(CONFIG_USER.outputDirectory){
   CONFIG_PATH.sourceBuild = CONFIG_USER.outputDirectory;
 } else {
@@ -61,6 +62,8 @@ CONFIG = {
   },
   watchDirectory: {
     html    : CONFIG_PATH.sourceBuild + '**/*.html',
+    ejs     : CONFIG_PATH.source + '**/*.ejs',
+    pug     : CONFIG_PATH.source + '**/*.pug',
     php     : CONFIG_PATH.sourceBuild + '**/*.php',
     css     : CONFIG_PATH.sourceBuild + '**/*.css',
     sass    : CONFIG_PATH.source + '**/*.scss',
@@ -106,30 +109,53 @@ CONFIG = {
  * IMPORT MODULES
  */
 const gulp           = require('gulp');
+
+const htmlhint       = require('gulp-htmlhint');
+const htmlmin        = require('gulp-htmlmin');
+const ejs            = require('gulp-ejs');
+const pug            = require('gulp-pug');
+
 const sass           = require('gulp-sass');
 sass.compiler        = require('node-sass');
 const postcss        = require('gulp-postcss');
 const csscomb        = require('gulp-csscomb');
-const babel          = require('gulp-babel');
-const eslint         = require('gulp-eslint');
-const htmlhint       = require('gulp-htmlhint');
-const ejs            = require('gulp-ejs');
-const pug            = require('gulp-pug');
-const rename         = require('gulp-rename');
-const cache          = require('gulp-cached');
-const progeny        = require('gulp-progeny');
-const plumber        = require('gulp-plumber');
-const ignore         = require('gulp-ignore');
-const uglify         = require('gulp-uglify');
-const notifier       = require('node-notifier');
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
 const cssnano        = require('cssnano');
+
+const babel          = require('gulp-babel');
+const eslint         = require('gulp-eslint');
+const uglify         = require('gulp-uglify');
+
+const rename         = require('gulp-rename');
+const cache          = require('gulp-cached');
+const progeny        = require('gulp-progeny');
+const plumber        = require('gulp-plumber');
+const ignore         = require('gulp-ignore');
+
+const notifier       = require('node-notifier');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
 runSequence.options.ignoreUndefinedTasks = true;
+
+/**
+ * Set Add Task
+ */
+let taskListAdd = [];
+if(param['--jsmin']){
+  taskListAdd.push('js_min');
+} else {
+  taskListAdd.push('js_lint');
+}
+if(param['--htmlmin']){
+  taskListAdd.push('html_min');
+} else {
+  taskListAdd.push('html_lint');
+}
+if(CONFIG_USER.outputDirectory) taskListAdd.push('copy');
+if(!taskListAdd.length) taskListAdd = null;
 
 /**
  * Ejs Task
@@ -138,6 +164,9 @@ gulp.task('ejs', function buildHTML(){
   let _target = CONFIG.watchIgnoreDirectory.ejs.slice();
   _target.unshift(CONFIG.sourceDirectory.ejs);
 
+  let _config_ejs_data = {};
+  if(CONFIG_USER.ejs) _config_ejs_data = { ejs: CONFIG_USER.ejs };
+
   return gulp.src(_target)
     .pipe(plumber({
       errorHandler(error) {
@@ -145,7 +174,7 @@ gulp.task('ejs', function buildHTML(){
         this.emit('end');
       }
     }))
-    .pipe(ejs({}, {}, { ext: '' }))
+    .pipe(ejs(_config_ejs_data, {}, { ext: '' }))
     .pipe(rename({
       extname: '.html'
     }))
@@ -227,7 +256,7 @@ gulp.task('sass', ()=>{
 /**
  * HtmlLint Task
  */
-gulp.task('htmllint', ()=>{
+gulp.task('html_lint', ()=>{
 
   const _config_htmllist = {
     'tagname-lowercase': true,
@@ -245,7 +274,7 @@ gulp.task('htmllint', ()=>{
     'head-script-disabled': false,
     'img-alt-require': true,
     'doctype-html5': true,
-    'id-class-value': 'false',
+    'id-class-value': false,
     'style-disabled': false,
     'space-tab-mixed-disabled': true,
     'id-class-ad-disabled': true,
@@ -265,6 +294,22 @@ gulp.task('htmllint', ()=>{
     }))
     .pipe(htmlhint(_config_htmllist))
     .pipe(htmlhint.reporter());
+});
+
+/**
+ * Minify Task */
+gulp.task('html_min', ()=>{
+  const _config_htmlmin = {
+    collapseWhitespace: true,
+    preserveLineBreaks: true
+  };
+
+  let _target = CONFIG.watchIgnoreDirectory.html.slice();
+  _target.unshift(CONFIG.watchDirectory.html);
+
+  return gulp.src(_target)
+    .pipe(htmlmin(_config_htmlmin))
+    .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
 /**
@@ -322,6 +367,8 @@ gulp.task('watch',['server'], ()=>{
   // Set Watch Tasks.
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
   gulp.watch(CONFIG.watchDirectory.es6,['js_babel']);
+  gulp.watch(CONFIG.watchDirectory.ejs,['ejs']);
+  gulp.watch(CONFIG.watchDirectory.pug,['pug']);
 
   notifier.notify({ title: 'Start Gulp', message: new Date(), sound: 'Glass' });
 
@@ -357,7 +404,11 @@ gulp.task('server', ()=>{
     let _target = CONFIG.deployDirectory.slice();
     gulp.watch(_target,['copy']);
 
-    gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
+    if(param['--htmlmin']){
+      gulp.watch(CONFIG.watchDirectory.html,['html_min']);
+    } else {
+      gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
+    }
 
     gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
 
@@ -367,7 +418,11 @@ gulp.task('server', ()=>{
 
     browserSync.reload();
   } else {
-    gulp.watch(CONFIG.watchDirectory.html,['htmllint']);
+    if(param['--htmlmin']){
+      gulp.watch(CONFIG.watchDirectory.html,['html_min']);
+    } else {
+      gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
+    }
     gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
 
     gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
@@ -409,23 +464,16 @@ gulp.task('deploy', ()=>{
 });
 
 /**
- * Set Add Task
- */
-let releaseTaskAdd = [];
-if(param['--jsmin']) releaseTaskAdd.push('js_min');
-if(CONFIG_USER.outputDirectory) releaseTaskAdd.push('copy');
-if(!releaseTaskAdd.length) releaseTaskAdd = null;
-
-/**
  * Default Task
  */
 gulp.task('default', (callback)=>{
-  return runSequence(['ejs','pug','js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'watch',callback);
+  return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'watch', callback);
 });
 
 /**
  * Release Task
  */
 gulp.task('release', (callback)=>{
-  return runSequence(['ejs','pug','js_babel','sass'],['htmllint','js_lint'],releaseTaskAdd,'deploy',callback);
+  return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'deploy', callback);
 });
+
