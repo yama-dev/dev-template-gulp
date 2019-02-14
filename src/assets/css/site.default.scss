@@ -2,23 +2,8 @@
 
 // Set Reset-Css
 
-// http://meyerweb.com/eric/tools/css/reset/ 
-// @import "./vender_sass/eric_reset";
-
-// http://html5doctor.com/
-@import "./vender_sass/html5reset";
-
-// @jonathantneal/sanitize
-// @import "./vender_sass/sanitize";
-
-// @necolas/normalize.css 
-// @import "./vender_sass/normalize";
-
 // https://github.com/yama-dev
-@import "./vender_sass/reset";
-
-// Debug
-// @debug "style.scss";
+@import "./vender/reset.scss";
 
 // MediaQuery.
 @media screen and (max-width: 767px) {
@@ -68,6 +53,10 @@ $break-point-PC: 768;
   .is-pc-inline { display: none; }
   .is-sp-inline { display: inline-block; }
 }
+
+/*!
+  Styles
+  */
 
 // Style Image Fit
 img {
