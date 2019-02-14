@@ -1,31 +1,22 @@
 @charset "UTF-8";
-/* 
-html5doctor.com Reset Stylesheet
-v1.6.1
-Last Updated: 2010-09-17
-Author: Richard Clark - http://richclarkdesign.com 
-Twitter: @rich_clark
-*/
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+/*!
+  Reset Stylesheet
+  Author: yama-dev - https://github.com/yama-dev
+  */
+html, body, div, span, object, iframe, embed, main, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, source {
   margin: 0;
   padding: 0;
   background: transparent;
   border: 0;
-  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  vertical-align: middle;
   font-size: 100%;
   outline: 0;
 }
 
-body {
-  line-height: 1;
-}
-
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
-}
-
-nav ul {
-  list-style: none;
 }
 
 blockquote, q {
@@ -45,14 +36,12 @@ a {
   font-size: 100%;
 }
 
-/* change colours to suit your needs */
 ins {
   background-color: #ff9;
   color: #000;
   text-decoration: none;
 }
 
-/* change colours to suit your needs */
 mark {
   background-color: #ff9;
   color: #000;
@@ -75,7 +64,6 @@ table {
   border-spacing: 0;
 }
 
-/* change border colour to suit your needs */
 hr {
   display: block;
   height: 1px;
@@ -86,39 +74,14 @@ hr {
   border-top: 1px solid #ccc;
 }
 
-input, select {
-  vertical-align: middle;
+ol, ul {
+  list-style: none;
 }
 
-/*!
-  Reset Stylesheet
-  Author: yama-dev - https://github.com/yama-dev
-  */
-body, button, input, select, textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
-  word-wrap: break-word;
-}
-
-.clearfix:after {
-  content: ".";
-  display: block;
-  visibility: hidden;
-  clear: both;
-  height: 0;
-}
-
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-button, input, select, textarea {
+button, input, select, textarea, datalist {
   min-height: 1.5em;
   background-color: transparent;
+  vertical-align: middle;
 }
 
 input[type="submit"], input[type="reset"] {
@@ -134,16 +97,35 @@ a[href^="tel"] {
   color: inherit;
 }
 
-ol, ul {
-  list-style: none;
+.clearfix:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
 }
 
+body {
+  line-height: 1;
+}
+
+body, button, input, select, textarea, datalist {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  word-wrap: break-word;
+}
+
+/*!
+  Styles
+  */
 img {
   display: block;
   max-width: 100%;
   vertical-align: middle;
 }
-
 @media screen and (min-width: 768px) {
   .is-pc {
     display: block;
@@ -158,7 +140,6 @@ img {
     display: none;
   }
 }
-
 @media screen and (max-width: 767px) {
   .is-pc {
     display: none;
