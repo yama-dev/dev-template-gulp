@@ -1,0 +1,40 @@
+// Style Sheet
+// _utility.scss
+
+.u-ta-center  { text-align: center;}
+.u-ta-left    { text-align: left;  }
+.u-ta-right   { text-align: right; }
+
+.u-fw-lighter { font-weight: lighter;}
+.u-fw-normal  { font-weight: normal; }
+.u-fw-bold    { font-weight: bold;   }
+
+@for $i from 0 through 20 {
+  .u-fs-#{$i * 1} {
+    font-size;:#{$i * 10}#{'%'};
+  }
+}
+
+@for $i from 0 through 100 {
+  .u-h-#{$i * 1} {
+    height:#{$i * 0.1}em;
+  }
+}
+
+@for $i from 0 through 100 {
+  .u-mt-#{$i * 1} {
+    margin-top:#{$i * 0.1}em;
+  }
+  .u-mb-#{$i * 1} {
+    margin-bottom:#{$i * 0.1}em;
+  }
+}
+
+@for $i from 0 through 100 {
+  .u-pt-#{$i * 1} {
+    padding-top:#{$i * 0.1}em;
+  }
+  .u-pb-#{$i * 1} {
+    padding-bottom:#{$i * 0.1}em;
+  }
+}

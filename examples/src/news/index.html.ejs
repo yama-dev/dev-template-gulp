@@ -1,0 +1,33 @@
+<%#
+コメントアウト
+-%>
+<% slug = 'news' -%>
+<%- include('../_head.html.ejs'); -%>
+
+<%- include('../_header.html.ejs'); -%>
+
+<article>
+
+  <section class="l-section">
+    <h2>NEWSページ</h2>
+  </section>
+
+  <hr>
+
+  <nav>
+    <ul>
+<% ejs.pages.forEach(function (val) { -%>
+<%   if(val.slug == slug){ -%>
+      <li class="is-current"><a href="<%= val.path %>"><%= val.name %></a></li>
+<%   } else { -%>
+      <li><a href="<%= val.path %>"><%= val.name %></a></li>
+<%   } -%>
+<% }); -%>
+    </ul>
+  </nav>
+
+  <hr>
+
+</article>
+
+<%- include('../_foot.html.ejs'); -%>

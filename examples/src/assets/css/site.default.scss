@@ -1,0 +1,94 @@
+// -> site.default.scss
+
+// Set Reset-Css
+
+// https://github.com/yama-dev
+@import "./vender/reset.scss";
+
+// MediaQuery.
+@media screen and (max-width: 767px) {
+}
+// Portrait.
+@media screen and (orientation: portrait) {
+}
+// Landscape.
+@media screen and (orientation: landscape) {
+}
+
+// Mixis.
+$break-point-PC: 768;
+@mixin pc {
+  @media screen and (min-width: #{$break-point-PC}px) {
+    @content
+  }
+}
+@mixin sp {
+  @media screen and (max-width: #{$break-point-PC - 1}px) {
+    @content
+  }
+}
+// Portrait.
+@mixin port {
+  @media screen and (orientation: portrait) {
+    @content
+  }
+}
+// Landscape.
+@mixin land {
+  @media screen and (orientation: landscape) {
+    @content
+  }
+}
+
+// Style Switching Elements
+@include pc(){
+  .is-pc { display: block; }
+  .is-sp { display: none; }
+  .is-pc-inline { display: inline-block; }
+  .is-sp-inline { display: none; }
+}
+@include sp(){
+  .is-pc { display: none; }
+  .is-sp { display: block; }
+  .is-pc-inline { display: none; }
+  .is-sp-inline { display: inline-block; }
+}
+
+/*!
+  Styles
+  */
+
+// Style Image Fit
+img {
+  max-width: 100%;
+  display: block;
+  vertical-align: middle;
+}
+
+// Import Modules.
+// @import "./modules/settings";
+// @import "./modules/mediaquery";
+// @import "./modules/layout";
+// @import "./modules/hover";
+// @import "./modules/button";
+// @import "./modules/utility";
+
+// One Click CSS.
+// -> https://css.miugle.info/
+
+// CSS validation.
+// -> https://jigsaw.w3.org/css-validator/validator.html.ja
+
+// CSS Design.
+// BEM    -> https://en.bem.info/
+// FLOCSS -> https://github.com/hiloki/flocss
+
+// js- | javascript 対象要素   | id="js-modal-btn"
+// l-  | Layoutレイヤー要素    | class="l-header"
+// c-  | Componentレイヤー要素 | class="c-btn"
+// p-  | Projectレイヤー要素   | class="p-btn--primary"
+// u-  | Utilityレイヤー要素   | class="u-hover"
+// t-  | 状態(比較的広い範囲)  | class="t-blue"
+// is- | 状態(比較的狭い範囲)  | class="is-active"
+// m-  | modal要素             | class="m-default"
+

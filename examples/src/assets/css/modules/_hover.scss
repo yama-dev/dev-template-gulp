@@ -1,0 +1,52 @@
+// Style Sheet
+// _hover.scss
+@import "./modules/settings";
+
+// Hover Effect.
+.u-hover-alpha {
+  transition: opacity .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  &:hover {
+    opacity: 0.6;
+    transition: opacity .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+}
+
+.u-hover-color {
+  transition: color .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  &:hover {
+    color: #aaaaaa !important;
+    transition: color .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+}
+
+.u-hover-zoom {
+  overflow: hidden;
+  .u-hover-zoom-item {
+    transition: transform .7s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+  &:hover {
+    .u-hover-zoom-item {
+      transform: scale(1.1);
+      transition: transform .7s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+      backface-visibility: hidden;
+    }
+  }
+}
+
+.u-hover-list-arrow {
+  transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  &:after{
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+  &:hover {
+    color: #aaaaaa !important;
+    transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    &:after{
+      opacity: 1;
+      transform: translateX(0);
+      transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    }
+  }
+}

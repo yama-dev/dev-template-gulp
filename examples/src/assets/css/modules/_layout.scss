@@ -1,0 +1,17 @@
+// Style Sheet
+// _layout.scss
+@import "./modules/settings";
+
+// Layout
+.l {
+  &-inline-wrap {
+    letter-spacing: -.4em;
+    text-align: center;
+    font-size: 0;
+  }
+  &-inline {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+  }
+}

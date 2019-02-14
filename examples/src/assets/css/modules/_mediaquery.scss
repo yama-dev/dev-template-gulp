@@ -1,0 +1,51 @@
+// Style Sheet
+// _mediaquery.scss
+
+$pc: 768px;
+$sp: 767px;
+
+@mixin pc() {
+  @media screen and (min-width: $pc) {
+    @content;
+  }
+}
+@mixin sp() {
+  @media screen and (max-width: $sp) {
+    @content;
+  }
+}
+@mixin ie {
+  @media (-ms-high-contrast: none){
+    @content;
+  }
+}
+@mixin port {
+  @media screen and (orientation: portrait){
+    @content;
+  }
+}
+@mixin land {
+  @media screen and (orientation: landscape){
+    @content;
+  }
+}
+@mixin pc-port {
+  @media screen and (min-width: $pc) and (orientation: portrait){
+    @content;
+  }
+}
+@mixin pc-land {
+  @media screen and (min-width: $pc) and (orientation: landscape){
+    @content;
+  }
+}
+@mixin sp-port {
+  @media screen and (max-width: $sp) and (orientation: portrait){
+    @content;
+  }
+}
+@mixin sp-land {
+  @media screen and (max-width: $sp) and (orientation: landscape){
+    @content;
+  }
+}
