@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.6.2
+ * Version 0.6.3
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -408,6 +408,7 @@ gulp.task('server', ()=>{
       gulp.watch(CONFIG.watchDirectory.html,['html_min']);
     } else {
       gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
+      gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
     }
 
     gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
@@ -423,8 +424,8 @@ gulp.task('server', ()=>{
       gulp.watch(CONFIG.watchDirectory.html,['html_min']);
     } else {
       gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
+      gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
     }
-    gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
 
     gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
 
