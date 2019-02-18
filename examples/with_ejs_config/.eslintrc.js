@@ -24,7 +24,7 @@ module.exports = {
       "always"
     ],
     "no-console": "off",
-  }
+  },
   "parserOptions": {
     "sourceType": "module"
   }
