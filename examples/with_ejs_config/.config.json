@@ -1,5 +1,5 @@
 {
-  "outputDirectory": "",
+  "outputDirectory": "public/",
   "host": "",
   "ejs": {
     "site_title": "DEV TEMPLATE GULP",
