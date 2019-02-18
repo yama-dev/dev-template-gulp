@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.6.3
+ * Version 0.7.0
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -10,22 +10,6 @@ const pkg = require('./package.json');
 console.log('-'.repeat(38) + '\n'+pkg.name + ' version:' + pkg.version + '\n'+'-'.repeat(38));
 
 /**
- * CLIでの引数を判定
- */
-const argv = process.argv.slice(2);
-let param = new Object();
-argv.map((item,i)=>{
-  if(/--/.test(item)){
-    if(argv[i+1]){
-      if(!/--/.test(argv[i+1])) param[item] = argv[i+1];
-      else param[item] = true;
-    } else {
-      param[item] = true;
-    }
-  }
-});
-
-/**
  * 環境設定
  */
 let CONFIG_USER = {}, CONFIG_PATH = {}, CONFIG = {};
@@ -33,7 +17,6 @@ let CONFIG_USER = {}, CONFIG_PATH = {}, CONFIG = {};
 try {
   CONFIG_USER = require('./.config.json');
 } catch (e) {
-  console.log('no ".config.json"');
 }
 
 CONFIG_PATH = {
@@ -58,7 +41,8 @@ CONFIG = {
     pug     : CONFIG_PATH.source + '**/*.pug',
     sass    : CONFIG_PATH.source + '**/*.scss',
     js      : CONFIG_PATH.source + '**/*.js',
-    es6     : CONFIG_PATH.source + '**/*.es6'
+    es6     : CONFIG_PATH.source + '**/*.es6',
+    es     : CONFIG_PATH.source + '**/*.es'
   },
   watchDirectory: {
     html    : CONFIG_PATH.sourceBuild + '**/*.html',
@@ -68,7 +52,8 @@ CONFIG = {
     css     : CONFIG_PATH.sourceBuild + '**/*.css',
     sass    : CONFIG_PATH.source + '**/*.scss',
     js      : CONFIG_PATH.sourceBuild + '**/*.js',
-    es6     : CONFIG_PATH.source + '**/*.es6'
+    es6     : CONFIG_PATH.source + '**/*.es6',
+    es      : CONFIG_PATH.source + '**/*.es'
   },
   watchIgnoreDirectory: {
     html : [
@@ -101,7 +86,8 @@ CONFIG = {
     '!' + CONFIG_PATH.source + '**/*.pug',
     '!' + CONFIG_PATH.source + '**/_*.css',
     '!' + CONFIG_PATH.source + '**/*.scss',
-    '!' + CONFIG_PATH.source + '**/*.es6'
+    '!' + CONFIG_PATH.source + '**/*.es6',
+    '!' + CONFIG_PATH.source + '**/*.es'
   ]
 };
 
@@ -143,19 +129,26 @@ runSequence.options.ignoreUndefinedTasks = true;
 /**
  * Set Add Task
  */
+const argv = process.argv.slice(2);
+let param = new Object();
+param['--htmllint'] = true;
+param['--jslint'] = true;
+argv.map((item,i)=>{
+  if(/--/.test(item)){
+    if(argv[i+1]){
+      if(!/--/.test(argv[i+1])) param[item] = argv[i+1];
+      else param[item] = true;
+    } else {
+      param[item] = true;
+    }
+  }
+});
 let taskListAdd = [];
-if(param['--jsmin']){
-  taskListAdd.push('js_min');
-} else {
-  taskListAdd.push('js_lint');
-}
-if(param['--htmlmin']){
-  taskListAdd.push('html_min');
-} else {
-  taskListAdd.push('html_lint');
-}
+if(param['--htmlmin'] && param['--htmlmin'] != 'false' && param['--htmlmin'] != 'null') taskListAdd.push('html_min');
+if(param['--htmllint'] && param['--htmllint'] != 'false' && param['--htmllint'] != 'null') taskListAdd.push('html_lint');
+if(param['--jsmin'] && param['--jsmin'] != 'false' && param['--jsmin'] != 'null') taskListAdd.push('js_min');
+if(param['--jslint'] && param['--jslint'] != 'false' && param['--jslint'] != 'null') taskListAdd.push('js_lint');
 if(CONFIG_USER.outputDirectory) taskListAdd.push('copy');
-if(!taskListAdd.length) taskListAdd = null;
 
 /**
  * Ejs Task
@@ -318,6 +311,7 @@ gulp.task('html_min', ()=>{
 gulp.task('js_babel', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.sourceDirectory.es6);
+  _target.unshift(CONFIG.sourceDirectory.es);
 
   return gulp.src(_target)
     .pipe(plumber({
@@ -367,6 +361,7 @@ gulp.task('watch',['server'], ()=>{
   // Set Watch Tasks.
   gulp.watch(CONFIG.watchDirectory.sass,['sass']);
   gulp.watch(CONFIG.watchDirectory.es6,['js_babel']);
+  gulp.watch(CONFIG.watchDirectory.es,['js_babel']);
   gulp.watch(CONFIG.watchDirectory.ejs,['ejs']);
   gulp.watch(CONFIG.watchDirectory.pug,['pug']);
 
@@ -384,11 +379,11 @@ gulp.task('server', ()=>{
   if(param['--proxy']){
     _config_bs = {
       proxy: param['--proxy'],
-      reloadDelay: 500
+      reloadDelay: 300
     };
   } else {
     _config_bs = {
-      reloadDelay: 500,
+      reloadDelay: 300,
       server: {
         baseDir: CONFIG.outputDirectory.dev
       }
@@ -399,42 +394,44 @@ gulp.task('server', ()=>{
   }
   browserSync.init(_config_bs);
 
-  // Browser reload.
+  // COPY.
   if(CONFIG_USER.outputDirectory){
     let _target = CONFIG.deployDirectory.slice();
     gulp.watch(_target,['copy']);
+  }
 
-    if(param['--htmlmin']){
-      gulp.watch(CONFIG.watchDirectory.html,['html_min']);
-    } else {
-      gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
-      gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
-    }
-
-    gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
-    gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
-
-    gulp.watch(CONFIG.watchDirectory.css, ()=>{
-      gulp.src(CONFIG.watchDirectory.css).pipe(browserSync.stream());
-    });
-
-    browserSync.reload();
+  // HTML.
+  let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
+  _target_html.unshift(CONFIG.watchDirectory.html);
+  if(taskListAdd.find(item => item =='html_min')){
+    gulp.watch(_target_html,['html_min']);
   } else {
-    if(param['--htmlmin']){
-      gulp.watch(CONFIG.watchDirectory.html,['html_min']);
-    } else {
-      gulp.watch(CONFIG.watchDirectory.html,['html_lint']);
-      gulp.watch(CONFIG.watchDirectory.html, browserSync.reload);
+    if(taskListAdd.find(item => item =='html_lint')){
+      gulp.watch(_target_html,['html_lint']);
     }
+    gulp.watch(_target_html, browserSync.reload);
+  }
 
-    gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
+  // PHP.
+  gulp.watch(CONFIG.watchDirectory.php, browserSync.reload);
 
-    gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
-    gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
+  // JS.
+  if(taskListAdd.find(item => item =='js_min')){
+    gulp.watch(CONFIG.watchDirectory.js,['js_min']);
+  } else {
+    if(taskListAdd.find(item => item =='js_lint')){
+      gulp.watch(CONFIG.watchDirectory.js,['js_lint']);
+    }
+  }
+  gulp.watch(CONFIG.watchDirectory.js, browserSync.reload);
 
-    gulp.watch(CONFIG.watchDirectory.css, ()=>{
-      gulp.src(CONFIG.watchDirectory.css).pipe(browserSync.stream());
-    });
+  // CSS.
+  gulp.watch(CONFIG.watchDirectory.css, (file)=>{
+    gulp.src(file.path).pipe(browserSync.stream());
+  });
+
+  if(CONFIG_USER.outputDirectory){
+    browserSync.reload();
   }
 
 });
@@ -469,13 +466,21 @@ gulp.task('deploy', ()=>{
  * Default Task
  */
 gulp.task('default', (callback)=>{
-  return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'watch', callback);
+  if(!taskListAdd.length){
+    return runSequence(['ejs', 'pug', 'sass', 'js_babel'], 'watch', callback);
+  } else {
+    return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'watch', callback);
+  }
 });
 
 /**
  * Release Task
  */
 gulp.task('release', (callback)=>{
-  return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'deploy', callback);
+  if(!taskListAdd.length){
+    return runSequence(['ejs', 'pug', 'sass', 'js_babel'], 'deploy', callback);
+  } else {
+    return runSequence(['ejs', 'pug', 'sass', 'js_babel'], taskListAdd, 'deploy', callback);
+  }
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -10,6 +10,9 @@
     "start": "npm install && npm run develop",
     "develop": "gulp",
     "release": "gulp release",
+    "php": "npm-run-all --parallel php:makephpserver php:gulp",
+    "php:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
+    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release"
@@ -48,6 +51,7 @@
     "gulp-uglify": "^3.0.1",
     "node-notifier": "^5.3.0",
     "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "pixrem": "^4.0.1",
     "postcss-opacity": "^5.0.0",
     "run-sequence": "^2.2.1"
