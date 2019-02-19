@@ -10,19 +10,28 @@
     "site_share_text": "シェアテキスト",
     "pages": [
       {
-        "slug":"top",
+        "slug":"",
         "name":"TOP",
-        "path":"/"
+        "path":"/",
+        "message":"this is top page !"
       },
       {
         "slug":"news",
         "name":"NEWS",
-        "path":"/news/"
+        "path":"/news/",
+        "message":"this is news page !!"
+      },
+      {
+        "slug":"news/detail",
+        "name":"NEWS - detail",
+        "path":"/news/detail/",
+        "message":"this is news detail page !!!"
       },
       {
         "slug":"about",
         "name":"ABOUT",
-        "path":"/about/"
+        "path":"/about/",
+        "message":"this is about page !!"
       }
     ]
   }
