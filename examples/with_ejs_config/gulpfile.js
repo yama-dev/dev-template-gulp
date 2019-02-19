@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.7.0
+ * Version 0.8.0
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -125,6 +125,7 @@ const notifier       = require('node-notifier');
 const browserSync    = require('browser-sync').create();
 const runSequence    = require('run-sequence');
 runSequence.options.ignoreUndefinedTasks = true;
+const streamUtil     = require('@yama-dev/gulp-stream-util');
 
 /**
  * Set Add Task
@@ -165,6 +166,12 @@ gulp.task('ejs', function buildHTML(){
       errorHandler(error) {
         notifier.notify({ title: 'EJS エラー', message: error.message });
         this.emit('end');
+      }
+    }))
+    .pipe(streamUtil(function(){
+      if(CONFIG_USER.ejs){
+        let _current_data = _config_ejs_data.ejs.pages.find(item => item.slug == this.dir);
+        if(_current_data) _config_ejs_data.ejs.current = _current_data;
       }
     }))
     .pipe(ejs(_config_ejs_data, {}, { ext: '' }))

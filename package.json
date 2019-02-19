@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -26,6 +26,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@yama-dev/gulp-stream-util": "^0.3.0",
     "autoprefixer": "^9.4.3",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
