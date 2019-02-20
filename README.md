@@ -73,8 +73,11 @@ gulp release
 | `gulp js`            | javascriptファイルの構文チェック |                                                                                                                                          | 
 | `gulp release`       | ファイルのリリース               | 公開ファイルのみを`/release/`ディレクトリにまとめる。                                                                                    |
 | `gulp --proxy [url]` | プロキシサーバーを立ち上げ       |                                                                                                                                          | 
-| `gulp --cssmin`      | Sassファイルの圧縮               |                                                                                                                                          | 
+| `gulp --htmlmin`     | htmlファイルの圧縮               |                                                                                                                                          | 
+| `gulp --htmllint`    | htmlファイルの構文チェック       |                                                                                                                                          | 
 | `gulp --jsmin`       | javascriptファイルの圧縮         |                                                                                                                                          | 
+| `gulp --jslint`      | javascriptファイルの構文チェック |                                                                                                                                          | 
+| `gulp --cssmin`      | cssファイルの圧縮                |                                                                                                                                          | 
 
 <br>
 
