@@ -12,7 +12,10 @@
     "release": "gulp release",
     "php": "npm-run-all --parallel php:makephpserver php:gulp",
     "php:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
-    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
+    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 >nul",
+    "twig": "npm-run-all --parallel twig:maketwigserver twig:gulp",
+    "twig:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
+    "twig:maketwigserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release"
