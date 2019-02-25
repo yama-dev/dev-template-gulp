@@ -25,6 +25,9 @@ CONFIG_PATH = {
   release     : 'release/'
 };
 
+if(CONFIG_USER.inputDirectory){
+  CONFIG_PATH.source = CONFIG_USER.inputDirectory;
+}
 if(CONFIG_USER.outputDirectory){
   CONFIG_PATH.sourceBuild = CONFIG_USER.outputDirectory;
 } else {
