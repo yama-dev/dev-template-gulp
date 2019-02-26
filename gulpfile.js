@@ -39,14 +39,6 @@ CONFIG = {
     dev     : CONFIG_PATH.sourceBuild,
     release : CONFIG_PATH.release
   },
-  sourceDirectory: {
-    ejs     : CONFIG_PATH.source + '**/*.ejs',
-    pug     : CONFIG_PATH.source + '**/*.pug',
-    sass    : CONFIG_PATH.source + '**/*.scss',
-    js      : CONFIG_PATH.source + '**/*.js',
-    es6     : CONFIG_PATH.source + '**/*.es6',
-    es     : CONFIG_PATH.source + '**/*.es'
-  },
   watchDirectory: {
     html    : CONFIG_PATH.sourceBuild + '**/*.html',
     ejs     : CONFIG_PATH.source + '**/*.ejs',
@@ -159,7 +151,7 @@ if(CONFIG_USER.outputDirectory) taskListAdd.push('copy');
  */
 gulp.task('ejs', function buildHTML(){
   let _target = CONFIG.watchIgnoreDirectory.ejs.slice();
-  _target.unshift(CONFIG.sourceDirectory.ejs);
+  _target.unshift(CONFIG.watchDirectory.ejs);
 
   let _config_ejs_data = {};
   if(CONFIG_USER.ejs) _config_ejs_data = { ejs: CONFIG_USER.ejs };
@@ -189,7 +181,7 @@ gulp.task('ejs', function buildHTML(){
  */
 gulp.task('pug', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.pug.slice();
-  _target.unshift(CONFIG.sourceDirectory.pug);
+  _target.unshift(CONFIG.watchDirectory.pug);
 
   let _config_pug = {
     pretty: true
@@ -213,6 +205,8 @@ gulp.task('pug', ()=>{
  * Sass Task
  */
 gulp.task('sass', ()=>{
+  let _target = CONFIG.watchIgnoreDirectory.sass.slice();
+  _target.unshift(CONFIG.watchDirectory.sass);
 
   const _config_sass = {
     outputStyle: 'expanded', //nested, compact, compressed, expanded.
@@ -236,7 +230,7 @@ gulp.task('sass', ()=>{
   ];
   if(param['--cssmin']) _config_postcss.push( cssnano({autoprefixer: false}) );
 
-  return gulp.src(CONFIG.sourceDirectory.sass)
+  return gulp.src(_target)
     .pipe(cache('sass'))
     .pipe(progeny({
       multipass: [
@@ -320,8 +314,8 @@ gulp.task('html_min', ()=>{
  */
 gulp.task('js_babel', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.sourceDirectory.es6);
-  _target.unshift(CONFIG.sourceDirectory.es);
+  _target.unshift(CONFIG.watchDirectory.es6);
+  _target.unshift(CONFIG.watchDirectory.es);
 
   return gulp.src(_target)
     .pipe(plumber({
@@ -338,7 +332,7 @@ gulp.task('js_babel', ()=>{
  */
 gulp.task('js_lint', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.sourceDirectory.js);
+  _target.unshift(CONFIG.watchDirectory.js);
 
   return gulp.src(_target)
     .pipe(plumber({
@@ -356,7 +350,7 @@ gulp.task('js_lint', ()=>{
  * Minify Task */
 gulp.task('js_min', ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.sourceDirectory.js);
+  _target.unshift(CONFIG.watchDirectory.js);
 
   return gulp.src(_target)
     .pipe(uglify({ output: { ascii_only: true } }))
