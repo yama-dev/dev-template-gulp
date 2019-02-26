@@ -47,11 +47,13 @@ CONFIG = {
     css     : CONFIG_PATH.sourceBuild + '**/*.css',
     sass    : CONFIG_PATH.source + '**/*.scss',
     js      : CONFIG_PATH.sourceBuild + '**/*.js',
+    es7     : CONFIG_PATH.source + '**/*.es7',
     es6     : CONFIG_PATH.source + '**/*.es6',
     es      : CONFIG_PATH.source + '**/*.es'
   },
   watchIgnoreDirectory: {
     html : [
+      '!' + CONFIG_PATH.source + '**/wp/**/*.html',
       '!' + CONFIG_PATH.source + '**/vender/**/*.html',
       '!' + CONFIG_PATH.source + '**/vendor/**/*.html',
       '!' + CONFIG_PATH.source + '**/inc/**/*.html',
@@ -65,11 +67,20 @@ CONFIG = {
     pug : [
       '!' + CONFIG_PATH.source + '**/_*.pug'
     ],
+    sass : [
+      '!' + CONFIG_PATH.source + '**/wp/**/*.scss',
+      '!' + CONFIG_PATH.source + '**/vender/**/*.scss',
+      '!' + CONFIG_PATH.source + '**/vendor/**/*.scss',
+      '!' + CONFIG_PATH.source + '**/lib/**/*.scss',
+      '!' + CONFIG_PATH.source + '**/libs/**/*.scss'
+    ],
     js : [
+      '!' + CONFIG_PATH.source + '**/wp/**/*.js',
       '!' + CONFIG_PATH.source + '**/vender/**/*.js',
       '!' + CONFIG_PATH.source + '**/vendor/**/*.js',
       '!' + CONFIG_PATH.source + '**/lib/**/*.js',
-      '!' + CONFIG_PATH.source + '**/libs/**/*.js'
+      '!' + CONFIG_PATH.source + '**/libs/**/*.js',
+      '!' + CONFIG_PATH.source + '**/*.min.js',
     ]
   },
   deployDirectory: [
@@ -216,7 +227,7 @@ gulp.task('sass', ()=>{
   };
   const _config_autoprefixer = {
     browsers: [
-      'ie >= 10',
+      'ie >= 9',
       'ios >= 9',
       'android >= 4.4',
       'last 2 versions'
