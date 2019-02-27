@@ -335,6 +335,10 @@ gulp.task('js_babel', ()=>{
       }
     }))
     .pipe(babel())
+    .on('error', function(e) {
+      console.log('>>> ERROR', e);
+      this.emit('end');
+    })
     .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
 
