@@ -3,16 +3,27 @@
   Reset Stylesheet
   Author: yama-dev - https://github.com/yama-dev
   */
-html, body, div, span, object, iframe, embed, main, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, source {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
+html, body, div, span, object, iframe, embed, main,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video, source {
+  vertical-align: middle;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  vertical-align: middle;
-  font-size: 100%;
+  margin: 0;
   outline: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 100%;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -23,16 +34,17 @@ blockquote, q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
-  content: "";
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
   content: none;
 }
 
 a {
-  margin: 0;
-  padding: 0;
-  background: transparent;
   vertical-align: baseline;
+  margin: 0;
+  background: transparent;
+  padding: 0;
   font-size: 100%;
 }
 
@@ -55,7 +67,6 @@ del {
 
 abbr[title], dfn[title] {
   cursor: help;
-
   border-bottom: 1px dotted;
 }
 
@@ -66,12 +77,11 @@ table {
 
 hr {
   display: block;
-  height: 1px;
   margin: 1em 0;
-  padding: 0;
   border: 0;
-
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #cccccc;
+  padding: 0;
+  height: 1px;
 }
 
 ol, ul {
@@ -79,9 +89,9 @@ ol, ul {
 }
 
 button, input, select, textarea, datalist {
-  min-height: 1.5em;
-  background-color: transparent;
   vertical-align: middle;
+  background-color: transparent;
+  min-height: 1.5em;
 }
 
 input[type="submit"], input[type="reset"] {
@@ -92,17 +102,17 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
 }
 
-a[href^="tel"] {
+a[href^='tel'] {
   display: inline-block;
   color: inherit;
 }
 
 .clearfix:after {
-  content: ".";
   display: block;
-  visibility: hidden;
   clear: both;
+  visibility: hidden;
   height: 0;
+  content: '.';
 }
 
 body {
@@ -110,12 +120,12 @@ body {
 }
 
 body, button, input, select, textarea, datalist {
+  word-wrap: break-word;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
           text-size-adjust: 100%;
-  word-wrap: break-word;
 }
 
 /*!
@@ -123,8 +133,8 @@ body, button, input, select, textarea, datalist {
   */
 img {
   display: block;
-  max-width: 100%;
   vertical-align: middle;
+  max-width: 100%;
 }
 @media screen and (min-width: 768px) {
   .is-pc {

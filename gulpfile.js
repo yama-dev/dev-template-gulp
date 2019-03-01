@@ -110,12 +110,12 @@ const pug            = require('gulp-pug');
 const sass           = require('gulp-sass');
 sass.compiler        = require('node-sass');
 const postcss        = require('gulp-postcss');
-const csscomb        = require('gulp-csscomb');
 const pixrem         = require('pixrem');
 const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssMqpacker    = require('css-mqpacker');
 const cssnano        = require('cssnano');
+const cssSorter      = require('css-declaration-sorter');
 
 const babel          = require('gulp-babel');
 const eslint         = require('gulp-eslint');
@@ -234,6 +234,7 @@ gulp.task('sass', ()=>{
     ]
   };
   let _config_postcss = [
+    cssSorter({order: "concentric-css"}),
     autoprefixer(_config_autoprefixer),
     cssMqpacker(),
     pixrem(),
@@ -256,7 +257,6 @@ gulp.task('sass', ()=>{
       }
     }))
     .pipe(sass(_config_sass).on('error', sass.logError))
-    .pipe(csscomb())
     .pipe(postcss(_config_postcss))
     .pipe(gulp.dest(CONFIG.outputDirectory.dev));
 });
