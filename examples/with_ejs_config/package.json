@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -12,7 +12,10 @@
     "release": "gulp release",
     "php": "npm-run-all --parallel php:makephpserver php:gulp",
     "php:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
-    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
+    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 >nul",
+    "twig": "npm-run-all --parallel twig:maketwigserver twig:gulp",
+    "twig:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
+    "twig:maketwigserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release"
@@ -31,13 +34,13 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.3",
+    "css-declaration-sorter": "^4.0.1",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
     "eslint": "^5.14.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-cached": "^1.1.1",
-    "gulp-csscomb": "^3.0.8",
     "gulp-ejs": "^3.3.0",
     "gulp-eslint": "^5.0.0",
     "gulp-htmlhint": "^2.2.1",
@@ -61,5 +64,36 @@
     "presets": [
       "env"
     ]
+  },
+  "eslintConfig": {
+    "env": {
+      "amd": true,
+      "browser": true,
+      "es6": true,
+      "jquery": true,
+      "node": true
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2,
+        {
+          "outerIIFEBody": 0,
+          "SwitchCase": 1
+        }
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": "off"
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    }
   }
 }
