@@ -234,7 +234,7 @@ gulp.task('sass', ()=>{
     ]
   };
   let _config_postcss = [
-    cssSorter({order: "concentric-css"}),
+    cssSorter({order: 'concentric-css'}),
     autoprefixer(_config_autoprefixer),
     cssMqpacker(),
     pixrem(),
