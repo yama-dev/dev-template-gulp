@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.9.0
+ * Version 0.9.1
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -234,7 +234,7 @@ gulp.task('sass', ()=>{
     ]
   };
   let _config_postcss = [
-    cssSorter({order: "concentric-css"}),
+    cssSorter({order: 'concentric-css'}),
     autoprefixer(_config_autoprefixer),
     cssMqpacker(),
     pixrem(),

@@ -8,13 +8,13 @@
 
 html, body, div, span, object, iframe, embed, main,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
+a, abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, samp,
 small, strong, sub, sup, var,
 b, u, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, tbody, tfoot, thead, tr, th, td, caption,
 article, aside, canvas, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, source {
@@ -28,53 +28,53 @@ time, mark, audio, video, source {
   box-sizing: border-box;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
-  display:block;
+  display: block;
 }
 blockquote, q {
-  quotes:none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content:'';
-  content:none;
+  content: '';
+  content: none;
 }
 a {
-  margin:0;
-  padding:0;
-  font-size:100%;
-  vertical-align:baseline;
-  background:transparent;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
 ins {
-  background-color:#ff9;
-  color:#000;
-  text-decoration:none;
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
 }
 mark {
-  background-color:#ff9;
-  color:#000; 
-  font-style:italic;
-  font-weight:bold;
+  background-color: #ff9;
+  color: #000; 
+  font-style: italic;
+  font-weight: bold;
 }
 del {
   text-decoration: line-through;
 }
 abbr[title], dfn[title] {
-  border-bottom:1px dotted;
-  cursor:help;
+  border-bottom: 1px dotted;
+  cursor: help;
 }
 table {
-  border-collapse:collapse;
-  border-spacing:0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 hr {
-  display:block;
-  height:1px;
-  border:0;   
-  border-top:1px solid #cccccc;
-  margin:1em 0;
-  padding:0;
+  display: block;
+  height: 1px;
+  border: 0;   
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 ol, ul {
@@ -82,7 +82,7 @@ ol, ul {
 }
 
 button, input, select, textarea, datalist {
-  vertical-align:middle;
+  vertical-align: middle;
   min-height: 1.5em;
   background-color: transparent;
 }
@@ -114,11 +114,11 @@ body {
 body, button, input, select, textarea, datalist {
   // Font settings.
   // For Gothic.
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
-  // font-family: "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
-  // font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+  @import url('https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css');
+  font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+
   // @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
-  // font-family: "Noto Sans JP", "游ゴシック",YuGothic,"Helvetica","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
+  // font-family: "Noto Sans JP", "游ゴシック", YuGothic, "Helvetica", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
 
   // For Mincho.
   // font-family: "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ 明朝", "ＭＳ Ｐ明朝", serif;
