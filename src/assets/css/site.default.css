@@ -5,13 +5,13 @@
   */
 html, body, div, span, object, iframe, embed, main,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
+a, abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, samp,
 small, strong, sub, sup, var,
 b, u, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, tbody, tfoot, thead, tr, th, td, caption,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, source {
