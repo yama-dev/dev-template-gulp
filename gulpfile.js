@@ -225,17 +225,9 @@ gulp.task('sass', ()=>{
     indentWidth: 2,
     precision: 3
   };
-  const _config_autoprefixer = {
-    browsers: [
-      'ie >= 9',
-      'ios >= 9',
-      'android >= 4.4',
-      'last 2 versions'
-    ]
-  };
   let _config_postcss = [
     cssSorter({order: 'concentric-css'}),
-    autoprefixer(_config_autoprefixer),
+    autoprefixer(),
     cssMqpacker(),
     pixrem(),
     postcssOpacity()

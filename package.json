@@ -65,6 +65,12 @@
       "env"
     ]
   },
+  "browsers": [
+    "ie >= 9",
+    "ios >= 9",
+    "android >= 4.4",
+    "last 2 versions"
+  ],
   "eslintConfig": {
     "env": {
       "amd": true,
