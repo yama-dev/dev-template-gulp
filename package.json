@@ -65,7 +65,7 @@
       "env"
     ]
   },
-  "browsers": [
+  "browserslist": [
     "ie >= 9",
     "ios >= 9",
     "android >= 4.4",
