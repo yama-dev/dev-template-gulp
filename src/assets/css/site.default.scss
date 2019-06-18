@@ -39,6 +39,22 @@ $break-point-PC: 768;
     @content
   }
 }
+// inline-block
+@mixin inlineblock($clild_elem: '*') {
+  letter-spacing: -.4em;
+  text-align: center;
+  font-size: 0;
+  > #{$clild_elem} {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+  }
+}
+// flex
+@mixin flex {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 // Style Switching Elements
 @include pc(){

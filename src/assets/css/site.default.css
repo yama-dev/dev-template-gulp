@@ -3,6 +3,7 @@
   Reset Stylesheet
   Author: yama-dev - https://github.com/yama-dev
   */
+@import url("https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css");
 html, body, div, span, object, iframe, embed, main,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, cite, code,
@@ -121,7 +122,7 @@ body {
 
 body, button, input, select, textarea, datalist {
   word-wrap: break-word;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
