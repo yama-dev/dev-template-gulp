@@ -29,42 +29,51 @@
     "type": "git",
     "url": "https://github.com/yama-dev/dev-template-gulp"
   },
+  "bugs": {
+    "url": "https://github.com/yama-dev/dev-template-gulp/issues",
+    "email": "tatsuya.yamamoto69@gmail.com"
+  },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
     "@yama-dev/gulp-stream-util": "^0.3.0",
-    "autoprefixer": "^9.4.8",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.26.3",
+    "autoprefixer": "^9.7.3",
+    "browser-sync": "^2.26.7",
     "css-declaration-sorter": "^4.0.1",
     "cssnano": "^4.1.10",
-    "eslint": "^5.14.1",
+    "eslint": "^6.7.2",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
-    "gulp-ejs": "^3.3.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-htmlhint": "^2.2.1",
+    "gulp-ejs": "^5.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-htmlhint": "^3.0.0",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-ignore": "^2.0.2",
+    "gulp-ignore": "^3.0.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^7.0.1",
+    "gulp-postcss": "^8.0.0",
     "gulp-progeny": "^0.4.1",
     "gulp-pug": "^4.0.1",
-    "gulp-rename": "^1.4.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.1",
-    "node-notifier": "^5.4.0",
-    "node-sass": "^4.11.0",
+    "gulp-uglify": "^3.0.2",
+    "node-notifier": "^6.0.0",
+    "node-sass": "^4.13.0",
     "npm-run-all": "^4.1.5",
-    "pixrem": "^4.0.1",
+    "pixrem": "^5.0.0",
     "postcss-combine-media-query": "^1.0.0",
     "postcss-opacity": "^5.0.0",
     "run-sequence": "^2.2.1"
   },
   "babel": {
     "presets": [
-      "env"
+      [
+        "@babel/preset-env",
+        {
+          "modules": false
+        }
+      ]
     ]
   },
   "browserslist": [
