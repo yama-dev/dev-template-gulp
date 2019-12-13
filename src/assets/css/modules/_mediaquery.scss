@@ -14,6 +14,16 @@ $sp: 767px;
     @content;
   }
 }
+@mixin max($width: $sp) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+@mixin min($width: $pc) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
 @mixin ie {
   @media (-ms-high-contrast: none){
     @content;
