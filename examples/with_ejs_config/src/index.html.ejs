@@ -19,13 +19,13 @@
 
   <nav>
     <ul>
-<% ejs.pages.forEach(function (val) { -%>
-<%   if(val.slug == ejs.current.slug){ -%>
+      <% ejs.pages.forEach(function (val) { -%>
+      <%   if(val.slug == ejs.current.slug){ -%>
       <li class="is-current"><a href="<%= val.path %>"><%= val.name %></a></li>
-<%   } else { -%>
+      <%   } else { -%>
       <li><a href="<%= val.path %>"><%= val.name %></a></li>
-<%   } -%>
-<% }); -%>
+      <%   } -%>
+      <% }); -%>
     </ul>
   </nav>
 
@@ -33,28 +33,28 @@
 
   <section class="p-top">
     <ul>
-<% for (var i = 0; i < 5; i++) { -%>
+      <% for (var i = 0; i < 5; i++) { -%>
       <li class="item<%= i+1 %>"><%= i+1 %> li element.</li>
-<% } -%>
+      <% } -%>
     </ul>
 
     <ul>
-<% var counter = 1; -%>
-<% while (counter <= 5) { -%>
+      <% var counter = 1; -%>
+      <% while (counter <= 5) { -%>
       <li>Loop Count <%= counter %>.</li>
-<% counter++; -%>
-<% } -%>
+      <% counter++; -%>
+      <% } -%>
     </ul>
 
     <ul>
-<% var ary = ['アイテム1', 'アイテム2', 'アイテム3']; -%>
-<% for (var key in ary) { -%>
+      <% var ary = ['アイテム1', 'アイテム2', 'アイテム3']; -%>
+      <% for (var key in ary) { -%>
       <li><%= ary[key] %></li>
       <li><%= key %></li>
-<% } -%>
-<% for (var item of ary) { -%>
+      <% } -%>
+      <% for (var item of ary) { -%>
       <li><%= item %></li>
-<% } -%>
+      <% } -%>
     </ul>
 
   </section>
