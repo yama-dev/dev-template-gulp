@@ -7,7 +7,9 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && npm run develop",
+    "start": "npm install && npm run dev",
+    "dev": "gulp",
+    "prod": "gulp release",
     "develop": "gulp",
     "release": "gulp release",
     "php": "npm-run-all --parallel php:makephpserver php:gulp",
