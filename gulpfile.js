@@ -1,6 +1,6 @@
 /*!
  * DEV TEMPLATE GULP
- * Version 0.10.0
+ * Version 0.10.2
  * Repository https://github.com/yama-dev/dev-template-gulp
  * Copyright yama-dev
  * Licensed under the MIT license.
@@ -115,7 +115,6 @@ const postcssOpacity = require('postcss-opacity');
 const autoprefixer   = require('autoprefixer');
 const cssnano        = require('cssnano');
 const cssSorter      = require('css-declaration-sorter');
-const cssMediaQuery  = require('postcss-combine-media-query');
 
 const babel          = require('gulp-babel');
 const eslint         = require('gulp-eslint');
@@ -228,7 +227,6 @@ gulp.task('sass', ()=>{
   let _config_postcss = [
     cssSorter({order: 'concentric-css'}),
     autoprefixer(),
-    cssMediaQuery(),
     pixrem(),
     postcssOpacity()
   ];
