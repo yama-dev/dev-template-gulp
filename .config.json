@@ -1,0 +1,38 @@
+{
+  "outputDirectory": "",
+  "host": "",
+  "ejs": {
+    "site_title": "DEV TEMPLATE GULP",
+    "site_url": "https://github.com/yama-dev",
+    "site_description": "FrontEndEngineer. yama-dev has 45 repositories available. Follow their code on GitHub.",
+    "site_copy": "@コピーライト",
+    "site_share_image": "https://github.com/yama-dev/share.png",
+    "site_share_text": "シェアテキスト",
+    "pages": [
+      {
+        "slug":"",
+        "name":"TOP",
+        "path":"/",
+        "message":"this is top page !"
+      },
+      {
+        "slug":"news",
+        "name":"NEWS",
+        "path":"/news/",
+        "message":"this is news page !!"
+      },
+      {
+        "slug":"news/detail",
+        "name":"NEWS - detail",
+        "path":"/news/detail/",
+        "message":"this is news detail page !!!"
+      },
+      {
+        "slug":"about",
+        "name":"ABOUT",
+        "path":"/about/",
+        "message":"this is about page !!"
+      }
+    ]
+  }
+}

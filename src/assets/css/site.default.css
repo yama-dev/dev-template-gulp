@@ -129,14 +129,6 @@ body, button, input, select, textarea, datalist {
           text-size-adjust: 100%;
 }
 
-/*!
-  Styles
-  */
-img {
-  display: block;
-  vertical-align: middle;
-  max-width: 100%;
-}
 @media screen and (min-width: 768px) {
   .is-pc {
     display: block;
@@ -151,6 +143,7 @@ img {
     display: none;
   }
 }
+
 @media screen and (max-width: 767px) {
   .is-pc {
     display: none;
@@ -164,4 +157,13 @@ img {
   .is-sp-inline {
     display: inline-block;
   }
+}
+
+/*!
+  Styles
+  */
+img {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
 }
