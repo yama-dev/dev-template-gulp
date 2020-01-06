@@ -2,11 +2,11 @@
   "outputDirectory": "",
   "host": "",
   "ejs": {
-    "site_title": "DEV TEMPLATE GULP",
+    "site_title": "DEV TEMPLATE GULP for gulp4",
     "site_url": "https://github.com/yama-dev",
     "site_description": "FrontEndEngineer. yama-dev has 45 repositories available. Follow their code on GitHub.",
     "site_copy": "@コピーライト",
-    "site_share_image": "https://github.com/yama-dev/share.png",
+    "site_share_image": "https://yama-dev.github.io/assets/images/yama-dev/yamadev-chanrio.png",
     "site_share_text": "シェアテキスト",
     "pages": [
       {
