@@ -32,6 +32,12 @@
         "name":"ABOUT",
         "path":"/about/",
         "message":"this is about page !!"
+      },
+      {
+        "slug":"ejs",
+        "name":"EJS",
+        "path":"/ejs/",
+        "message":"this is ejs page !!"
       }
     ]
   }

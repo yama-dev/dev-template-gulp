@@ -5,6 +5,7 @@ import path from 'path';
 import CONFIG from './config';
 import notifier       from 'node-notifier';
 import { watch } from 'gulp';
+import { taskTemplateEjs } from './template';
 import taskSass from './sass';
 import taskJsBabel from './javascript_babel';
 
@@ -24,8 +25,9 @@ let taskWatch = ()=>{
   watch(CONFIG.watchDirectory.es6, taskJsBabel);
   watch(CONFIG.watchDirectory.es, taskJsBabel);
 
-  // watch(CONFIG.watchDirectory.ejs,['ejs']);
-  // watch(CONFIG.watchDirectory.pug,['pug']);
+  watch(CONFIG.watchDirectory.ejs, taskTemplateEjs);
+  // watch(CONFIG.watchDirectory.pug, taskTemplatePug);
+  // watch(CONFIG.watchDirectory.slim, taskTemplateSlim);
 
   notifier.notify({ title: 'Start Gulp', message: new Date(), sound: 'Glass' });
 };

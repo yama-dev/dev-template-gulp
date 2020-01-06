@@ -12,15 +12,15 @@ let _copy = `${pkg.name.toUpperCase()}
 - Copyright ${pkg.author}
 - Licensed under the ${pkg.license} license.`;
 console.log('-'.repeat(38) + '\n'+ _copy + '\n'+'-'.repeat(38));
-
 import { series, parallel } from 'gulp';
-
 import taskSass from './dev/sass';
 import taskJsBabel from './dev/javascript_babel';
+import taskTemplate from './dev/template';
 import taskServer from './dev/server';
 import taskWatch from './dev/watch';
 
 export default series(
+  taskTemplate,
   taskSass,
   taskJsBabel,
   parallel(

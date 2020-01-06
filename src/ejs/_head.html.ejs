@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="robots" content="ALL"><!-- noindex,nofollow -->
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <title><%= ejs.site_title %></title>
+  <meta name="description" content="<%= ejs.site_description %>">
+  <meta name="format-detection" content="telephone=no,address=no,email=no">
+
+  <meta property="og:title" content="<%= ejs.site_title %>">
+  <meta property="og:type" content="website"><!-- website, blog -->
+  <meta property="og:url" content="<%= ejs.site_url %>">
+  <meta property="og:image" content="<%= ejs.site_share_image %>">
+  <meta property="og:site_name" content="<%= ejs.site_title %>">
+  <meta property="og:description" content="<%= ejs.site_description %>">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:determiner" content="タイトルの前に付く単語">
+  <meta property="fb:app_id" content="App-ID(15文字の半角数字)">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="<%= ejs.site_share_image %>">
+  <meta name="twitter:site" content="@[Twitter ID]">
+
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta name="mobile-web-app-capable" content="no">
+
+  <link rel="canonical" href="<%= ejs.site_url %>">
+  <link rel="shortcut icon" href="<%= ejs.site_url %>/favicon.ico">
+  <link rel="apple-touch-icon" href="<%= ejs.site_url %>/icon.png">
+
+  <link rel="stylesheet" href="/assets/css/site.default.css">
+<% if(ejs.current.slug == ''){ -%>
+  <link rel="stylesheet" href="/assets/css/site.top.css">
+<% } else if(ejs.current.slug == 'news'){ -%>
+  <link rel="stylesheet" href="/assets/css/site.news.css">
+<% } else if(ejs.current.slug == 'news/detail'){ -%>
+  <link rel="stylesheet" href="/assets/css/site.news.detail.css">
+<% } else if(ejs.current.slug == 'about'){ -%>
+  <link rel="stylesheet" href="/assets/css/site.about.css">
+<% } else if(ejs.current.slug == 'contact'){ -%>
+  <link rel="stylesheet" href="/assets/css/site.contact.css">
+<% } -%>
+
+</head>
+<body>
