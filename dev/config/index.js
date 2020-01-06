@@ -25,6 +25,7 @@ let CONFIG = {
     html    : `${CONFIG_PATH.sourceBuild}**/*.html`,
     ejs     : `${CONFIG_PATH.source}**/*.ejs`,
     pug     : `${CONFIG_PATH.source}**/*.pug`,
+    slim    : `${CONFIG_PATH.source}**/*.slim`,
     php     : `${CONFIG_PATH.sourceBuild}**/*.php`,
     css     : `${CONFIG_PATH.sourceBuild}**/*.css`,
     sass    : `${CONFIG_PATH.source}**/*.scss`,
@@ -50,6 +51,9 @@ let CONFIG = {
     pug : [
       `!${CONFIG_PATH.source}**/_*.pug`
     ],
+    slim : [
+      `!${CONFIG_PATH.source}**/_*.slim`
+    ],
     sass : [
       `!${CONFIG_PATH.source}**/wp/**/*.scss`,
       `!${CONFIG_PATH.source}**/vender/**/*.scss`,
@@ -74,6 +78,7 @@ let CONFIG = {
     `!${CONFIG_PATH.source}vendor/**`,
     `!${CONFIG_PATH.source}**/*.ejs`,
     `!${CONFIG_PATH.source}**/*.pug`,
+    `!${CONFIG_PATH.source}**/*.slim`,
     `!${CONFIG_PATH.source}**/_*.css`,
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/*.es6`,
