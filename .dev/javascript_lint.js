@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../dev/config';
+import CONFIG from './config';
 import notifier       from 'node-notifier';
 import { src } from 'gulp';
 import eslint         from 'gulp-eslint';

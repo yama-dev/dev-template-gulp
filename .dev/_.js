@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../dev/config';
+import CONFIG from './config';
 import notifier       from 'node-notifier';
 import streamUtil     from '@yama-dev/gulp-stream-util';
 

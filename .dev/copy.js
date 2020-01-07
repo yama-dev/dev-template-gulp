@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG        from '../dev/config';
+import CONFIG        from './config';
 import { src, dest } from 'gulp';
 import ignore        from 'gulp-ignore';
 
