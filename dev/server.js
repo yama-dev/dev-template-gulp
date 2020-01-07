@@ -35,7 +35,7 @@ let taskServer = ()=>{
   // COPY.
   if(CONFIG.user.outputDirectory){
     let _target = CONFIG.deployDirectory.slice();
-    watch(_target, taskCopy);
+    watch(_target).on('change', taskCopy);
   }
 
   // HTML.
@@ -67,7 +67,7 @@ let taskServer = ()=>{
   });
 
   // PHP.
-  watch(CONFIG.watchDirectory.php, browserSync.reload);
+  watch(CONFIG.watchDirectory.php).on('change', browserSync.reload);
 
   if(CONFIG.user.outputDirectory){
     browserSync.reload();
