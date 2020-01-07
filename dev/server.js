@@ -38,17 +38,17 @@ let taskServer = ()=>{
     watch(_target, taskCopy);
   }
 
-  // // HTML.
-  // let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
-  // _target_html.unshift(CONFIG.watchDirectory.html);
-  // if(CONFIG.env.htmlmin){
-  //   watch(_target_html,['html_min']);
-  // } else {
-  //   if(CONFIG.env.htmllint){
-  //     watch(_target_html,['html_lint']);
-  //   }
-  //   watch(_target_html, browserSync.reload);
-  // }
+  // HTML.
+  let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
+  _target_html.unshift(CONFIG.watchDirectory.html);
+  if(CONFIG.env.htmlmin){
+    // watch(_target_html).on('change', taskHtmlMin);
+  } else {
+    if(CONFIG.env.htmllint){
+      // watch(_target_html).on('change', taskHtmlLint);
+    }
+    watch(_target_html).on('change', browserSync.reload);
+  }
 
   // JS.
   if(CONFIG.env.jsmin){
