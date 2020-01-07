@@ -1,4 +1,4 @@
-import CONFIG from './dev/config';
+import CONFIG from './.dev/config';
 
 let _config = {
   mode: CONFIG.env.prod ? 'production' : 'development',
