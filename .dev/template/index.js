@@ -2,13 +2,13 @@
  * IMPORT MODULES
  */
 import CONFIG from '../config';
-import notifier       from 'node-notifier';
-import streamUtil     from '@yama-dev/gulp-stream-util';
-import { src, dest, watch } from 'gulp';
-import ejs            from 'gulp-ejs';
-import pug            from 'gulp-pug';
-import rename         from 'gulp-rename';
-import plumber        from 'gulp-plumber';
+import { src, dest } from 'gulp';
+import streamUtil from '@yama-dev/gulp-stream-util';
+import notifier   from 'node-notifier';
+import ejs        from 'gulp-ejs';
+import pug        from 'gulp-pug';
+import rename     from 'gulp-rename';
+import plumber    from 'gulp-plumber';
 
 /**
  * Ejs Task
