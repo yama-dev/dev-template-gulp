@@ -35,7 +35,16 @@ let taskServer = ()=>{
   // COPY.
   if(CONFIG.user.outputDirectory){
     let _target = CONFIG.deployDirectory.slice();
+    if(CONFIG.user.webpack){
+      let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
+      let _webpackConfig = require(_configfile_webpack);
+      Object.keys(_webpackConfig.entry).forEach(function (key) {
+        _target.push(`!${CONFIG.path.source}**/*${path.basename(_webpackConfig.entry[key])}`);
+      });
+    }
     watch(_target).on('change', taskCopy);
+
+    taskCopy();
   }
 
   // HTML.

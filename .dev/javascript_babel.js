@@ -2,9 +2,10 @@
  * IMPORT MODULES
  */
 import CONFIG from './config';
-import notifier       from 'node-notifier';
+import notifier from 'node-notifier';
 
 import { src, dest } from 'gulp';
+import streamUtil from '@yama-dev/gulp-stream-util';
 
 import cache from 'gulp-cached';
 import rename from 'gulp-rename';
@@ -14,7 +15,7 @@ import plumber from 'gulp-plumber';
  * Js Task Babel, Webpack.
  */
 
-import babel          from 'gulp-babel';
+import babel from 'gulp-babel';
 
 let defaultFunction = ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();

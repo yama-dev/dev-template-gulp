@@ -29,6 +29,7 @@ let CONFIG = {
     php     : `${CONFIG_PATH.sourceBuild}**/*.php`,
     css     : `${CONFIG_PATH.sourceBuild}**/*.css`,
     sass    : `${CONFIG_PATH.source}**/*.scss`,
+    jspre   : `${CONFIG_PATH.source}**/*.js`,
     js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
     es7     : `${CONFIG_PATH.source}**/*.es7`,
     es6     : `${CONFIG_PATH.source}**/*.es6`,
@@ -83,6 +84,13 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/*.es6`,
     `!${CONFIG_PATH.source}**/*.es`
+  ],
+
+  cleanDirectory: [
+    `${CONFIG_PATH.source}**/*.map`,
+    `${CONFIG_PATH.sourceBuild}**/*.map`,
+    `${CONFIG_PATH.source}**/*.sourcemap`,
+    `${CONFIG_PATH.sourceBuild}**/*.sourcemap`,
   ]
 };
 

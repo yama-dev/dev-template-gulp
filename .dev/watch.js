@@ -22,6 +22,7 @@ let taskWatch = ()=>{
     taskSass(refreshflg);
   });
 
+  watch(CONFIG.watchDirectory.jspre, taskJsBabel);
   watch(CONFIG.watchDirectory.es6, taskJsBabel);
   watch(CONFIG.watchDirectory.es, taskJsBabel);
 

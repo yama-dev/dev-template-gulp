@@ -18,8 +18,19 @@ import taskJsBabel from './.dev/javascript_babel';
 import taskTemplate from './.dev/template';
 import taskServer from './.dev/server';
 import taskWatch from './.dev/watch';
-
+import taskClean from './.dev/clean';
 export default series(
+  taskClean,
+  taskTemplate,
+  taskSass,
+  taskJsBabel,
+  parallel(
+    taskServer,
+    taskWatch
+  )
+);
+export const prod = series(
+  taskClean,
   taskTemplate,
   taskSass,
   taskJsBabel,
