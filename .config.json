@@ -1,6 +1,10 @@
 {
-  "outputDirectory": "",
+  "inputDirectory": "src/",
+  "outputDirectory": "dist/",
   "host": "",
+  "sourcemaps": true,
+  "webpack": true,
+  "webpackConfig": "webpack.config.js",
   "ejs": {
     "site_title": "DEV TEMPLATE GULP for gulp4",
     "site_url": "https://github.com/yama-dev",
