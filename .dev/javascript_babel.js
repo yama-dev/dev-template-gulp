@@ -21,7 +21,12 @@ let defaultFunction = ()=>{
   _target.unshift(CONFIG.watchDirectory.es6);
   _target.unshift(CONFIG.watchDirectory.es);
 
-  return src(_target)
+  let sourcemaps = false;
+  if(CONFIG.user.sourcemaps) sourcemaps = true;
+  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true) sourcemaps = true;
+  if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
+
+  return src(_target, { sourcemaps: sourcemaps })
     .pipe(plumber({
       errorHandler(error){
         notifier.notify({ title: 'BABEL コンパイル エラー', message: error.message });
@@ -32,7 +37,7 @@ let defaultFunction = ()=>{
       console.log('>>> ERROR', e);
       this.emit('end');
     })
-    .pipe(dest(CONFIG.outputDirectory.dev));
+    .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: sourcemaps }));
 };
 
 import webpack from 'webpack';
@@ -43,7 +48,7 @@ let useWebpackFunction = ()=>{
   _target.unshift(CONFIG.watchDirectory.es6);
   _target.unshift(CONFIG.watchDirectory.es);
 
-  let _configfile_webpack = '../webpack.config.js';
+  let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
 
   return src(_target)
     .pipe(plumber({
@@ -62,7 +67,7 @@ let useWebpackFunction = ()=>{
 };
 
 let taskJsBabel = () => {
-  if(CONFIG.env.webpack){
+  if(CONFIG.user.webpack || CONFIG.env.webpack){
     return useWebpackFunction();
   } else {
     return defaultFunction();

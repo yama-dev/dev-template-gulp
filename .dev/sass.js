@@ -27,6 +27,11 @@ const taskSass = (isRefresh = false) => {
   let _target = CONFIG.watchIgnoreDirectory.sass.slice();
   _target.unshift(CONFIG.watchDirectory.sass);
 
+  let sourcemaps = false;
+  if(CONFIG.user.sourcemaps === true) sourcemaps = true;
+  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true) sourcemaps = true;
+  if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
+
   if(isRefresh === true) cache.caches = {};
 
   const _config_sass = {
@@ -45,7 +50,7 @@ const taskSass = (isRefresh = false) => {
 
   if(CONFIG.env.cssmin) _config_postcss.push( cssnano({autoprefixer: false}) );
 
-  return src(_target)
+  return src(_target, { sourcemaps: sourcemaps })
     .pipe(cache('sass'))
     .pipe(plumber({
       errorHandler(error) {
@@ -54,7 +59,7 @@ const taskSass = (isRefresh = false) => {
     }))
     .pipe(sass(_config_sass).on('error', sass.logError))
     .pipe(postcss(_config_postcss))
-    .pipe(dest(CONFIG.outputDirectory.dev));
+    .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: '.' }));
 };
 
 export default taskSass;
