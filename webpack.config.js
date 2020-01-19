@@ -1,10 +1,10 @@
 import CONFIG from './.dev/config';
 
 let _config = {
-  mode: CONFIG.env.prod ? 'production' : 'development',
+  mode: CONFIG.env.production ? 'production' : 'development',
 
   entry: {
-    'assets/js/site.default': `./src/assets/js/site.default.es`
+    'assets/js/site.default': `${__dirname}/src/assets/js/site.default.js`
   },
 
   output: {
@@ -22,7 +22,7 @@ let _config = {
   }
 };
 
-if(!CONFIG.env.prod){
+if(!CONFIG.env.production){
   _config.devtool = 'source-map';
 }
 
