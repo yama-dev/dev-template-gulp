@@ -23,8 +23,16 @@ let defaultFunction = ()=>{
   _target.unshift(CONFIG.watchDirectory.es);
 
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps) sourcemaps = true;
-  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true) sourcemaps = true;
+  if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
+    sourcemaps = true;
+  } else if(CONFIG.user.sourcemaps === false || CONFIG.user.sourcemap === false){
+    sourcemaps = false;
+  }
+  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true){
+    sourcemaps = true;
+  } else if(CONFIG.env.sourcemaps === false || CONFIG.env.sourcemap === false){
+    sourcemaps = false;
+  }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
   return src(_target, { sourcemaps: sourcemaps })
