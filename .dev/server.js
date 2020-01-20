@@ -1,10 +1,11 @@
 /**
  * IMPORT MODULES
  */
+import path from 'path';
 import CONFIG from './config';
 import { src, watch } from 'gulp';
-import taskCopy         from './copy';
-import browserSync    from 'browser-sync';
+import taskCopy    from './copy';
+import browserSync from 'browser-sync';
 browserSync.create();
 
 /**
@@ -14,9 +15,14 @@ let taskServer = ()=>{
 
   // Set BrowserSync server.
   let _config_bs = {};
-  if(CONFIG.env['--proxy']){
+  if(CONFIG.user.proxy){
     _config_bs = {
-      proxy: CONFIG.env['--proxy'],
+      proxy: CONFIG.user.proxy,
+      reloadDelay: 300
+    };
+  } else if(CONFIG.env.proxy){
+    _config_bs = {
+      proxy: CONFIG.env.proxy,
       reloadDelay: 300
     };
   } else {
@@ -27,9 +33,8 @@ let taskServer = ()=>{
       }
     };
   }
-  if(CONFIG.user.host){
-    _config_bs.host = CONFIG.user.host;
-  }
+  if(CONFIG.user.host) _config_bs.host = CONFIG.user.host;
+  if(CONFIG.env.host) _config_bs.host = CONFIG.env.host;
   browserSync.init(_config_bs);
 
   // COPY.
@@ -61,13 +66,13 @@ let taskServer = ()=>{
 
   // JS.
   if(CONFIG.env.jsmin){
-    // watch(CONFIG.watchDirectory.js,['js_min']);
+    // watch(CONFIG.watchDirectory.js).on('change', taskJsMin);
   } else {
     if(CONFIG.env.jslint){
-      // watch(CONFIG.watchDirectory.js,['js_lint']);
+      // watch(CONFIG.watchDirectory.js).on('change', taskJsLint);
     }
   }
-  watch(CONFIG.watchDirectory.js, browserSync.reload);
+  watch(CONFIG.watchDirectory.js).on('change', browserSync.reload);
 
   // CSS.
   const watcherCss = watch(CONFIG.watchDirectory.css);
