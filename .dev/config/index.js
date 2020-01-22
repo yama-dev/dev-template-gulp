@@ -82,6 +82,7 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/*.slim`,
     `!${CONFIG_PATH.source}**/_*.css`,
     `!${CONFIG_PATH.source}**/*.scss`,
+    `!${CONFIG_PATH.source}**/_*.js`,
     `!${CONFIG_PATH.source}**/*.es6`,
     `!${CONFIG_PATH.source}**/*.es`
   ],
