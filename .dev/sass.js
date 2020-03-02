@@ -49,9 +49,13 @@ const taskSass = (isRefresh = false) => {
     precision: 3
   };
 
+  const _config_autoprefixer = {
+    grid: true
+  };
+
   let _config_postcss = [
     cssSorter({order: 'concentric-css'}),
-    autoprefixer(),
+    autoprefixer(_config_autoprefixer),
     pixrem(),
     postcssOpacity()
   ];
