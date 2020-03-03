@@ -18,7 +18,12 @@ let taskTemplateEjs = () => {
   _target.unshift(CONFIG.watchDirectory.ejs);
 
   let _config_ejs_data = {};
-  if(CONFIG.user.ejs) _config_ejs_data = { ejs: CONFIG.user.ejs };
+  if(CONFIG.user.ejs){
+    _config_ejs_data = {
+      ejs: CONFIG.user.ejs,
+      env: CONFIG.env
+    };
+  }
 
   return src(_target)
     .pipe(plumber())
