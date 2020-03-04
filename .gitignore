@@ -18,3 +18,4 @@ package-lock.json
 # Development environment.
 _*/
 .tern-port
+*.map

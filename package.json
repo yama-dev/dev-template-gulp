@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "0.10.2",
+  "version": "1.4.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -8,10 +8,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npm install && npm run dev",
-    "dev": "gulp",
-    "prod": "gulp release",
-    "develop": "gulp",
-    "release": "gulp release",
+    "dev": "gulp --develop",
+    "prod": "gulp prod --production",
+    "develop": "gulp --develop",
+    "release": "gulp prod --production",
     "php": "npm-run-all --parallel php:makephpserver php:gulp",
     "php:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
     "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 >nul",
@@ -23,7 +23,7 @@
     "test": "npm run lint && gulp release"
   },
   "engines": {
-    "node": ">=6.0.0 <12.0.0"
+    "node": ">=6.0.0 <13.5.0"
   },
   "repository": {
     "type": "git",
@@ -37,13 +37,17 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
+    "@babel/register": "^7.7.7",
     "@yama-dev/gulp-stream-util": "^0.3.0",
     "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
     "css-declaration-sorter": "^4.0.1",
     "cssnano": "^4.1.10",
+    "del": "^5.1.0",
     "eslint": "^6.7.2",
-    "gulp": "^3.9.1",
+    "glob": "^7.1.6",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
     "gulp-ejs": "^5.0.0",
@@ -53,7 +57,6 @@
     "gulp-ignore": "^3.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
-    "gulp-progeny": "^0.4.1",
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
@@ -63,15 +66,13 @@
     "npm-run-all": "^4.1.5",
     "pixrem": "^5.0.0",
     "postcss-opacity": "^5.0.0",
-    "run-sequence": "^2.2.1"
+    "webpack": "^4.41.5",
+    "webpack-stream": "^5.2.1"
   },
   "babel": {
     "presets": [
       [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
+        "@babel/preset-env"
       ]
     ]
   },
