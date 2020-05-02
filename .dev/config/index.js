@@ -44,23 +44,37 @@ let CONFIG = {
       `!${CONFIG_PATH.source}**/inc/**/*.html`,
       `!${CONFIG_PATH.source}**/include/**/*.html`,
       `!${CONFIG_PATH.source}**/ssi/**/*.html`,
-      `!${CONFIG_PATH.source}_**/*.html`
+      `!${CONFIG_PATH.source}_**/*.html`,
+      `!${CONFIG_PATH.source}__**/*.html`,
+      `!${CONFIG_PATH.source}___**/*.html`,
     ],
     ejs : [
-      `!${CONFIG_PATH.source}**/_*.ejs`
+      `!${CONFIG_PATH.source}**/_*.ejs`,
+      `!${CONFIG_PATH.source}_**/*.ejs`,
+      `!${CONFIG_PATH.source}__**/*.ejs`,
+      `!${CONFIG_PATH.source}___**/*.ejs`,
     ],
     pug : [
-      `!${CONFIG_PATH.source}**/_*.pug`
+      `!${CONFIG_PATH.source}**/_*.pug`,
+      `!${CONFIG_PATH.source}_**/*.pug`,
+      `!${CONFIG_PATH.source}__**/*.pug`,
+      `!${CONFIG_PATH.source}___**/*.pug`,
     ],
     slim : [
-      `!${CONFIG_PATH.source}**/_*.slim`
+      `!${CONFIG_PATH.source}**/_*.slim`,
+      `!${CONFIG_PATH.source}_**/*.slim`,
+      `!${CONFIG_PATH.source}__**/*.slim`,
+      `!${CONFIG_PATH.source}___**/*.slim`,
     ],
     sass : [
       `!${CONFIG_PATH.source}**/wp/**/*.scss`,
       `!${CONFIG_PATH.source}**/vender/**/*.scss`,
       `!${CONFIG_PATH.source}**/vendor/**/*.scss`,
       `!${CONFIG_PATH.source}**/lib/**/*.scss`,
-      `!${CONFIG_PATH.source}**/libs/**/*.scss`
+      `!${CONFIG_PATH.source}**/libs/**/*.scss`,
+      `!${CONFIG_PATH.source}_**/*.scss`,
+      `!${CONFIG_PATH.source}__**/*.scss`,
+      `!${CONFIG_PATH.source}___**/*.scss`,
     ],
     js : [
       `!${CONFIG_PATH.source}**/wp/**/*.js`,
@@ -68,13 +82,18 @@ let CONFIG = {
       `!${CONFIG_PATH.source}**/vendor/**/*.js`,
       `!${CONFIG_PATH.source}**/lib/**/*.js`,
       `!${CONFIG_PATH.source}**/libs/**/*.js`,
-      `!${CONFIG_PATH.source}**/*.min.js`
+      `!${CONFIG_PATH.source}**/*.min.js`,
+      `!${CONFIG_PATH.source}_**/*.js`,
+      `!${CONFIG_PATH.source}__**/*.js`,
+      `!${CONFIG_PATH.source}___**/*.js`,
     ]
   },
 
   deployDirectory: [
     `${CONFIG_PATH.source}**/*`,
     `!${CONFIG_PATH.source}_*/**`,
+    `!${CONFIG_PATH.source}__*/**`,
+    `!${CONFIG_PATH.source}___*/**`,
     `!${CONFIG_PATH.source}vender/**`,
     `!${CONFIG_PATH.source}vendor/**`,
     `!${CONFIG_PATH.source}**/*.ejs`,
@@ -84,7 +103,7 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/_*.js`,
     `!${CONFIG_PATH.source}**/*.es6`,
-    `!${CONFIG_PATH.source}**/*.es`
+    `!${CONFIG_PATH.source}**/*.es`,
   ],
 
   cleanDirectory: [
