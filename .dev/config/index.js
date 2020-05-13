@@ -114,4 +114,10 @@ let CONFIG = {
   ]
 };
 
+if(CONFIG.user.php || CONFIG.env.php){
+  CONFIG.user.proxy = '127.0.0.1:3333';
+  CONFIG.env.htmllint = false;
+  CONFIG.env.jslint = false;
+}
+
 export default CONFIG;
