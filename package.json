@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -12,12 +12,8 @@
     "prod": "gulp prod --production",
     "develop": "gulp --develop",
     "release": "gulp prod --production",
-    "php": "npm-run-all --parallel php:makephpserver php:gulp",
-    "php:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
-    "php:makephpserver": "cd ./src && php -S 127.0.0.1:3333 >nul",
-    "twig": "npm-run-all --parallel twig:maketwigserver twig:gulp",
-    "twig:gulp": "gulp --htmllint false --jslint false --proxy 127.0.0.1:3333",
-    "twig:maketwigserver": "cd ./src && php -S 127.0.0.1:3333 ./vendor/router.php >nul",
+    "php": "gulp --php --develop",
+    "twig": "gulp --twig --develop",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release"
