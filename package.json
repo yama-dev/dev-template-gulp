@@ -9,8 +9,9 @@
   "scripts": {
     "start": "npm install && npm run dev",
     "dev": "gulp --develop",
-    "prod": "gulp prod --production",
     "develop": "gulp --develop",
+    "prod": "gulp prod --production",
+    "build": "gulp prod --production",
     "release": "gulp prod --production",
     "php": "gulp --php --develop",
     "twig": "gulp --twig --develop",
