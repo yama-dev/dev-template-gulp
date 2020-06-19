@@ -4,6 +4,7 @@
 import path from 'path';
 import CONFIG from './config';
 import notifier       from 'node-notifier';
+import glob from 'glob';
 import { watch } from 'gulp';
 import { taskTemplateEjs } from './template';
 import taskSass from './sass';
@@ -22,9 +23,14 @@ let taskWatch = ()=>{
     taskSass(refreshflg);
   });
 
-  watch(CONFIG.watchDirectory.jspre, taskJsBabel);
-  watch(CONFIG.watchDirectory.es6, taskJsBabel);
-  watch(CONFIG.watchDirectory.es, taskJsBabel);
+  const filesEs = glob.sync(CONFIG.watchDirectory.es);
+
+  if(filesEs.length){
+    console.log('use es files.');
+    watch(CONFIG.watchDirectory.es, taskJsBabel);
+  } else {
+    watch(CONFIG.watchDirectory.jspre, taskJsBabel);
+  }
 
   watch(CONFIG.watchDirectory.ejs, taskTemplateEjs);
   // watch(CONFIG.watchDirectory.pug, taskTemplatePug);
