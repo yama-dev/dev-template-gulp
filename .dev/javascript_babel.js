@@ -19,7 +19,6 @@ import babel from 'gulp-babel';
 
 let defaultFunction = ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.watchDirectory.es6);
   _target.unshift(CONFIG.watchDirectory.es);
 
   let sourcemaps = false;
@@ -54,7 +53,6 @@ import webpackStream from 'webpack-stream';
 
 let useWebpackFunction = ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.watchDirectory.es6);
   _target.unshift(CONFIG.watchDirectory.es);
 
   let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
