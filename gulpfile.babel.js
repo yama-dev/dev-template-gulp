@@ -20,17 +20,15 @@ import taskServer from './.dev/server';
 import taskWatch from './.dev/watch';
 import taskClean from './.dev/clean';
 import taskPhp from './.dev/php';
-export default parallel(
-  taskPhp,
-  series(
-    taskClean,
-    taskTemplate,
-    taskSass,
-    taskJsBabel,
-    parallel(
-      taskServer,
-      taskWatch
-    )
+export default series(
+  taskClean,
+  taskTemplate,
+  taskSass,
+  taskJsBabel,
+  parallel(
+    taskPhp,
+    taskServer,
+    taskWatch
   )
 );
 export const prod = series(
@@ -39,6 +37,7 @@ export const prod = series(
   taskSass,
   taskJsBabel,
   parallel(
+    taskPhp,
     taskServer,
     taskWatch
   )

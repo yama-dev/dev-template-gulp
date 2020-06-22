@@ -9,7 +9,7 @@ import plumber        from 'gulp-plumber';
 /**
  * HtmlLint Task
  */
-let taskTemplateEjs = () => {
+let taskHtmlLint = () => {
   const _config_htmllist = {
     'tagname-lowercase': true,
     'attr-lowercase': ['viewBox'],
@@ -51,7 +51,7 @@ let taskTemplateEjs = () => {
 /**
  * Minify Task
  */
-let taskHtmlLint = () => {
+let taskHtmlMin = () => {
   const _config_htmlmin = {
     collapseWhitespace: true,
     preserveLineBreaks: true
@@ -69,6 +69,6 @@ let taskHtmlLint = () => {
  * Slim Task
  */
 
-export default taskTemplateEjs;
+export default taskHtmlLint;
 
-export { taskHtmlLint as taskHtmlMin };
+export { taskHtmlMin as taskHtmlMin };

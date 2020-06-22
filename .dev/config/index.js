@@ -31,9 +31,7 @@ let CONFIG = {
     sass    : `${CONFIG_PATH.source}**/*.scss`,
     jspre   : `${CONFIG_PATH.source}**/*.js`,
     js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
-    es7     : `${CONFIG_PATH.source}**/*.es7`,
-    es6     : `${CONFIG_PATH.source}**/*.es6`,
-    es      : `${CONFIG_PATH.source}**/*.es`
+    es      : `${CONFIG_PATH.source}**/*.es*`
   },
 
   watchIgnoreDirectory: {
@@ -102,8 +100,7 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/_*.css`,
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/_*.js`,
-    `!${CONFIG_PATH.source}**/*.es6`,
-    `!${CONFIG_PATH.source}**/*.es`,
+    `!${CONFIG_PATH.source}**/*.es*`,
   ],
 
   cleanDirectory: [

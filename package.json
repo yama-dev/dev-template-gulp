@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.5.0",
+  "version": "1.5.5",
   "description": "Development environment for web site development",
   "keywords": "web gulp template",
   "author": "yama-dev",
@@ -9,8 +9,9 @@
   "scripts": {
     "start": "npm install && npm run dev",
     "dev": "gulp --develop",
-    "prod": "gulp prod --production",
     "develop": "gulp --develop",
+    "prod": "gulp prod --production",
+    "build": "gulp prod --production",
     "release": "gulp prod --production",
     "php": "gulp --php --develop",
     "twig": "gulp --twig --develop",
