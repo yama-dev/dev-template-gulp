@@ -16,6 +16,6 @@ node_modules/
 package-lock.json
 
 # Development environment.
-_*/
+# _*/
 .tern-port
 *.map
