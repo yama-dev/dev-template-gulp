@@ -16,6 +16,9 @@ node_modules/
 package-lock.json
 
 # Development environment.
-# _*/
 .tern-port
 *.map
+src/_twig/data/html/
+
+_v*/
+_src*/
