@@ -2,7 +2,11 @@
   "name": "dev-template-gulp",
   "version": "1.5.5",
   "description": "Development environment for web site development",
-  "keywords": "web gulp template",
+  "keywords": [
+    "web",
+    "gulp",
+    "template"
+  ],
   "author": "yama-dev",
   "license": "MIT",
   "main": "index.js",
