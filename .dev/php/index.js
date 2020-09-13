@@ -21,13 +21,14 @@ let taskPhp = (done)=>{
   if(CONFIG.user.php) _config.php = CONFIG.user.php;
   if(CONFIG.env.php) _config.php = CONFIG.env.php;
 
-  // COPY.
+  // BOOT.
   if(_config.php){
     const stdout = exec(`${_config.bin} -S ${_config.host}:${_config.port} -t ${_config.baseDir}`, (err, stdout, stderr) => {
       if (err) { console.log(err); }
       done();
     });
   } else {
+    console.log('PHP Server. Boot failure.');
     done();
   }
 };

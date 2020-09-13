@@ -28,6 +28,7 @@ export default series(
   taskJsBabel,
   parallel(
     taskPhp,
+    taskTwig,
     taskServer,
     taskWatch
   )
@@ -39,6 +40,7 @@ export const prod = series(
   taskJsBabel,
   parallel(
     taskPhp,
+    taskTwig,
     taskServer,
     taskWatch
   )
