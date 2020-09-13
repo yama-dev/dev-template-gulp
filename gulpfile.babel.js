@@ -20,6 +20,7 @@ import taskServer from './.dev/server';
 import taskWatch from './.dev/watch';
 import taskClean from './.dev/clean';
 import taskPhp from './.dev/php';
+import taskTwig from './.dev/twig';
 export default series(
   taskClean,
   taskTemplate,

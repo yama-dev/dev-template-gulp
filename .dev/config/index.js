@@ -117,4 +117,11 @@ if(CONFIG.user.php || CONFIG.env.php){
   CONFIG.env.jslint = false;
 }
 
+if(CONFIG.user.twig || CONFIG.env.twig){
+  CONFIG.user.proxy = '127.0.0.1:3333';
+  CONFIG.env.htmllint = false;
+  CONFIG.env.jslint = false;
+  CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+}
+
 export default CONFIG;
