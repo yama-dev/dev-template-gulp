@@ -65,17 +65,21 @@ let taskServer = ()=>{
   }
 
   // JS.
+  const _target_js = CONFIG.watchIgnoreDirectory.js.slice();
+  _target_js.unshift(CONFIG.watchDirectory.js);
   if(CONFIG.env.jsmin){
-    // watch(CONFIG.watchDirectory.js).on('change', taskJsMin);
+    // watch(_target_js).on('change', taskJsMin);
   } else {
     if(CONFIG.env.jslint){
-      // watch(CONFIG.watchDirectory.js).on('change', taskJsLint);
+      // watch(_target_js).on('change', taskJsLint);
     }
   }
-  watch(CONFIG.watchDirectory.js).on('change', browserSync.reload);
+  watch(_target_js).on('change', browserSync.reload);
 
   // CSS.
-  const watcherCss = watch(CONFIG.watchDirectory.css);
+  const _target_css = CONFIG.watchIgnoreDirectory.css.slice();
+  _target_css.unshift(CONFIG.watchDirectory.css);
+  const watcherCss = watch(_target_css);
   watcherCss.on('change', function(path, stats) {
     src(path).pipe(browserSync.stream());
   });
