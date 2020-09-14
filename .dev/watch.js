@@ -15,9 +15,12 @@ import taskJsBabel from './javascript_babel';
  */
 let taskWatch = ()=>{
   // Set Watch Tasks.
-  // CSS.
-  const watcherCss = watch(CONFIG.watchDirectory.sass);
-  watcherCss.on('change', function(filepath, stats) {
+
+  // Sass.
+  const _target_sass = CONFIG.watchIgnoreDirectory.sass.slice();
+  _target_sass.unshift(CONFIG.watchDirectory.sass);
+  const watcherSass = watch(_target_sass);
+  watcherSass.on('change', function(filepath, stats) {
     let filename = path.basename(filepath);
     let refreshflg = /^_.{5,}/.test(filename);
     taskSass(refreshflg);
