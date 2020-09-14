@@ -1,15 +1,17 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from './config';
+import CONFIG from '../config';
 import notifier from 'node-notifier';
 
 import { src, dest } from 'gulp';
 import streamUtil from '@yama-dev/gulp-stream-util';
 
+import gulpif from 'gulp-if';
 import cache from 'gulp-cached';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
+import javascriptObfuscator from 'gulp-javascript-obfuscator';
 
 /**
  * Js Task Babel, Webpack.
@@ -34,6 +36,20 @@ let defaultFunction = ()=>{
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
+  let obfuscator = false;
+  if(CONFIG.user.obfuscator === true
+    || CONFIG.env.obfuscator === true
+    || CONFIG.user.hide === true
+    || CONFIG.env.hide === true){
+    obfuscator = true;
+  }
+
+  let _config_obfuscator = {
+    splitStrings: true,
+    stringArrayEncoding: 'rc4',
+    unicodeEscapeSequence: true
+  };
+
   return src(_target, { sourcemaps: sourcemaps })
     .pipe(plumber({
       errorHandler(error){
@@ -41,6 +57,7 @@ let defaultFunction = ()=>{
       }
     }))
     .pipe(babel())
+    .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .on('error', function(e) {
       console.log('>>> ERROR', e);
       this.emit('end');
