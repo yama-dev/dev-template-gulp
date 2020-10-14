@@ -37,6 +37,14 @@ let defaultFunction = ()=>{
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
+  let jsmin = false;
+  if(CONFIG.user.jsmin === true
+    || CONFIG.env.jsmin === true
+    || CONFIG.user.hide === true
+    || CONFIG.env.hide === true){
+    jsmin = true;
+  }
+
   let obfuscator = false;
   if(CONFIG.user.obfuscator === true
     || CONFIG.env.obfuscator === true
@@ -113,6 +121,7 @@ let defaultFunction = ()=>{
       }
     }))
     .pipe(babel())
+    .pipe(gulpif(jsmin ,terser()))
     .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .on('error', function(e) {
       console.log('>>> ERROR', e);
