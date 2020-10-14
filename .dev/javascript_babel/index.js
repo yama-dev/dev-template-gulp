@@ -50,6 +50,7 @@ let defaultFunction = ()=>{
     || CONFIG.env.obfuscator === true
     || CONFIG.user.hide === true
     || CONFIG.env.hide === true){
+    jsmin = false;
     obfuscator = true;
   }
 
