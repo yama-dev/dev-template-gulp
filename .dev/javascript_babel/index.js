@@ -12,6 +12,7 @@ import cache from 'gulp-cached';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
+import terser from 'gulp-terser';
 
 /**
  * Js Task Babel, Webpack.
