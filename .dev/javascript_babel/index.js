@@ -109,9 +109,7 @@ let defaultFunction = ()=>{
   };
 
   let _config_obfuscator = _config_obfuscator_default;
-  if(CONFIG.user.obfuscator_max === true
-    || CONFIG.env.obfuscator_max === true){
-  } else {
+  if(CONFIG.user.obfuscator_max === true || CONFIG.env.obfuscator_max === true){
     _config_obfuscator = _config_obfuscator_max;
   }
 
