@@ -12,6 +12,7 @@ import cache from 'gulp-cached';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
+import terser from 'gulp-terser';
 
 /**
  * Js Task Babel, Webpack.
@@ -36,19 +37,81 @@ let defaultFunction = ()=>{
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
+  let jsmin = false;
+  if(CONFIG.user.jsmin === true
+    || CONFIG.env.jsmin === true
+    || CONFIG.user.hide === true
+    || CONFIG.env.hide === true){
+    jsmin = true;
+  }
+
   let obfuscator = false;
   if(CONFIG.user.obfuscator === true
     || CONFIG.env.obfuscator === true
     || CONFIG.user.hide === true
     || CONFIG.env.hide === true){
+    jsmin = false;
     obfuscator = true;
   }
 
-  let _config_obfuscator = {
+  let _config_obfuscator_default = {
+    compact: true,
+    controlFlowFlattening: true,
+    controlFlowFlatteningThreshold: 1,
+    deadCodeInjection: true,
+    deadCodeInjectionThreshold: 1,
+    debugProtection: true,
+    debugProtectionInterval: true,
+    disableConsoleOutput: true,
+    identifierNamesGenerator: 'hexadecimal',
+    log: false,
+    numbersToExpressions: true,
+    renameGlobals: false,
+    rotateStringArray: true,
+    selfDefending: true,
+    shuffleStringArray: true,
+    simplify: true,
     splitStrings: true,
-    stringArrayEncoding: 'rc4',
-    unicodeEscapeSequence: true
+    splitStringsChunkLength: 5,
+    stringArray: true,
+    stringArrayEncoding: ['rc4'],
+    stringArrayWrappersCount: 5,
+    stringArrayWrappersChainedCalls: true,
+    stringArrayWrappersType: 'function',
+    stringArrayThreshold: 1,
+    transformObjectKeys: true,
+    unicodeEscapeSequence: false
   };
+
+  let _config_obfuscator_max = {
+    compact: true,
+    controlFlowFlattening: false,
+    deadCodeInjection: false,
+    debugProtection: false,
+    debugProtectionInterval: false,
+    disableConsoleOutput: false,
+    identifierNamesGenerator: 'hexadecimal',
+    log: false,
+    numbersToExpressions: false,
+    renameGlobals: false,
+    rotateStringArray: true,
+    selfDefending: false,
+    shuffleStringArray: true,
+    simplify: true,
+    splitStrings: false,
+    stringArray: true,
+    stringArrayEncoding: [],
+    stringArrayWrappersCount: 1,
+    stringArrayWrappersChainedCalls: true,
+    stringArrayWrappersType: 'variable',
+    stringArrayThreshold: 0.75,
+    unicodeEscapeSequence: false
+  };
+
+  let _config_obfuscator = _config_obfuscator_default;
+  if(CONFIG.user.obfuscator_max === true || CONFIG.env.obfuscator_max === true){
+    _config_obfuscator = _config_obfuscator_max;
+  }
 
   return src(_target, { sourcemaps: sourcemaps })
     .pipe(plumber({
@@ -57,6 +120,7 @@ let defaultFunction = ()=>{
       }
     }))
     .pipe(babel())
+    .pipe(gulpif(jsmin ,terser()))
     .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .on('error', function(e) {
       console.log('>>> ERROR', e);
