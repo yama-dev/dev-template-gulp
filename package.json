@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -21,7 +21,8 @@
     "twig": "gulp --twig --develop",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
-    "test": "npm run lint && gulp release"
+    "test": "npm run lint && gulp release",
+    "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true"
   },
   "engines": {
     "node": ">=6.0.0 <13.5.0"
