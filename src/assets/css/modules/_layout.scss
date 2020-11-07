@@ -15,3 +15,10 @@
     vertical-align: top;
   }
 }
+
+.l {
+  &-flex-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
