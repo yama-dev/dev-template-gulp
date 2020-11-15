@@ -14,12 +14,12 @@ $sp: 767px;
     @content;
   }
 }
-@mixin max($width: $sp) {
+@mixin max($width) {
   @media screen and (max-width: $width) {
     @content;
   }
 }
-@mixin min($width: $pc) {
+@mixin min($width) {
   @media screen and (min-width: $width) {
     @content;
   }

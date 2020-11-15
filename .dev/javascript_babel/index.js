@@ -120,12 +120,12 @@ let defaultFunction = ()=>{
       }
     }))
     .pipe(babel())
-    .pipe(gulpif(jsmin ,terser()))
-    .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .on('error', function(e) {
       console.log('>>> ERROR', e);
       this.emit('end');
     })
+    .pipe(gulpif(jsmin ,terser()))
+    .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: sourcemaps }));
 };
 
