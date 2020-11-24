@@ -8,9 +8,7 @@
 import pkg from './package.json';
 let _copy = `${pkg.name.toUpperCase()}
 - Version ${pkg.version}
-- Repository ${pkg.repository.url}
-- Copyright ${pkg.author}
-- Licensed under the ${pkg.license} license.`;
+- Copyright ${pkg.author}`;
 console.log('-'.repeat(38) + '\n'+ _copy + '\n'+'-'.repeat(38));
 import { series, parallel } from 'gulp';
 import taskSass from './.dev/sass';
