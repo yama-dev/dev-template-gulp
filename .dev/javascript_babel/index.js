@@ -121,7 +121,7 @@ let defaultFunction = ()=>{
     }))
     .pipe(babel())
     .on('error', function(e) {
-      console.log('>>> ERROR', e);
+      console.log('[dev-template] ERROR ', e);
       this.emit('end');
     })
     .pipe(gulpif(jsmin ,terser()))
@@ -148,7 +148,7 @@ let useWebpackFunction = ()=>{
       config : require(_configfile_webpack)
     }, webpack))
     .on('error', function(e) {
-      console.log('>>> ERROR', e);
+      console.log('[dev-template] ERROR ', e);
       this.emit('end');
     })
     .pipe(dest(CONFIG.outputDirectory.dev));

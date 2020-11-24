@@ -29,7 +29,7 @@ let taskWatch = ()=>{
   const filesEs = glob.sync(CONFIG.watchDirectory.es);
 
   if(filesEs.length){
-    console.log('use es files.');
+    console.log('[dev-template] use es files.');
     watch(CONFIG.watchDirectory.es, taskJsBabel);
   } else {
     watch(CONFIG.watchDirectory.jspre, taskJsBabel);
