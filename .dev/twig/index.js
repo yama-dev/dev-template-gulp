@@ -25,11 +25,11 @@ let taskTwig = (done)=>{
   // BOOT.
   if(_config.twig){
     const stdout = exec(`cd ${CONFIG.outputDirectory.dev} && ${_config.bin} -S ${_config.host}:${_config.port} ${_config.router}`, (err, stdout, stderr) => {
-      if (err) { console.log(err); }
+      if (err) { console.log('[dev-template] '+err); }
       done();
     });
   } else {
-    console.log('Twig Server. Boot failure.');
+    console.log('[dev-template] Twig Server. Boot failure.');
     done();
   }
 };

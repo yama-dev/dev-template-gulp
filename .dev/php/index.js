@@ -24,11 +24,11 @@ let taskPhp = (done)=>{
   // BOOT.
   if(_config.php){
     const stdout = exec(`${_config.bin} -S ${_config.host}:${_config.port} -t ${_config.baseDir}`, (err, stdout, stderr) => {
-      if (err) { console.log(err); }
+      if (err) { console.log('[dev-template] '+err); }
       done();
     });
   } else {
-    console.log('PHP Server. Boot failure.');
+    console.log('[dev-template] PHP Server. Boot failure.');
     done();
   }
 };
