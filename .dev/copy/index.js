@@ -5,6 +5,7 @@ import path from 'path';
 import CONFIG        from '../config';
 import { src, dest } from 'gulp';
 import ignore        from 'gulp-ignore';
+import prompt        from 'gulp-prompt';
 
 /**
  * Copy Task
@@ -20,9 +21,20 @@ let taskCopy = ()=>{
     });
   }
 
-  return src(_target)
-    .pipe(ignore.include({isFile: true}))
-    .pipe(dest(CONFIG.outputDirectory.dev));
+  let _output_dir = '';
+
+  return src('./package.json')
+    .pipe(prompt.prompt({
+      type: 'input',
+      name: 'dir',
+      message: 'Please output directory name.'
+    }, function(res){
+      if(res.dir) _output_dir = res.dir;
+      if(!res.dir) return false;
+      return src(_target)
+        .pipe(ignore.include({isFile: true}))
+        .pipe(dest(_output_dir));
+    }));
 };
 
 export default taskCopy;

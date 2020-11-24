@@ -22,6 +22,7 @@
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release",
+    "copy": "gulp copy --silent",
     "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true"
   },
   "engines": {
@@ -61,6 +62,7 @@
     "gulp-javascript-obfuscator": "^1.1.6",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
+    "gulp-prompt": "^1.2.0",
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
