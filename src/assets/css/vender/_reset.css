@@ -1,8 +1,9 @@
+@charset "UTF-8";
 /*!
   Reset Stylesheet
   Author: yama-dev - https://github.com/yama-dev
   */
-
+@import url("https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css");
 html, body, div, span, object, iframe, embed, main,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, cite, code,
@@ -120,23 +121,49 @@ body {
 }
 
 body, button, input, select, textarea, datalist {
-  /* Font settings. */
-  /* For Gothic. */
-  @import url('https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css');
+  word-wrap: break-word;
   font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
-  /* @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap'); */
-  /* font-family: "Noto Sans JP", "游ゴシック", YuGothic, "Helvetica", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif; */
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
 
-  /* For Mincho. */
-  /* font-family: "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ 明朝", "ＭＳ Ｐ明朝", serif; */
+@media screen and (min-width: 768px) {
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
 
-  /* Mobileでのフォント自動調整の設定 */
-  text-size-adjust: 100%;
+@media screen and (max-width: 767px) {
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
+}
 
-  /* Macでのアンチエイリアス設定 */
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
-
-  /* word-break: break-all; */
-  word-wrap:break-word;
+/*!
+  Styles
+  */
+img {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
 }
