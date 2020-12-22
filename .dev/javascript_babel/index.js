@@ -3,6 +3,9 @@
  */
 import CONFIG from '../config';
 import notifier from 'node-notifier';
+import fs from 'fs';
+import path from 'path';
+import colors from 'colors';
 
 import { src, dest } from 'gulp';
 import streamUtil from '@yama-dev/gulp-stream-util';
@@ -137,6 +140,11 @@ let useWebpackFunction = ()=>{
   _target.unshift(CONFIG.watchDirectory.es);
 
   let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+
+  if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
+    console.log(`[dev-template] NOT FOUND ${path.join(__dirname,_configfile_webpack)}`.white.bgRed);
+    process.exit(0);
+  }
 
   return src(_target)
     .pipe(plumber({
