@@ -54,7 +54,7 @@ let taskHtmlLint = () => {
 let taskHtmlMin = () => {
   const _config_htmlmin = {
     collapseWhitespace: true,
-    preserveLineBreaks: true
+    // preserveLineBreaks: true
   };
 
   let _target = CONFIG.watchIgnoreDirectory.html.slice();
