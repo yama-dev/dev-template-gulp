@@ -10,6 +10,7 @@ import pug        from 'gulp-pug';
 import rename     from 'gulp-rename';
 import plumber    from 'gulp-plumber';
 import gulpif     from 'gulp-if';
+import htmlmin    from 'gulp-htmlmin';
 import dataCollector from '@yama-dev/data-collector';
 import dataTemplate from '@yama-dev/data-template';
 
@@ -19,6 +20,11 @@ import dataTemplate from '@yama-dev/data-template';
 let taskTemplateEjs = () => {
   let _target = CONFIG.watchIgnoreDirectory.ejs.slice();
   _target.unshift(CONFIG.watchDirectory.ejs);
+
+  let min = false;
+  if(CONFIG.user.htmlmin === true || CONFIG.env.htmlmin === true){
+    min = true;
+  }
 
   let _config_ejs_data = {};
   if(CONFIG.user.ejs){
@@ -65,6 +71,7 @@ let taskTemplateEjs = () => {
     .pipe(rename({
       extname: ''
     }))
+    .pipe(gulpif(min, htmlmin()))
     .pipe(dest(CONFIG.outputDirectory.dev));
 };
 
