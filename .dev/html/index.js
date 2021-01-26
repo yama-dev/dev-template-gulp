@@ -5,6 +5,7 @@ import CONFIG from '../config';
 import notifier       from 'node-notifier';
 import { src, dest } from 'gulp';
 import plumber        from 'gulp-plumber';
+import { src, dest, lastRun } from 'gulp';
 
 /**
  * HtmlLint Task
@@ -60,7 +61,7 @@ let taskHtmlMin = () => {
   let _target = CONFIG.watchIgnoreDirectory.html.slice();
   _target.unshift(CONFIG.watchDirectory.html);
 
-  return src(_target)
+  return src(_target, { since: lastRun(taskHtmlMin) })
     .pipe(htmlmin(_config_htmlmin))
     .pipe(dest(CONFIG.outputDirectory.dev));
 };
