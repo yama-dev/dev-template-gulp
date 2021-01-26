@@ -2,10 +2,11 @@
  * IMPORT MODULES
  */
 import CONFIG from '../config';
-import notifier       from 'node-notifier';
-import { src, dest } from 'gulp';
-import plumber        from 'gulp-plumber';
 import { src, dest, lastRun } from 'gulp';
+import notifier from 'node-notifier';
+import plumber from 'gulp-plumber';
+import htmlmin from 'gulp-htmlmin';
+import htmlhint from 'gulp-htmlhint';
 
 /**
  * HtmlLint Task
@@ -66,10 +67,7 @@ let taskHtmlMin = () => {
     .pipe(dest(CONFIG.outputDirectory.dev));
 };
 
-/**
- * Slim Task
- */
-
-export default taskHtmlLint;
-
-export { taskHtmlMin as taskHtmlMin };
+export {
+  taskHtmlLint,
+  taskHtmlMin,
+};
