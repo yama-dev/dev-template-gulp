@@ -93,6 +93,17 @@ let CONFIG = {
       `!${CONFIG_PATH.sourceBuild}__*/**/*.css`,
       `!${CONFIG_PATH.sourceBuild}___*/**/*.css`,
     ],
+    es : [
+      `!${CONFIG_PATH.sourceBuild}**/wp/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/vender/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/vendor/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/lib/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/libs/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/*.min.es*`,
+      `!${CONFIG_PATH.sourceBuild}_*/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}__*/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}___*/**/*.es*`,
+    ],
     js : [
       `!${CONFIG_PATH.sourceBuild}**/wp/**/*.js`,
       `!${CONFIG_PATH.sourceBuild}**/vender/**/*.js`,
