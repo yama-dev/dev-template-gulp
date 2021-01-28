@@ -4,7 +4,11 @@
 import path from 'path';
 import CONFIG from './config';
 import { src, watch } from 'gulp';
-import taskCopy    from './copy';
+import taskCopy from './copy';
+import {
+  taskHtmlLint,
+  taskHtmlMin,
+} from './html';
 import browserSync from 'browser-sync';
 browserSync.create();
 
@@ -56,10 +60,12 @@ let taskServer = ()=>{
   let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
   _target_html.unshift(CONFIG.watchDirectory.html);
   if(CONFIG.env.htmlmin){
-    // watch(_target_html).on('change', taskHtmlMin);
+    watch(_target_html, taskHtmlMin);
   } else {
     if(CONFIG.env.htmllint){
-      // watch(_target_html).on('change', taskHtmlLint);
+      watch(_target_html).on('change', function(path, stats) {
+        taskHtmlLint();
+      });
     }
     watch(_target_html).on('change', browserSync.reload);
   }
