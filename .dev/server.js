@@ -18,23 +18,19 @@ browserSync.create();
 let taskServer = ()=>{
 
   // Set BrowserSync server.
-  let _config_bs = {};
+  let _config_bs = {
+    reloadDelay: 100,
+    reloadDebounce: 100,
+    logLevel: 'info',
+    logPrefix: 'dev-template'
+  };
   if(CONFIG.user.proxy){
-    _config_bs = {
-      proxy: CONFIG.user.proxy,
-      reloadDelay: 300
-    };
+    _config_bs.proxy = CONFIG.user.proxy;
   } else if(CONFIG.env.proxy){
-    _config_bs = {
-      proxy: CONFIG.env.proxy,
-      reloadDelay: 300
-    };
+    _config_bs.proxy = CONFIG.env.proxy;
   } else {
-    _config_bs = {
-      reloadDelay: 300,
-      server: {
-        baseDir: CONFIG.outputDirectory.dev
-      }
+    _config_bs.server = {
+      baseDir: CONFIG.outputDirectory.dev
     };
   }
   if(CONFIG.user.host) _config_bs.host = CONFIG.user.host;
