@@ -60,12 +60,12 @@ $sp: 767px;
   }
 }
 
-/* iPhone、iPad、およびRetinaディスプレイ用 */
+// iPhone、iPad、およびRetinaディスプレイ用
 
-/* Retinaではない場合 */
+// Retinaではない場合
 @media screen and (-webkit-max-device-pixel-ratio: 1) { }
 
-/* Retinaの場合 */
+// Retinaの場合
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
