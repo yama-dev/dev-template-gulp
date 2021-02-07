@@ -16,6 +16,7 @@ import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
 import terser from 'gulp-terser';
+import eslint from 'gulp-eslint';
 
 /**
  * Js Task Babel, Webpack.
@@ -117,6 +118,9 @@ let defaultFunction = ()=>{
   }
 
   return src(_target, { sourcemaps: sourcemaps })
+    .pipe(eslint())
+    .pipe(eslint.format())
+    // .pipe(eslint.failAfterError())
     .pipe(plumber({
       errorHandler(error){
         notifier.notify({ title: 'BABEL コンパイル エラー', message: error.message });
