@@ -1,6 +1,19 @@
 let _env = {
-  htmllint: true,
-  jslint: true
+  sourcemaps: false,
+
+  htmlLint: true,
+
+  php: false,
+
+  jsLint: true,
+  jsMin: false,
+  hide: false,
+  obfuscator: false,
+  obfuscatorMax: false,
+
+  cssMin: false, // https://github.com/cssnano/cssnano
+  cssSortPropaty: true, // https://github.com/Siilwyn/css-declaration-sorter
+  cssMergeMediaQuery: true, // https://github.com/SassNinja/postcss-combine-media-query
 };
 
 const ARGV = process.argv.slice(2);

@@ -143,14 +143,14 @@ let CONFIG = {
 
 if(CONFIG.user.php || CONFIG.env.php){
   CONFIG.user.proxy = '127.0.0.1:3333';
-  CONFIG.env.htmllint = false;
-  CONFIG.env.jslint = false;
+  CONFIG.env.htmlLint = false;
+  CONFIG.env.jsLint = false;
 }
 
 if(CONFIG.user.twig || CONFIG.env.twig){
   CONFIG.user.proxy = '127.0.0.1:3333';
-  CONFIG.env.htmllint = false;
-  CONFIG.env.jslint = false;
+  CONFIG.env.htmlLint = false;
+  CONFIG.env.jsLint = false;
   CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
 }
 

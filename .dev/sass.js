@@ -53,14 +53,21 @@ const taskSass = (isRefresh = false) => {
     grid: true
   };
 
-  let _config_postcss = [
-    cssSorter({order: 'concentric-css'}),
+  let _config_postcss = [];
+
+  if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
+    _config_postcss.push( cssSorter({order: 'concentric-css'}) );
+  }
+
+  _config_postcss = [
+    ..._config_postcss,
     autoprefixer(_config_autoprefixer),
     pixrem(),
-    postcssOpacity()
   ];
 
-  if(CONFIG.env.cssmin) _config_postcss.push( cssnano({autoprefixer: false}) );
+  if(CONFIG.env.cssMin || CONFIG.user.cssMin){
+    _config_postcss.push( cssnano({autoprefixer: false}) );
+  }
 
   return src(_target, { sourcemaps: sourcemaps })
     .pipe(cache('sass'))

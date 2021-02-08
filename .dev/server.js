@@ -55,10 +55,10 @@ let taskServer = ()=>{
   // HTML.
   let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
   _target_html.unshift(CONFIG.watchDirectory.html);
-  if(CONFIG.env.htmlmin){
+  if(CONFIG.env.htmlMin){
     watch(_target_html, taskHtmlMin);
   } else {
-    if(CONFIG.env.htmllint){
+    if(CONFIG.env.htmlLint){
       watch(_target_html).on('change', function(path, stats) {
         taskHtmlLint();
       });
@@ -69,10 +69,10 @@ let taskServer = ()=>{
   // JS.
   const _target_js = CONFIG.watchIgnoreDirectory.js.slice();
   _target_js.unshift(CONFIG.watchDirectory.js);
-  if(CONFIG.env.jsmin){
+  if(CONFIG.env.jsMin || CONFIG.user.jsMin){
     // watch(_target_js).on('change', taskJsMin);
   } else {
-    if(CONFIG.env.jslint){
+    if(CONFIG.env.jsLint || CONFIG.user.jsLint){
       // watch(_target_js).on('change', taskJsLint);
     }
   }

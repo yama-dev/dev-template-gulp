@@ -22,7 +22,7 @@ let taskTemplateEjs = () => {
   _target.unshift(CONFIG.watchDirectory.ejs);
 
   let min = false;
-  if(CONFIG.user.htmlmin === true || CONFIG.env.htmlmin === true){
+  if(CONFIG.user.htmlMin === true || CONFIG.env.htmlMin === true){
     min = true;
   }
 
