@@ -14,6 +14,7 @@ import pixrem         from 'pixrem';
 import autoprefixer   from 'autoprefixer';
 import cssnano        from 'cssnano';
 import cssSorter      from 'css-declaration-sorter';
+import postcssCombineMediaQuery from 'postcss-combine-media-query';
 
 import cache          from 'gulp-cached';
 import plumber        from 'gulp-plumber';
@@ -55,6 +56,10 @@ const taskSass = (isRefresh = false) => {
 
   if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
     _config_postcss.push( cssSorter({order: 'concentric-css'}) );
+  }
+
+  if(CONFIG.env.cssMergeMediaQuery || CONFIG.user.cssMergeMediaQuery){
+    _config_postcss.push( postcssCombineMediaQuery() );
   }
 
   _config_postcss = [
