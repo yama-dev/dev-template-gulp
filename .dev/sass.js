@@ -11,7 +11,6 @@ import sassCompiler   from 'node-sass';
 sass.compiler = sassCompiler;
 import postcss        from 'gulp-postcss';
 import pixrem         from 'pixrem';
-import postcssOpacity from 'postcss-opacity';
 import autoprefixer   from 'autoprefixer';
 import cssnano        from 'cssnano';
 import cssSorter      from 'css-declaration-sorter';
