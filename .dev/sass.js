@@ -23,9 +23,10 @@ import plumber        from 'gulp-plumber';
  */
 const taskSass = (isRefresh = false) => {
 
-  let _target = CONFIG.watchIgnoreDirectory.sass.slice();
-  _target.unshift(CONFIG.watchDirectory.sass);
+  // Delete Cache.
+  if(isRefresh === true) cache.caches = {};
 
+  // Sourcemap setting.
   let sourcemaps = false;
   if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
     sourcemaps = true;
@@ -38,8 +39,6 @@ const taskSass = (isRefresh = false) => {
     sourcemaps = false;
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
-
-  if(isRefresh === true) cache.caches = {};
 
   const _config_sass = {
     outputStyle: 'expanded', //nested, compact, compressed, expanded.
@@ -67,6 +66,9 @@ const taskSass = (isRefresh = false) => {
   if(CONFIG.env.cssMin || CONFIG.user.cssMin){
     _config_postcss.push( cssnano({autoprefixer: false}) );
   }
+
+  let _target = CONFIG.watchIgnoreDirectory.sass.slice();
+  _target.unshift(CONFIG.watchDirectory.sass);
 
   return src(_target, { sourcemaps: sourcemaps })
     .pipe(cache('sass'))
