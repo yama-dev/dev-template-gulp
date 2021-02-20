@@ -5,7 +5,10 @@
  * Licensed under the MIT license.
  */
 
-import { CONFIG_PATH, CONFIG_USER  } from './pathuser';
+import {
+  CONFIG_PATH,
+  CONFIG_USER,
+} from './pathuser';
 import { CONFIG_ENV  } from './env';
 
 /**
