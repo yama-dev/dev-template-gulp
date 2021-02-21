@@ -116,6 +116,10 @@ a[href^='tel'] {
   content: '.';
 }
 
+[tabindex="-1"]:focus {
+  outline: 0;
+}
+
 body {
   line-height: 1;
 }
@@ -129,36 +133,6 @@ body, button, input, select, textarea, datalist {
           text-size-adjust: 100%;
 }
 
-@media screen and (min-width: 768px) {
-  .is-pc {
-    display: block;
-  }
-  .is-sp {
-    display: none;
-  }
-  .is-pc-inline {
-    display: inline-block;
-  }
-  .is-sp-inline {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .is-pc {
-    display: none;
-  }
-  .is-sp {
-    display: block;
-  }
-  .is-pc-inline {
-    display: none;
-  }
-  .is-sp-inline {
-    display: inline-block;
-  }
-}
-
 /*!
   Styles
   */
@@ -166,4 +140,32 @@ img {
   display: block;
   vertical-align: middle;
   max-width: 100%;
+}
+@media screen and (min-width: 768px){
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px){
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
 }
