@@ -5,6 +5,7 @@
   "keywords": [
     "web",
     "gulp",
+    "frontend",
     "template"
   ],
   "author": "yama-dev",
@@ -27,7 +28,7 @@
     "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true"
   },
   "engines": {
-    "node": ">=6.0.0 <13.5.0"
+    "node": ">=6.0.0 <=14.15.5"
   },
   "repository": {
     "type": "git",
