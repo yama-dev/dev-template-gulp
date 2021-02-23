@@ -109,6 +109,10 @@ a[href^='tel'] {
   visibility: hidden;
 }
 
+[tabindex="-1"]:focus {
+  outline: 0;
+}
+
 body {
   line-height: 1;
 }

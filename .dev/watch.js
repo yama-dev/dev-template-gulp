@@ -3,7 +3,7 @@
  */
 import path from 'path';
 import CONFIG from './config';
-import notifier       from 'node-notifier';
+import notifier from 'node-notifier';
 import glob from 'glob';
 import { watch } from 'gulp';
 import { taskTemplateEjs } from './template';
@@ -30,7 +30,9 @@ let taskWatch = ()=>{
 
   if(filesEs.length){
     console.log('[dev-template] use es files.');
-    watch(CONFIG.watchDirectory.es, taskJsBabel);
+    const _target_es = CONFIG.watchIgnoreDirectory.es.slice();
+    _target_es.unshift(CONFIG.watchDirectory.es);
+    watch(_target_es, taskJsBabel);
   } else {
     watch(CONFIG.watchDirectory.jspre, taskJsBabel);
   }

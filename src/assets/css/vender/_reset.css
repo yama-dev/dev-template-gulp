@@ -116,6 +116,10 @@ a[href^='tel'] {
   content: '.';
 }
 
+[tabindex="-1"]:focus {
+  outline: 0;
+}
+
 body {
   line-height: 1;
 }

@@ -4,7 +4,11 @@
 import path from 'path';
 import CONFIG from './config';
 import { src, watch } from 'gulp';
-import taskCopy    from './copy';
+import taskCopy from './copy';
+import {
+  taskHtmlLint,
+  taskHtmlMin,
+} from './html';
 import browserSync from 'browser-sync';
 browserSync.create();
 
@@ -14,23 +18,19 @@ browserSync.create();
 let taskServer = ()=>{
 
   // Set BrowserSync server.
-  let _config_bs = {};
+  let _config_bs = {
+    reloadDelay: 100,
+    reloadDebounce: 100,
+    logLevel: 'info',
+    logPrefix: 'dev-template'
+  };
   if(CONFIG.user.proxy){
-    _config_bs = {
-      proxy: CONFIG.user.proxy,
-      reloadDelay: 300
-    };
+    _config_bs.proxy = CONFIG.user.proxy;
   } else if(CONFIG.env.proxy){
-    _config_bs = {
-      proxy: CONFIG.env.proxy,
-      reloadDelay: 300
-    };
+    _config_bs.proxy = CONFIG.env.proxy;
   } else {
-    _config_bs = {
-      reloadDelay: 300,
-      server: {
-        baseDir: CONFIG.outputDirectory.dev
-      }
+    _config_bs.server = {
+      baseDir: CONFIG.outputDirectory.dev
     };
   }
   if(CONFIG.user.host) _config_bs.host = CONFIG.user.host;
@@ -55,11 +55,13 @@ let taskServer = ()=>{
   // HTML.
   let _target_html = CONFIG.watchIgnoreDirectory.html.slice();
   _target_html.unshift(CONFIG.watchDirectory.html);
-  if(CONFIG.env.htmlmin){
-    // watch(_target_html).on('change', taskHtmlMin);
+  if(CONFIG.env.htmlMin){
+    watch(_target_html, taskHtmlMin);
   } else {
-    if(CONFIG.env.htmllint){
-      // watch(_target_html).on('change', taskHtmlLint);
+    if(CONFIG.env.htmlLint){
+      watch(_target_html).on('change', function(path, stats) {
+        taskHtmlLint();
+      });
     }
     watch(_target_html).on('change', browserSync.reload);
   }
@@ -67,10 +69,10 @@ let taskServer = ()=>{
   // JS.
   const _target_js = CONFIG.watchIgnoreDirectory.js.slice();
   _target_js.unshift(CONFIG.watchDirectory.js);
-  if(CONFIG.env.jsmin){
+  if(CONFIG.env.jsMin || CONFIG.user.jsMin){
     // watch(_target_js).on('change', taskJsMin);
   } else {
-    if(CONFIG.env.jslint){
+    if(CONFIG.env.jsLint || CONFIG.user.jsLint){
       // watch(_target_js).on('change', taskJsLint);
     }
   }

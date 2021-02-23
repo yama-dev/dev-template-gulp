@@ -11,7 +11,7 @@ try {
 
 _path = {
   source      : 'src/',
-  sourceBuild : '',
+  sourceBuild : '', // コンパイルデータが出力されるフォルダ
   release     : 'release/'
 };
 

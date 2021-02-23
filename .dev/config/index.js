@@ -5,7 +5,10 @@
  * Licensed under the MIT license.
  */
 
-import { CONFIG_PATH, CONFIG_USER  } from './pathuser';
+import {
+  CONFIG_PATH,
+  CONFIG_USER,
+} from './pathuser';
 import { CONFIG_ENV  } from './env';
 
 /**
@@ -93,6 +96,17 @@ let CONFIG = {
       `!${CONFIG_PATH.sourceBuild}__*/**/*.css`,
       `!${CONFIG_PATH.sourceBuild}___*/**/*.css`,
     ],
+    es : [
+      `!${CONFIG_PATH.sourceBuild}**/wp/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/vender/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/vendor/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/lib/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/libs/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}**/*.min.es*`,
+      `!${CONFIG_PATH.sourceBuild}_*/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}__*/**/*.es*`,
+      `!${CONFIG_PATH.sourceBuild}___*/**/*.es*`,
+    ],
     js : [
       `!${CONFIG_PATH.sourceBuild}**/wp/**/*.js`,
       `!${CONFIG_PATH.sourceBuild}**/vender/**/*.js`,
@@ -132,14 +146,14 @@ let CONFIG = {
 
 if(CONFIG.user.php || CONFIG.env.php){
   CONFIG.user.proxy = '127.0.0.1:3333';
-  CONFIG.env.htmllint = false;
-  CONFIG.env.jslint = false;
+  CONFIG.env.htmlLint = false;
+  CONFIG.env.jsLint = false;
 }
 
 if(CONFIG.user.twig || CONFIG.env.twig){
   CONFIG.user.proxy = '127.0.0.1:3333';
-  CONFIG.env.htmllint = false;
-  CONFIG.env.jslint = false;
+  CONFIG.env.htmlLint = false;
+  CONFIG.env.jsLint = false;
   CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
 }
 

@@ -1,0 +1,73 @@
+
+// Style Switching Elements
+@include pc(){
+  .is-pc { display: block; }
+  .is-sp { display: none; }
+  .is-pc-inline { display: inline-block; }
+  .is-sp-inline { display: none; }
+}
+@include sp(){
+  .is-pc { display: none; }
+  .is-sp { display: block; }
+  .is-pc-inline { display: none; }
+  .is-sp-inline { display: inline-block; }
+}
+
+// inline-block
+@mixin inline-block($clild_elem: '*') {
+  letter-spacing: -.4em;
+  text-align: center;
+  font-size: 0;
+  > #{$clild_elem} {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+  }
+}
+
+@mixin counter($numName, $beforeText, $afterText) {
+  content: "#{$beforeText}" counter(num_ + $numName) "#{$afterText}";
+  counter-increment: num_ + $numName;
+}
+
+@mixin under-line($color: #f00, $height: 80%){
+  background: linear-gradient(transparent $height, $color 0%);
+  display: inline;
+}
+
+@mixin form-reset() {
+  input, button, textarea, select {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+@mixin js(){
+  @at-root html.js &{
+    @content;
+  }
+}
+
+@mixin no-js(){
+  @at-root html.no-js &{
+    @content;
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+  }
+}
+

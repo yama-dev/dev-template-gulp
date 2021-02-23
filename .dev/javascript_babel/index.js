@@ -16,6 +16,7 @@ import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
 import terser from 'gulp-terser';
+import eslint from 'gulp-eslint';
 
 /**
  * Js Task Babel, Webpack.
@@ -41,10 +42,8 @@ let defaultFunction = ()=>{
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
   let jsmin = false;
-  if(CONFIG.user.jsmin === true
-    || CONFIG.env.jsmin === true
-    || CONFIG.user.hide === true
-    || CONFIG.env.hide === true){
+  if(CONFIG.user.jsMin === true
+    || CONFIG.env.jsMin === true){
     jsmin = true;
   }
 
@@ -112,11 +111,14 @@ let defaultFunction = ()=>{
   };
 
   let _config_obfuscator = _config_obfuscator_default;
-  if(CONFIG.user.obfuscator_max === true || CONFIG.env.obfuscator_max === true){
+  if(CONFIG.user.obfuscatorMax === true || CONFIG.env.obfuscatorMax === true){
     _config_obfuscator = _config_obfuscator_max;
   }
 
   return src(_target, { sourcemaps: sourcemaps })
+    .pipe(eslint())
+    .pipe(eslint.format())
+    // .pipe(eslint.failAfterError())
     .pipe(plumber({
       errorHandler(error){
         notifier.notify({ title: 'BABEL コンパイル エラー', message: error.message });

@@ -11,10 +11,10 @@ import sassCompiler   from 'node-sass';
 sass.compiler = sassCompiler;
 import postcss        from 'gulp-postcss';
 import pixrem         from 'pixrem';
-import postcssOpacity from 'postcss-opacity';
 import autoprefixer   from 'autoprefixer';
 import cssnano        from 'cssnano';
 import cssSorter      from 'css-declaration-sorter';
+import postcssCombineMediaQuery from 'postcss-combine-media-query';
 
 import cache          from 'gulp-cached';
 import plumber        from 'gulp-plumber';
@@ -24,9 +24,10 @@ import plumber        from 'gulp-plumber';
  */
 const taskSass = (isRefresh = false) => {
 
-  let _target = CONFIG.watchIgnoreDirectory.sass.slice();
-  _target.unshift(CONFIG.watchDirectory.sass);
+  // Delete Cache.
+  if(isRefresh === true) cache.caches = {};
 
+  // Sourcemap setting.
   let sourcemaps = false;
   if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
     sourcemaps = true;
@@ -40,8 +41,6 @@ const taskSass = (isRefresh = false) => {
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
 
-  if(isRefresh === true) cache.caches = {};
-
   const _config_sass = {
     outputStyle: 'expanded', //nested, compact, compressed, expanded.
     indentType: 'space',
@@ -53,14 +52,28 @@ const taskSass = (isRefresh = false) => {
     grid: true
   };
 
-  let _config_postcss = [
-    cssSorter({order: 'concentric-css'}),
+  let _config_postcss = [];
+
+  if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
+    _config_postcss.push( cssSorter({order: 'concentric-css'}) );
+  }
+
+  if(CONFIG.env.cssMergeMediaQuery || CONFIG.user.cssMergeMediaQuery){
+    _config_postcss.push( postcssCombineMediaQuery() );
+  }
+
+  _config_postcss = [
+    ..._config_postcss,
     autoprefixer(_config_autoprefixer),
     pixrem(),
-    postcssOpacity()
   ];
 
-  if(CONFIG.env.cssmin) _config_postcss.push( cssnano({autoprefixer: false}) );
+  if(CONFIG.env.cssMin || CONFIG.user.cssMin){
+    _config_postcss.push( cssnano({autoprefixer: false}) );
+  }
+
+  let _target = CONFIG.watchIgnoreDirectory.sass.slice();
+  _target.unshift(CONFIG.watchDirectory.sass);
 
   return src(_target, { sourcemaps: sourcemaps })
     .pipe(cache('sass'))

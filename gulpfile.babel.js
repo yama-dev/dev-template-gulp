@@ -19,6 +19,7 @@ import taskWatch from './.dev/watch';
 import taskClean from './.dev/clean';
 import taskPhp from './.dev/php';
 import taskTwig from './.dev/twig';
+import tackDeploy from './.dev/deploy';
 export default series(
   taskClean,
   taskTemplate,
@@ -42,4 +43,11 @@ export const prod = series(
     taskServer,
     taskWatch
   )
+);
+export const deploy = series(
+  taskClean,
+  taskTemplate,
+  taskSass,
+  taskJsBabel,
+  tackDeploy
 );

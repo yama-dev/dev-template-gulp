@@ -5,55 +5,39 @@
 // https://github.com/yama-dev
 @import "./vender/reset.scss";
 
-// MediaQuery.
-@media screen and (max-width: 767px) {
-}
-// Portrait.
-@media screen and (orientation: portrait) {
-}
-// Landscape.
-@media screen and (orientation: landscape) {
-}
+$PATH_ROOT: "/";
+$PATH_IMG: "/assets/img/";
 
-// Mixis.
-$break-point-PC: 768;
+//------------------------------------------
+// Responsive Grid Media Queries - 1280, 1024, 768, 480
+//  1280-1024   - デスクトップ（デフォルトのグリッド）
+//  1024-768    - タブレット横長
+//  768-480     - タブレット縦長
+//  480-less    - スマホ
+//------------------------------------------
+@media all and (min-width: 1024px) and (max-width: 1280px) { }
+
+@media all and (min-width: 768px) and (max-width: 1024px) { }
+
+@media all and (min-width: 480px) and (max-width: 768px) { }
+
+@media all and (max-width: 480px) { }
+
+//------------------------------------------
+// Responsive Grid Media Queries - 768
+//  -768    - デスクトップ & タブレット横長
+//  767-    - タブレット縦長 & スマホ
+//------------------------------------------
+$break-point: 768;
 @mixin pc {
-  @media screen and (min-width: #{$break-point-PC}px) {
+  @media screen and (min-width: #{$break-point}px) {
     @content
   }
 }
 @mixin sp {
-  @media screen and (max-width: #{$break-point-PC - 1}px) {
+  @media screen and (max-width: #{$break-point - 1}px) {
     @content
   }
-}
-// Portrait.
-@mixin port {
-  @media screen and (orientation: portrait) {
-    @content
-  }
-}
-// Landscape.
-@mixin land {
-  @media screen and (orientation: landscape) {
-    @content
-  }
-}
-// inline-block
-@mixin inlineblock($clild_elem: '*') {
-  letter-spacing: -.4em;
-  text-align: center;
-  font-size: 0;
-  > #{$clild_elem} {
-    display: inline-block;
-    letter-spacing: normal;
-    vertical-align: top;
-  }
-}
-// flex
-@mixin flex {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 // Style Switching Elements
@@ -68,6 +52,16 @@ $break-point-PC: 768;
   .is-sp { display: block; }
   .is-pc-inline { display: none; }
   .is-sp-inline { display: inline-block; }
+}
+
+@mixin counter($numName, $beforeText, $afterText) {
+  content: "#{$beforeText}" counter(num_ + $numName) "#{$afterText}";
+  counter-increment: num_ + $numName;
+}
+
+@mixin under-line($color: #f00, $height: 80%){
+  background: linear-gradient(transparent $height, $color 0%);
+  display: inline;
 }
 
 /*!
@@ -88,6 +82,7 @@ img {
 // @import "./modules/hover";
 // @import "./modules/button";
 // @import "./modules/utility";
+// @import "./modules/mixins";
 
 // One Click CSS.
 // -> https://css.miugle.info/
