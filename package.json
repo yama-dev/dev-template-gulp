@@ -12,7 +12,6 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm config set loglevel silent",
     "start": "npm install -s && npm run dev",
     "dev": "gulp --develop --silent",
     "develop": "gulp --develop --silent",
@@ -25,7 +24,9 @@
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release",
-    "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true"
+    "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true",
+    "preinstall": "npm config set loglevel silent",
+    "postinstall": "npm config delete loglevel"
   },
   "engines": {
     "node": ">=6.0.0 <=14.15.5"
