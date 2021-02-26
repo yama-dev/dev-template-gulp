@@ -109,7 +109,7 @@
         "error",
         2,
         {
-          "outerIIFEBody": 0,
+          "outerIIFEBody": "off",
           "SwitchCase": 1
         }
       ],
