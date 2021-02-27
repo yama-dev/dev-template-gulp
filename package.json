@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.10.7",
+  "version": "1.10.8",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -12,7 +12,6 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm config set loglevel silent",
     "start": "npm install -s && npm run dev",
     "dev": "gulp --develop --silent",
     "develop": "gulp --develop --silent",
@@ -25,7 +24,9 @@
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
     "test": "npm run lint && gulp release",
-    "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true"
+    "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true",
+    "preinstall": "npm config set loglevel silent",
+    "postinstall": "npm config delete loglevel"
   },
   "engines": {
     "node": ">=6.0.0 <=14.15.5"
@@ -53,13 +54,13 @@
     "css-declaration-sorter": "^4.0.1",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^7.20.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
     "gulp-ejs": "^5.0.0",
-    "gulp-eslint": "^6.0.0",
+    "gulp-eslint": "github:yama-dev/gulp-eslint#v7.20.0",
     "gulp-htmlhint": "^3.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
@@ -108,7 +109,7 @@
         "error",
         2,
         {
-          "outerIIFEBody": 0,
+          "outerIIFEBody": "off",
           "SwitchCase": 1
         }
       ],
