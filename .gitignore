@@ -1,11 +1,7 @@
 # config
 .DS_Store
-.sass-cache
 .svn/
 tmp/
-
-# Editor.
-*.swp
 
 # design data.
 *.psd
@@ -16,7 +12,7 @@ node_modules/
 package-lock.json
 
 # Development environment.
-.tern-port
+.sass-cache
 *.map
 src/_twig/data/html/
 
