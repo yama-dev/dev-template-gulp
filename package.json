@@ -105,7 +105,6 @@
       "node": true
     },
     "rules": {
-      "async": true,
       "indent": [
         "error",
         2,
