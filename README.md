@@ -12,9 +12,8 @@
 ## 概要
 
 webサイト制作用の開発環境になります。
-※[@gulp](https://github.com/gulpjs/gulp)の利用を前提に作成してありますが、staticファイルをそのままでも利用可能です。
 
- - 初期のHTML,Sass,javascriptファイルが同梱されています。
+- HTML,Sass,javascriptファイルが同梱されています。
 
 <br>
 
