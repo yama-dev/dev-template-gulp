@@ -33,11 +33,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 blockquote, q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
 a {
   margin: 0;
   padding: 0;
