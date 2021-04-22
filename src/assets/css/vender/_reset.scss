@@ -104,8 +104,38 @@ a[href^='tel'] {
   visibility: hidden;
 }
 
-[tabindex="-1"]:focus {
+iframe {
+  border: none;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
+}
+
+[role=button] {
+  cursor: pointer;
+}
+
+// aria
+[aria-busy=true] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
 }
 
 body {
@@ -131,5 +161,5 @@ body, button, input, select, textarea, datalist {
   // -moz-osx-font-smoothing: grayscale;
 
   // word-break: break-all;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }

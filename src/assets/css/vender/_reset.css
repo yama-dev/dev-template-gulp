@@ -109,8 +109,37 @@ a[href^='tel'] {
   content: '.';
 }
 
-[tabindex="-1"]:focus {
+iframe {
+  border: none;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
+}
+
+[role=button] {
+  cursor: pointer;
+}
+
+[aria-busy=true] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
 }
 
 body {
@@ -126,36 +155,6 @@ body, button, input, select, textarea, datalist {
           text-size-adjust: 100%;
 }
 
-@media screen and (min-width: 768px) {
-  .is-pc {
-    display: block;
-  }
-  .is-sp {
-    display: none;
-  }
-  .is-pc-inline {
-    display: inline-block;
-  }
-  .is-sp-inline {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .is-pc {
-    display: none;
-  }
-  .is-sp {
-    display: block;
-  }
-  .is-pc-inline {
-    display: none;
-  }
-  .is-sp-inline {
-    display: inline-block;
-  }
-}
-
 /*!
   Styles
   */
@@ -163,4 +162,32 @@ img {
   display: block;
   vertical-align: middle;
   max-width: 100%;
+}
+@media screen and (min-width: 768px){
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px){
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
 }

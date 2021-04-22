@@ -109,8 +109,37 @@ a[href^='tel'] {
   content: '.';
 }
 
-[tabindex="-1"]:focus {
+iframe {
+  border: none;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
+}
+
+[role=button] {
+  cursor: pointer;
+}
+
+[aria-busy=true] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
 }
 
 body {
