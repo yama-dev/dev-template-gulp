@@ -33,11 +33,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 blockquote, q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
 a {
   margin: 0;
   padding: 0;
@@ -109,8 +104,38 @@ a[href^='tel'] {
   visibility: hidden;
 }
 
-[tabindex="-1"]:focus {
+iframe {
+  border: none;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
+}
+
+[role=button] {
+  cursor: pointer;
+}
+
+// aria
+[aria-busy=true] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
 }
 
 body {
@@ -120,10 +145,9 @@ body {
 body, button, input, select, textarea, datalist {
   // Font settings.
   // For Gothic.
-  @import url('https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css');
   font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
 
-  // @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+  // https://fonts.google.com/specimen/Noto+Sans+JP
   // font-family: "Noto Sans JP", "游ゴシック", YuGothic, "Helvetica", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Helvetica Neue", Arial, sans-serif;
 
   // For Mincho.
@@ -137,5 +161,5 @@ body, button, input, select, textarea, datalist {
   // -moz-osx-font-smoothing: grayscale;
 
   // word-break: break-all;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }

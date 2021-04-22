@@ -3,7 +3,6 @@
   Reset Stylesheet
   Author: yama-dev - https://github.com/yama-dev
   */
-@import url("https://cdn.jsdelivr.net/npm/yakuhanjp@3.1.0/dist/css/yakuhanjp.min.css");
 html, body, div, span, object, iframe, embed, main,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, cite, code,
@@ -33,12 +32,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 blockquote, q {
   quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
 }
 
 a {
@@ -116,8 +109,37 @@ a[href^='tel'] {
   content: '.';
 }
 
-[tabindex="-1"]:focus {
+iframe {
+  border: none;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0;
+}
+
+[role=button] {
+  cursor: pointer;
+}
+
+[aria-busy=true] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
 }
 
 body {
