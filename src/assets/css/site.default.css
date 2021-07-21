@@ -17,7 +17,7 @@ footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, source {
   vertical-align: middle;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   outline: 0;
   border: 0;
@@ -147,12 +147,12 @@ body {
 }
 
 body, button, input, select, textarea, datalist {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   word-wrap: break-word;
   font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
 }
 
 /*!

@@ -6,9 +6,10 @@ import notifier       from 'node-notifier';
 
 import { src, dest } from 'gulp';
 
-import sass           from 'gulp-sass';
-import sassCompiler   from 'node-sass';
-sass.compiler = sassCompiler;
+import gulpSass from 'gulp-sass';
+import nodeSass from 'node-sass';
+const sass = gulpSass(nodeSass);
+
 import postcss        from 'gulp-postcss';
 import pixrem         from 'pixrem';
 import autoprefixer   from 'autoprefixer';

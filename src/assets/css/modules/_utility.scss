@@ -11,7 +11,7 @@
 
 @for $i from 0 through 20 {
   .u-fs-#{$i * 1} {
-    font-size;:#{$i * 10}#{'%'};
+    font-size:#{$i * 10}#{'%'};
   }
 }
 
