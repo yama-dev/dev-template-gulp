@@ -136,6 +136,14 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/*.es*`,
   ],
 
+  imageMinDirectory: [
+    `${CONFIG_PATH.source}**/*.png`,
+    `${CONFIG_PATH.source}**/*.jpg`,
+    `${CONFIG_PATH.source}**/*.jpeg`,
+    `${CONFIG_PATH.source}**/*.gif`,
+    `${CONFIG_PATH.source}**/*.svg`,
+  ],
+
   cleanDirectory: [
     `${CONFIG_PATH.source}**/*.map`,
     `${CONFIG_PATH.sourceBuild}**/*.map`,

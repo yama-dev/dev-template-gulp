@@ -49,7 +49,8 @@ const taskSass = (isRefresh = false) => {
   };
 
   const _config_autoprefixer = {
-    grid: true
+    grid: true,
+    cascade: false
   };
 
   let _config_postcss = [];
