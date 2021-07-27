@@ -10,7 +10,7 @@
   ],
   "author": "yama-dev",
   "license": "MIT",
-  "main": "index.js",
+  "main": "gulpfile.babel.js",
   "scripts": {
     "start": "npm install -s && npm run dev",
     "dev": "gulp --develop --silent",
