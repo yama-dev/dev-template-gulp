@@ -17,6 +17,7 @@ import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
 import terser from 'gulp-terser';
 import eslint from 'gulp-eslint';
+import prettier from 'gulp-prettier';
 
 /**
  * Js Task Babel, Webpack.
@@ -129,6 +130,14 @@ let defaultFunction = ()=>{
       console.log('[dev-template] ERROR ', e);
       this.emit('end');
     })
+    .pipe(prettier({
+      printWidth: 300,
+      trailingComma: 'es5',
+      tabWidth: 2,
+      semi: true,
+      singleQuote: true,
+      bracketSpacing: false,
+    }))
     .pipe(gulpif(jsmin ,terser()))
     .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: sourcemaps }));
