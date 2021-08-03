@@ -1,11 +1,5 @@
 # DEV TEMPLATE GULP
 
-![Build Status](https://travis-ci.org/yama-dev/dev-template-gulp.svg?branch=master)
-[![](https://img.shields.io/github/release/yama-dev/dev-template-gulp.svg)](https://github.com/yama-dev/dev-template-gulp/releases/latest)
-[![GitHub](https://img.shields.io/github/license/yama-dev/dev-template-gulp.svg)](https://github.com/yama-dev/dev-template-gulp/blob/master/LICENSE)
-
-<br>
-
 ## 概要
 
 webサイト制作用の開発環境になります。
@@ -29,22 +23,13 @@ __1. Nodejs インストール__
 __ダウンロード__
   -> https://github.com/yama-dev/dev-template-gulp/releases
 
-### 2. npmから起動
+### 2. ターミナルから、開発環境を起動
 
-**ターミナルで以下のコマンドを入力**
-
-``` bash
-npm install
-```
-
-- `package.json` に記述されたモジュールがインストールされる。
+**ターミナルで以下のコマンドを実行**
 
 ``` bash
-npm run dev
+npm start
 ```
-
-- 作業ディレクトリに移動してから以下のコマンドを実行
-- 正常に起動すると`localhost:3000`がブラウザに表示されます。
 
 <br>
 
