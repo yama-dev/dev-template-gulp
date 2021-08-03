@@ -30,7 +30,7 @@
     "postinstall": "npm config delete loglevel"
   },
   "engines": {
-    "node": ">=10.0.0 <=16.5.0"
+    "node": ">=10.0.0 <=16.6.0"
   },
   "repository": {
     "type": "git",
