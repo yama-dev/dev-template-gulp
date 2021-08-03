@@ -2,7 +2,7 @@
  * IMPORT MODULES
  */
 import CONFIG from '../config';
-import { src, dest, lastRun } from 'gulp';
+import { src, dest } from 'gulp';
 import streamUtil from '@yama-dev/gulp-stream-util';
 import notifier   from 'node-notifier';
 import ejs        from 'gulp-ejs';
@@ -58,7 +58,7 @@ let taskTemplateEjs = () => {
     // preserveLineBreaks: true
   };
 
-  return src(_target, {since: lastRun(taskTemplateEjs)})
+  return src(_target)
     .pipe(plumber())
     .pipe(streamUtil(function(){
       if(CONFIG.user.ejs){
