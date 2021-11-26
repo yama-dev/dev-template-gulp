@@ -27,12 +27,13 @@ let taskTemplateEjs = () => {
   }
 
   let _config_ejs_data = {};
+  _config_ejs_data = {
+    ejs: {},
+    env: CONFIG.env,
+    data: null
+  };
   if(CONFIG.user.ejs){
-    _config_ejs_data = {
-      ejs: CONFIG.user.ejs,
-      env: CONFIG.env,
-      data: null
-    };
+    _config_ejs_data.ejs = CONFIG.user.ejs;
   }
 
   if(CONFIG.user.data){
@@ -63,7 +64,7 @@ let taskTemplateEjs = () => {
     .pipe(streamUtil(function(){
       if(CONFIG.user.ejs){
         let _current_data = _config_ejs_data.ejs.pages.find(item => item.slug == this.dir);
-        _config_ejs_data.ejs.current = null;
+        _config_ejs_data.ejs.current = {};
         if(_current_data) _config_ejs_data.ejs.current = _current_data;
       }
     }))
