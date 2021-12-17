@@ -23,7 +23,9 @@ ARGV.map((item,i)=>{
     if(ARGV[i+1]){
       if(!/--/.test(ARGV[i+1])) _env[_item] = ARGV[i+1];
       else _env[_item] = true;
-      _env[_item] = _env[_item] === 'false' ? false : _env[_item];
+      let _env_item = _env[_item] === 'false' ? false : _env[_item];
+      if(_env_item === 'true') _env_item = true;
+      _env[_item] = _env_item;
     } else {
       _env[_item] = true;
     }
