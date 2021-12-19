@@ -35,10 +35,14 @@ let taskServer = ()=>{
   }
   if(CONFIG.user.host) _config_bs.host = CONFIG.user.host;
   if(CONFIG.env.host) _config_bs.host = CONFIG.env.host;
+
+  if(CONFIG.user.startPath) _config_bs.startPath = CONFIG.user.startPath;
+  if(CONFIG.env.startPath) _config_bs.startPath = CONFIG.env.startPath;
+  
   browserSync.init(_config_bs);
 
   // COPY.
-  if(CONFIG.user.outputDirectory){
+  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
     let _target = CONFIG.deployDirectory.slice();
     if(CONFIG.user.webpack){
       let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
