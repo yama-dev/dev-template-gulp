@@ -2,9 +2,13 @@
  * IMPORT MODULES
  */
 import path from 'path';
-import CONFIG        from '../config';
-import { src, dest, lastRun } from 'gulp';
-import ignore        from 'gulp-ignore';
+import CONFIG from '../config';
+import {
+  src,
+  dest,
+  lastRun,
+} from 'gulp';
+import ignore from 'gulp-ignore';
 
 /**
  * Copy Task
@@ -12,7 +16,7 @@ import ignore        from 'gulp-ignore';
 let taskCopy = ()=>{
   let _target = CONFIG.deployDirectory.slice();
 
-  if(CONFIG.user.webpack){
+  if(CONFIG.user.webpack || CONFIG.env.webpack){
     let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
     let _webpackConfig = require(_configfile_webpack);
     Object.keys(_webpackConfig.entry).forEach(function (key) {

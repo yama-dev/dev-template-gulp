@@ -6,13 +6,14 @@ import notifier from 'node-notifier';
 import fs from 'fs';
 import path from 'path';
 import colors from 'colors';
+// import glob from 'glob';
 
 import { src, dest } from 'gulp';
-import streamUtil from '@yama-dev/gulp-stream-util';
+// import streamUtil from '@yama-dev/gulp-stream-util';
 
 import gulpif from 'gulp-if';
-import cache from 'gulp-cached';
-import rename from 'gulp-rename';
+// import cache from 'gulp-cached';
+// import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import javascriptObfuscator from 'gulp-javascript-obfuscator';
 import terser from 'gulp-terser';
@@ -25,9 +26,24 @@ import prettier from 'gulp-prettier';
 
 import babel from 'gulp-babel';
 
-let defaultFunction = ()=>{
-  let _target = CONFIG.watchIgnoreDirectory.js.slice();
+let taskJsBabel = ()=>{
+  let _target = [];
+
   _target.unshift(CONFIG.watchDirectory.es);
+
+  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+    _target.unshift(CONFIG.watchDirectory.jspre);
+    _target = [..._target, ...CONFIG.watchIgnoreDirectory.js];
+  }
+
+  if(CONFIG.user.webpack || CONFIG.env.webpack){
+    let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+    let _webpackConfig = require(_configfile_webpack);
+
+    Object.keys(_webpackConfig.entry).forEach(function (key) {
+      _target.push(`!${CONFIG.path.source}**/${path.basename(_webpackConfig.entry[key])}`);
+    });
+  }
 
   let sourcemaps = false;
   if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
@@ -146,39 +162,38 @@ let defaultFunction = ()=>{
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
 
-let useWebpackFunction = ()=>{
+let taskJsWebpack = ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.watchDirectory.es);
 
-  let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
-
-  if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
-    console.log(`[dev-template] NOT FOUND ${path.join(__dirname,_configfile_webpack)}`.white.bgRed);
-    process.exit(0);
-  }
-
-  return src(_target)
-    .pipe(plumber({
-      errorHandler(error){
-        notifier.notify({ title: 'WEBPACK コンパイル エラー', message: error.message });
-      }
-    }))
-    .pipe(webpackStream({
-      config : require(_configfile_webpack)
-    }, webpack))
-    .on('error', function(e) {
-      console.log('[dev-template] ERROR ', e);
-      this.emit('end');
-    })
-    .pipe(dest(CONFIG.outputDirectory.dev));
-};
-
-let taskJsBabel = () => {
   if(CONFIG.user.webpack || CONFIG.env.webpack){
-    return useWebpackFunction();
+    let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+
+    if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
+      console.log(`[dev-template] NOT FOUND ${path.join(__dirname,_configfile_webpack)}`.white.bgRed);
+      return Promise.resolve('not use webpack.');
+    }
+
+    return src(_target)
+      .pipe(plumber({
+        errorHandler(error){
+          notifier.notify({ title: 'WEBPACK コンパイル エラー', message: error.message });
+        }
+      }))
+      .pipe(webpackStream({
+        config : require(_configfile_webpack)
+      }, webpack))
+      .on('error', function(e) {
+        console.log('[dev-template] ERROR ', e);
+        this.emit('end');
+      })
+      .pipe(dest(CONFIG.outputDirectory.dev));
   } else {
-    return defaultFunction();
+    return Promise.resolve('not use webpack.');
   }
 };
 
-export default taskJsBabel;
+export {
+  taskJsWebpack,
+  taskJsBabel,
+};
