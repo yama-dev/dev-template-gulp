@@ -5,7 +5,6 @@ import CONFIG from '../config';
 import notifier from 'node-notifier';
 import fs from 'fs';
 import path from 'path';
-import colors from 'colors';
 // import glob from 'glob';
 
 import { src, dest } from 'gulp';
