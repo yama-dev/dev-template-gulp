@@ -4,7 +4,7 @@ let _user = {}, _path = {};
 
 try {
   _user = fs.readFileSync('./.config.json', 'utf8');
-  _user = JSON.parse(_user);
+  _user = JSON.parse(String(_user));
 } catch (e) {
   console.log('[dev-template] not use .config.json');
 }
