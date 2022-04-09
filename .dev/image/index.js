@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import path from 'path';
+// import path from 'path';
 import CONFIG        from '../config';
 import { src, dest } from 'gulp';
 import imagemin      from 'gulp-imagemin';
