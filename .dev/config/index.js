@@ -32,7 +32,7 @@ let CONFIG = {
     php     : `${CONFIG_PATH.sourceBuild}**/*.php`,
     css     : `${CONFIG_PATH.sourceBuild}**/*.css`,
     sass    : `${CONFIG_PATH.source}**/*.scss`,
-    jspre   : `${CONFIG_PATH.source}**/*.js`,
+    jspre   : `${CONFIG_PATH.source}**/!(vender|vender|libs|lib)/*.js`,
     js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
     es      : `${CONFIG_PATH.source}**/*.es*`
   },
