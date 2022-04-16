@@ -16,6 +16,10 @@ import ignore from 'gulp-ignore';
 let taskCopy = ()=>{
   let _target = CONFIG.deployDirectory.slice();
 
+  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+    _target.push(`!${CONFIG.watchDirectory.jspre}`);
+  }
+
   if(CONFIG.user.webpack || CONFIG.env.webpack){
     let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
     let _webpackConfig = require(_configfile_webpack);
