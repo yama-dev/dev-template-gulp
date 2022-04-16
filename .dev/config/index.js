@@ -160,7 +160,9 @@ if(CONFIG.user.twig || CONFIG.env.twig){
   CONFIG.user.proxy = '127.0.0.1:3333';
   CONFIG.env.htmlLint = false;
   CONFIG.env.jsLint = false;
-  CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+    CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+  }
 }
 
 export default CONFIG;
