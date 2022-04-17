@@ -94,6 +94,7 @@ let taskTemplatePug = () => {
         this.emit('end');
       }
     }))
+    // @ts-ignore
     .pipe(pug(_config_pug))
     .pipe(rename(function(path) {
       path.basename = path.basename.replace('.html','');
