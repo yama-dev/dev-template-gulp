@@ -1,7 +1,8 @@
 let _env = {
-  sourcemaps: false,
+  sourcemaps: null,
 
   htmlLint: true,
+  htmlMin: null,
 
   php: false,
 
