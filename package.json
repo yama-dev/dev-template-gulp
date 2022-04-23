@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -130,5 +130,8 @@
       "ecmaVersion": 2020,
       "sourceType": "module"
     }
+  },
+  "volta": {
+    "node": "16.15.1"
   }
 }
