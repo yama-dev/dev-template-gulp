@@ -12,9 +12,10 @@ let _env = {
   obfuscator: false,
   obfuscatorMax: false,
 
-  cssMin: false, // https://github.com/cssnano/cssnano
-  cssSortPropaty: true, // https://github.com/Siilwyn/css-declaration-sorter
-  cssMergeMediaQuery: true, // https://github.com/SassNinja/postcss-combine-media-query
+  cssMin: null, // https://github.com/cssnano/cssnano
+  cssSortPropaty: null, // https://github.com/Siilwyn/css-declaration-sorter
+  cssMergeMediaQuery: null, // https://github.com/SassNinja/postcss-combine-media-query
+  cssCascade: null,
 };
 
 const ARGV = process.argv.slice(2);
