@@ -56,6 +56,10 @@ const taskSass = (isRefresh = false) => {
     cascade: false
   };
 
+  if(CONFIG.env.cssCascade === true || CONFIG.user.cssCascade === true){
+    _config_autoprefixer.cascade = true;
+  }
+
   let _config_postcss = [];
 
   if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
