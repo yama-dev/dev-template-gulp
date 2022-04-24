@@ -8,7 +8,9 @@ import { src, dest } from 'gulp';
 
 import gulpSass from 'gulp-sass';
 import nodeSass from 'node-sass';
-const sass = gulpSass(nodeSass);
+import dartSass from 'sass';
+// const sass = gulpSass(nodeSass);
+const sass = gulpSass(dartSass);
 
 import postcss        from 'gulp-postcss';
 import pixrem         from 'pixrem';
