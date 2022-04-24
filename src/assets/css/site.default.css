@@ -15,15 +15,15 @@ table, tbody, tfoot, thead, tr, th, td, caption,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, source {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
   vertical-align: middle;
+  background: transparent;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 0;
-  outline: 0;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  font-size: 100%;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -35,11 +35,11 @@ blockquote, q {
 }
 
 a {
-  vertical-align: baseline;
   margin: 0;
-  background: transparent;
   padding: 0;
   font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
 
 ins {
@@ -60,8 +60,8 @@ del {
 }
 
 abbr[title], dfn[title] {
-  cursor: help;
   border-bottom: 1px dotted;
+  cursor: help;
 }
 
 table {
@@ -71,11 +71,11 @@ table {
 
 hr {
   display: block;
-  margin: 1em 0;
+  height: 1px;
   border: 0;
   border-top: 1px solid #cccccc;
+  margin: 1em 0;
   padding: 0;
-  height: 1px;
 }
 
 ol, ul {
@@ -84,8 +84,8 @@ ol, ul {
 
 button, input, select, textarea, datalist {
   vertical-align: middle;
-  background-color: transparent;
   min-height: 1.5em;
+  background-color: transparent;
 }
 
 input[type="submit"], input[type="reset"] {
@@ -102,11 +102,11 @@ a[href^='tel'] {
 }
 
 .clearfix:after {
+  content: '.';
   display: block;
   clear: both;
-  visibility: hidden;
   height: 0;
-  content: '.';
+  visibility: hidden;
 }
 
 iframe {
@@ -147,47 +147,49 @@ body {
 }
 
 body, button, input, select, textarea, datalist {
+  font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
   word-wrap: break-word;
-  font-family: YakuHanJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  .is-pc {
+    display: block;
+  }
+  .is-sp {
+    display: none;
+  }
+  .is-pc-inline {
+    display: inline-block;
+  }
+  .is-sp-inline {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .is-pc {
+    display: none;
+  }
+  .is-sp {
+    display: block;
+  }
+  .is-pc-inline {
+    display: none;
+  }
+  .is-sp-inline {
+    display: inline-block;
+  }
 }
 
 /*!
   Styles
   */
 img {
+  max-width: 100%;
   display: block;
   vertical-align: middle;
-  max-width: 100%;
-}
-@media screen and (min-width: 768px){
-  .is-pc {
-    display: block;
-  }
-  .is-sp {
-    display: none;
-  }
-  .is-pc-inline {
-    display: inline-block;
-  }
-  .is-sp-inline {
-    display: none;
-  }
-}
-@media screen and (max-width: 767px){
-  .is-pc {
-    display: none;
-  }
-  .is-sp {
-    display: block;
-  }
-  .is-pc-inline {
-    display: none;
-  }
-  .is-sp-inline {
-    display: inline-block;
-  }
 }
