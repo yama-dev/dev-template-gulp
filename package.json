@@ -30,7 +30,7 @@
     "postinstall": "npm config delete loglevel"
   },
   "engines": {
-    "node": ">=10.0.0 <=16.13.0"
+    "node": ">=14.0.0 <=16.15.1"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
+    "gulp-changed": "^4.0.3",
     "gulp-ejs": "^5.1.0",
     "gulp-eslint": "github:yama-dev/gulp-eslint#v7.20.0",
     "gulp-htmlhint": "^4.0.1",
@@ -81,6 +82,7 @@
     "pixrem": "^5.0.0",
     "postcss": "^8.3.5",
     "postcss-combine-media-query": "^1.0.1",
+    "sass": "^1.52.2",
     "webpack": "^4.41.5",
     "webpack-stream": "^5.2.1"
   },
