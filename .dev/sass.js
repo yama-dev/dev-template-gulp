@@ -32,14 +32,14 @@ const taskSass = (isRefresh = false) => {
 
   // Sourcemap setting.
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
+  if(CONFIG.user.sourcemaps === true
+    || CONFIG.user.sourcemap === true
+    || CONFIG.env.sourcemaps === true){
     sourcemaps = true;
-  } else if(CONFIG.user.sourcemaps === false || CONFIG.user.sourcemap === false){
-    sourcemaps = false;
   }
-  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true){
-    sourcemaps = true;
-  } else if(CONFIG.env.sourcemaps === false || CONFIG.env.sourcemap === false){
+  if(CONFIG.user.sourcemaps === false
+    || CONFIG.user.sourcemap === false
+    || CONFIG.env.sourcemaps === false){
     sourcemaps = false;
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
