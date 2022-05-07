@@ -6,9 +6,9 @@ import CONFIG from '../config';
 import {
   src,
   dest,
-  lastRun,
 } from 'gulp';
 import ignore from 'gulp-ignore';
+import changed       from 'gulp-changed';
 
 /**
  * Copy Task
@@ -28,7 +28,8 @@ let taskCopy = ()=>{
     });
   }
 
-  return src(_target, { since: lastRun(taskCopy) })
+  return src(_target)
+    .pipe(changed(CONFIG.outputDirectory.dev))
     .pipe(ignore.include({isFile: true}))
     .pipe(dest(CONFIG.outputDirectory.dev));
 };
