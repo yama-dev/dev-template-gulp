@@ -26,6 +26,7 @@ let taskWatch = ()=>{
   watcherSass.on('change', function(filepath, stats) {
     let filename = path.basename(filepath);
     let refreshflg = /^_.{5,}/.test(filename);
+    console.log('[dev-template] '+filename);
     taskSass(refreshflg);
   });
 
