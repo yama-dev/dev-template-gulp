@@ -3,7 +3,7 @@
 // Set Reset-Css
 
 // https://github.com/yama-dev
-@import "./vender/reset.scss";
+@use "./vender/reset.scss";
 
 $PATH_ROOT: "/";
 $PATH_IMG: "/assets/img/";

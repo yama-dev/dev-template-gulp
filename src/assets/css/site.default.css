@@ -88,7 +88,7 @@ button, input, select, textarea, datalist {
   background-color: transparent;
 }
 
-input[type="submit"], input[type="reset"] {
+input[type=submit], input[type=reset] {
   cursor: pointer;
 }
 
@@ -96,13 +96,13 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
 }
 
-a[href^='tel'] {
+a[href^=tel] {
   display: inline-block;
   color: inherit;
 }
 
 .clearfix:after {
-  content: '.';
+  content: ".";
   display: block;
   clear: both;
   height: 0;
@@ -169,7 +169,6 @@ body, button, input, select, textarea, datalist {
     display: none;
   }
 }
-
 @media screen and (max-width: 767px) {
   .is-pc {
     display: none;
@@ -184,7 +183,6 @@ body, button, input, select, textarea, datalist {
     display: inline-block;
   }
 }
-
 /*!
   Styles
   */
