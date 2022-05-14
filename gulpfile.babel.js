@@ -11,13 +11,13 @@ let _copy = `${pkg.name.toUpperCase()}
 - Copyright ${pkg.author}`;
 console.log('-'.repeat(38) + '\n'+ _copy + '\n'+'-'.repeat(38));
 import { series, parallel } from 'gulp';
-import taskSass from './.dev/sass';
+import taskSass from './.dev/sass/';
 import {
   taskJsBabel,
   taskJsWebpack,
 } from './.dev/javascript_babel/';
 import taskTemplate from './.dev/template/';
-import taskServer from './.dev/server';
+import taskServer from './.dev/server/';
 import taskWatch from './.dev/watch/';
 import taskClean from './.dev/clean/';
 import taskPhp from './.dev/php/';

@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from './config';
+import CONFIG from '../config';
 import notifier       from 'node-notifier';
 
 import { src, dest } from 'gulp';
