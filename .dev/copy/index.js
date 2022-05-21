@@ -2,7 +2,7 @@
  * IMPORT MODULES
  */
 import path from 'path';
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import {
   src,
   dest,

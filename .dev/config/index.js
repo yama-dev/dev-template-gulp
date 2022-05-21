@@ -8,8 +8,8 @@
 import {
   CONFIG_PATH,
   CONFIG_USER,
-} from './pathuser';
-import { CONFIG_ENV  } from './env';
+} from './pathuser.js';
+import { CONFIG_ENV  } from './env.js';
 
 /**
  * Set CONFIG.

@@ -2,13 +2,13 @@
  * IMPORT MODULES
  */
 import path from 'path';
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import { src, watch } from 'gulp';
-import taskCopy from '../copy';
+import taskCopy from '../copy/index.js';
 import {
   taskHtmlLint,
   taskHtmlMin,
-} from '../html';
+} from '../html/index.js';
 import browserSync from 'browser-sync';
 browserSync.create();
 
