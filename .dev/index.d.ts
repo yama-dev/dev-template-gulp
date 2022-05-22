@@ -20,6 +20,7 @@ declare module 'gulp-babel';
 declare module 'gulp-uglify';
 declare module 'gulp-rename';
 declare module 'gulp-ejs';
+declare module 'gulp-changed';
 
 declare module '@yama-dev/gulp-stream-util';
 declare module '@yama-dev/data-collector';
