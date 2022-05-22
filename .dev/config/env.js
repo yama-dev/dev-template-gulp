@@ -18,6 +18,10 @@
  * @property {boolean=} silent
  * @property {boolean=} webpack
  *
+ * @property {string=} proxy
+ * @property {string=} host
+ * @property {string=} startPath
+ *
  * @property {boolean=} develop
  * @property {boolean=} production
  * @property {boolean=} prod
