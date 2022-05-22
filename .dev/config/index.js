@@ -118,7 +118,7 @@ let CONFIG = {
     ]
   },
 
-  deployDirectory: [
+  copyDirectory: [
     `${CONFIG_PATH.source}**/*`,
     `!${CONFIG_PATH.source}_*/**`,
     `!${CONFIG_PATH.source}__*/**`,
@@ -131,7 +131,23 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/_*.css`,
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/_*.js`,
-    `!${CONFIG_PATH.source}**/*.es*`,
+    `!${CONFIG_PATH.source}**/*.es`,
+  ],
+
+  deployDirectory: [
+    `${CONFIG_PATH.sourceBuild}**/*`,
+    `!${CONFIG_PATH.sourceBuild}_*/**`,
+    `!${CONFIG_PATH.sourceBuild}__*/**`,
+    `!${CONFIG_PATH.sourceBuild}___*/**`,
+    `!${CONFIG_PATH.sourceBuild}vender/**`,
+    `!${CONFIG_PATH.sourceBuild}vendor/**`,
+    `!${CONFIG_PATH.sourceBuild}**/*.ejs`,
+    `!${CONFIG_PATH.sourceBuild}**/*.pug`,
+    `!${CONFIG_PATH.sourceBuild}**/*.slim`,
+    `!${CONFIG_PATH.sourceBuild}**/_*.css`,
+    `!${CONFIG_PATH.sourceBuild}**/*.scss`,
+    `!${CONFIG_PATH.sourceBuild}**/_*.js`,
+    `!${CONFIG_PATH.sourceBuild}**/*.es`,
   ],
 
   imageMinDirectory: [
@@ -161,7 +177,7 @@ if(CONFIG.user.twig || CONFIG.env.twig){
   CONFIG.env.htmlLint = false;
   CONFIG.env.jsLint = false;
   if(CONFIG.path.source !== CONFIG.path.sourceBuild){
-    CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+    CONFIG.copyDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
   }
 }
 
