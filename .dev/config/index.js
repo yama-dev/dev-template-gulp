@@ -34,7 +34,7 @@ let CONFIG = {
     sass    : `${CONFIG_PATH.source}**/*.scss`,
     jspre   : `${CONFIG_PATH.source}**/!(vender|vender|libs|lib)/*.js`,
     js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
-    es      : `${CONFIG_PATH.source}**/*.es*`
+    es      : `${CONFIG_PATH.source}**/*.es`
   },
 
   watchIgnoreDirectory: {
