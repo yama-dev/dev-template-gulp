@@ -7,7 +7,7 @@ import notifier       from 'node-notifier';
 import { src, dest } from 'gulp';
 
 import gulpSass from 'gulp-sass';
-import nodeSass from 'node-sass';
+// import nodeSass from 'node-sass';
 import dartSass from 'sass';
 // const sass = gulpSass(nodeSass);
 const sass = gulpSass(dartSass);
