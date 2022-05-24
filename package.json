@@ -30,7 +30,7 @@
     "postinstall": "npm config delete loglevel"
   },
   "engines": {
-    "node": ">=14.0.0 <=16.15.1"
+    "node": ">=14.0.0 <=16.17.0"
   },
   "repository": {
     "type": "git",
@@ -40,13 +40,13 @@
     "url": "https://github.com/yama-dev/dev-template-gulp/issues",
     "email": "tatsuya.yamamoto69@gmail.com"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/register": "^7.14.5",
     "@yama-dev/data-collector": "^0.6.0",
     "@yama-dev/data-template": "^0.6.0",
+    "@yama-dev/dev-template-gulp-core": "yama-dev/dev-template-gulp-core.git#v0.0.0",
     "@yama-dev/gulp-stream-util": "^0.3.0",
     "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
@@ -54,6 +54,7 @@
     "css-declaration-sorter": "^6.0.3",
     "cssnano": "^5.0.6",
     "del": "^6.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^7.31.0",
     "esm": "^3.2.25",
     "glob": "^7.1.7",
@@ -99,10 +100,10 @@
     "comments": true
   },
   "browserslist": [
-    "ie >= 11",
-    "ios >= 10",
-    "android >= 5",
-    "last 2 versions"
+    "last 2 versions",
+    "not dead",
+    "not IE 11",
+    "ios >= 12"
   ],
   "eslintConfig": {
     "env": {
@@ -137,6 +138,6 @@
     }
   },
   "volta": {
-    "node": "16.15.1"
+    "node": "16.16.0"
   }
 }
