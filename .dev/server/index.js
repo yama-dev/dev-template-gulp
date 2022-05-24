@@ -68,6 +68,9 @@ let taskServer = ()=>{
       });
     }
     watch(_target_html).on('change', browserSync.reload);
+    if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+      watch([CONFIG.watchDirectory.htmlpre]).on('change', taskCopy);
+    }
   }
 
   // JS.

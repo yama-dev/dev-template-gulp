@@ -25,6 +25,7 @@ let CONFIG = {
   },
 
   watchDirectory: {
+    htmlpre : `${CONFIG_PATH.source}**/*.html`,
     html    : `${CONFIG_PATH.sourceBuild}**/*.html`,
     ejs     : `${CONFIG_PATH.source}**/*.ejs`,
     pug     : `${CONFIG_PATH.source}**/*.pug`,

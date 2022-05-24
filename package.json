@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.13.1",
+  "version": "1.13.7",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -55,6 +55,7 @@
     "cssnano": "^5.0.6",
     "del": "^6.0.0",
     "eslint": "^7.31.0",
+    "esm": "^3.2.25",
     "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
