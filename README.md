@@ -2,48 +2,29 @@
 
 ## 概要
 
-webサイト制作用の開発環境になります。
+webサイト制作用の開発環境
 
-- HTML,Sass,javascriptファイルが同梱されています。
+## How to use
 
-<br>
+- Nodejs
+  - 公式 -> [nodejs](https://nodejs.org/ja/)
+  - バージョン管理する場合は、Voltaの利用推奨 [volta](https://volta.sh/)
 
-## 利用環境の構築
+- Git
 
-__1. Nodejs インストール__
+- コマンド実行
 
-  公式 -> [nodejs](https://nodejs.org/ja/)
-
-<br>
-
-## 使い方
-
-### 1. dev-template-gulp をダウンロードして、作業フォルダに配置
-
-__ダウンロード__
-  -> https://github.com/yama-dev/dev-template-gulp/releases
-
-### 2. ターミナルから、開発環境を起動
-
-**ターミナルで以下のコマンドを実行**
-
-``` bash
-npm start
-```
-
-<br>
+    ``` bash
+    npm start
+    ```
 
 ## Download
 
 Zip -> https://github.com/yama-dev/dev-template-gulp/releases/latest
 
-<br>
-
 ## Licence
 
 [MIT](https://mit-license.org/)
-
-<br>
 
 ## Author
 
