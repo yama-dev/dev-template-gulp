@@ -2,16 +2,16 @@
  * IMPORT MODULES
  */
 import path from 'path';
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import notifier from 'node-notifier';
 import glob from 'glob';
 import { watch } from 'gulp';
-import { taskTemplateEjs } from '../template';
-import taskSass from '../sass';
+import { taskTemplateEjs } from '../template/index.js';
+import taskSass from '../sass/index.js';
 import {
   taskJsBabel,
   taskJsWebpack,
-} from '../javascript_babel';
+} from '../javascript_babel/index.js';
 
 /**
  * Watch Task
@@ -26,6 +26,7 @@ let taskWatch = ()=>{
   watcherSass.on('change', function(filepath, stats) {
     let filename = path.basename(filepath);
     let refreshflg = /^_.{5,}/.test(filename);
+    console.log('[dev-template] '+filename);
     taskSass(refreshflg);
   });
 

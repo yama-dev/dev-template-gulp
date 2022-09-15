@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.12.1",
+  "version": "1.13.7",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -21,16 +21,15 @@
     "php": "gulp --php --develop --silent",
     "twig": "gulp --twig --develop --silent",
     "deploy": "gulp deploy --production --silent",
-    "imagemin": "gulp imagemin --silent",
     "check": "npm outdated",
     "lint": "eslint gulpfile.js",
-    "test": "npm run lint && gulp release",
+    "test": "npm run lint && gulp release --silent",
     "test:twigmodule": "phpunit ./src/_twig/ModuleTest.php || true",
     "preinstall": "npm config set loglevel silent",
     "postinstall": "npm config delete loglevel"
   },
   "engines": {
-    "node": ">=10.0.0 <=16.13.0"
+    "node": ">=14.0.0 <=16.17.0"
   },
   "repository": {
     "type": "git",
@@ -40,13 +39,13 @@
     "url": "https://github.com/yama-dev/dev-template-gulp/issues",
     "email": "tatsuya.yamamoto69@gmail.com"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/register": "^7.14.5",
     "@yama-dev/data-collector": "^0.6.0",
     "@yama-dev/data-template": "^0.6.0",
+    "@yama-dev/dev-template-gulp-core": "yama-dev/dev-template-gulp-core.git#v0.0.0",
     "@yama-dev/gulp-stream-util": "^0.3.0",
     "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
@@ -54,18 +53,20 @@
     "css-declaration-sorter": "^6.0.3",
     "cssnano": "^5.0.6",
     "del": "^6.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^7.31.0",
+    "esm": "^3.2.25",
     "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
+    "gulp-changed": "^4.0.3",
     "gulp-ejs": "^5.1.0",
     "gulp-eslint": "github:yama-dev/gulp-eslint#v7.20.0",
     "gulp-htmlhint": "^4.0.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-ignore": "^3.0.0",
-    "gulp-imagemin": "^7.1.0",
     "gulp-javascript-obfuscator": "^1.1.6",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.0",
@@ -76,11 +77,14 @@
     "gulp-sass": "^5.0.0",
     "gulp-terser": "^2.0.1",
     "node-notifier": "^10.0.0",
-    "node-sass": "^7.0.0",
     "npm-run-all": "^4.1.5",
-    "pixrem": "^5.0.0",
-    "postcss": "^8.3.5",
+    "postcss": "^8.4.14",
+    "postcss-color-hex-alpha": "^8.0.4",
     "postcss-combine-media-query": "^1.0.1",
+    "postcss-custom-media": "^8.0.2",
+    "postcss-custom-selectors": "^6.0.3",
+    "postcss-media-minmax": "^5.0.0",
+    "sass": "^1.52.2",
     "webpack": "^4.41.5",
     "webpack-stream": "^5.2.1"
   },
@@ -94,10 +98,10 @@
     "comments": true
   },
   "browserslist": [
-    "ie >= 11",
-    "ios >= 10",
-    "android >= 5",
-    "last 2 versions"
+    "last 2 versions",
+    "not dead",
+    "not IE 11",
+    "ios >= 12"
   ],
   "eslintConfig": {
     "env": {
@@ -130,5 +134,8 @@
       "ecmaVersion": 2020,
       "sourceType": "module"
     }
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }

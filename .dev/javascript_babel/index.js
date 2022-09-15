@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import notifier from 'node-notifier';
 import fs from 'fs';
 import path from 'path';
@@ -45,14 +45,14 @@ let taskJsBabel = ()=>{
   }
 
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
+  if(CONFIG.user.sourcemaps === true
+    || CONFIG.user.sourcemap === true
+    || CONFIG.env.sourcemaps === true){
     sourcemaps = true;
-  } else if(CONFIG.user.sourcemaps === false || CONFIG.user.sourcemap === false){
-    sourcemaps = false;
   }
-  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true){
-    sourcemaps = true;
-  } else if(CONFIG.env.sourcemaps === false || CONFIG.env.sourcemap === false){
+  if(CONFIG.user.sourcemaps === false
+    || CONFIG.user.sourcemap === false
+    || CONFIG.env.sourcemaps === false){
     sourcemaps = false;
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
@@ -72,6 +72,7 @@ let taskJsBabel = ()=>{
     obfuscator = true;
   }
 
+  /** @type {boolean|object} */
   let _config_obfuscator_default = {
     compact: true,
     controlFlowFlattening: true,
@@ -79,7 +80,7 @@ let taskJsBabel = ()=>{
     deadCodeInjection: true,
     deadCodeInjectionThreshold: 1,
     debugProtection: true,
-    debugProtectionInterval: true,
+    debugProtectionInterval: 2000,
     disableConsoleOutput: true,
     identifierNamesGenerator: 'hexadecimal',
     log: false,
@@ -106,7 +107,7 @@ let taskJsBabel = ()=>{
     controlFlowFlattening: false,
     deadCodeInjection: false,
     debugProtection: false,
-    debugProtectionInterval: false,
+    debugProtectionInterval: 2000,
     disableConsoleOutput: false,
     identifierNamesGenerator: 'hexadecimal',
     log: false,
@@ -169,6 +170,7 @@ let taskJsWebpack = ()=>{
     let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
 
     if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
+      // @ts-ignore
       console.log(`[dev-template] NOT FOUND ${path.join(__dirname,_configfile_webpack)}`.white.bgRed);
       return Promise.resolve('not use webpack.');
     }

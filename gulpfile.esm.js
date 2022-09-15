@@ -11,19 +11,18 @@ let _copy = `${pkg.name.toUpperCase()}
 - Copyright ${pkg.author}`;
 console.log('-'.repeat(38) + '\n'+ _copy + '\n'+'-'.repeat(38));
 import { series, parallel } from 'gulp';
-import taskSass from './.dev/sass';
+import taskSass from './.dev/sass/index.js';
 import {
   taskJsBabel,
   taskJsWebpack,
-} from './.dev/javascript_babel/';
-import taskTemplate from './.dev/template/';
-import taskServer from './.dev/server';
-import taskWatch from './.dev/watch/';
-import taskClean from './.dev/clean/';
-import taskPhp from './.dev/php/';
-import taskTwig from './.dev/twig/';
-import tackDeploy from './.dev/deploy/';
-import tackImageMin from './.dev/image/';
+} from './.dev/javascript_babel/index.js';
+import taskTemplate from './.dev/template/index.js';
+import taskServer from './.dev/server/index.js';
+import taskWatch from './.dev/watch/index.js';
+import taskClean from './.dev/clean/index.js';
+import taskPhp from './.dev/php/index.js';
+import taskTwig from './.dev/twig/index.js';
+import tackDeploy from './.dev/deploy/index.js';
 export default series(
   taskClean,
   taskTemplate,
@@ -57,8 +56,4 @@ export const deploy = series(
   taskJsBabel,
   taskJsWebpack,
   tackDeploy
-);
-export const imagemin = series(
-  taskClean,
-  tackImageMin
 );

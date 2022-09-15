@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import { src, dest } from 'gulp';
 import streamUtil from '@yama-dev/gulp-stream-util';
 import notifier   from 'node-notifier';
@@ -94,6 +94,7 @@ let taskTemplatePug = () => {
         this.emit('end');
       }
     }))
+    // @ts-ignore
     .pipe(pug(_config_pug))
     .pipe(rename(function(path) {
       path.basename = path.basename.replace('.html','');

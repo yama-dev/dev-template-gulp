@@ -1,0 +1,23 @@
+{
+  "include": [
+    "**/*"
+  ],
+  "compilerOptions": {
+
+    "target": "es2016",
+
+    "module": "commonjs",
+
+    "allowJs": true,
+    "checkJs": true,
+
+    "noImplicitAny": false,
+
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+
+    "esModuleInterop": true,
+
+    "noEmit": true
+  }
+}

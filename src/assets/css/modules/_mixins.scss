@@ -1,18 +1,4 @@
 
-// Style Switching Elements
-@include pc(){
-  .is-pc { display: block; }
-  .is-sp { display: none; }
-  .is-pc-inline { display: inline-block; }
-  .is-sp-inline { display: none; }
-}
-@include sp(){
-  .is-pc { display: none; }
-  .is-sp { display: block; }
-  .is-pc-inline { display: none; }
-  .is-sp-inline { display: inline-block; }
-}
-
 // inline-block
 @mixin inline-block($clild_elem: '*') {
   letter-spacing: -.4em;
@@ -68,6 +54,23 @@
     clear: both;
     height: 0;
     visibility: hidden;
+  }
+}
+
+@mixin line-clamp($count: 3) {
+  @if type-of($count) != 'number' {
+    @error 'not number';
+  }
+
+  @if $count == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $count;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 

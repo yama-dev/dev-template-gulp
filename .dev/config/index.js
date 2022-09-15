@@ -8,8 +8,8 @@
 import {
   CONFIG_PATH,
   CONFIG_USER,
-} from './pathuser';
-import { CONFIG_ENV  } from './env';
+} from './pathuser.js';
+import { CONFIG_ENV  } from './env.js';
 
 /**
  * Set CONFIG.
@@ -25,6 +25,7 @@ let CONFIG = {
   },
 
   watchDirectory: {
+    htmlpre : `${CONFIG_PATH.source}**/*.html`,
     html    : `${CONFIG_PATH.sourceBuild}**/*.html`,
     ejs     : `${CONFIG_PATH.source}**/*.ejs`,
     pug     : `${CONFIG_PATH.source}**/*.pug`,
@@ -32,9 +33,9 @@ let CONFIG = {
     php     : `${CONFIG_PATH.sourceBuild}**/*.php`,
     css     : `${CONFIG_PATH.sourceBuild}**/*.css`,
     sass    : `${CONFIG_PATH.source}**/*.scss`,
-    jspre   : `${CONFIG_PATH.source}**/*.js`,
+    jspre   : `${CONFIG_PATH.source}**/!(vender|vender|libs|lib)/*.js`,
     js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
-    es      : `${CONFIG_PATH.source}**/*.es*`
+    es      : `${CONFIG_PATH.source}**/*.es`
   },
 
   watchIgnoreDirectory: {
@@ -51,8 +52,8 @@ let CONFIG = {
       `!${CONFIG_PATH.sourceBuild}**/wp/**/*.html`,
       `!${CONFIG_PATH.sourceBuild}**/vender/**/*.html`,
       `!${CONFIG_PATH.sourceBuild}**/vendor/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/inc/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/include/**/*.html`,
+      // `!${CONFIG_PATH.sourceBuild}**/inc/**/*.html`,
+      // `!${CONFIG_PATH.sourceBuild}**/include/**/*.html`,
       `!${CONFIG_PATH.sourceBuild}**/ssi/**/*.html`,
       `!${CONFIG_PATH.sourceBuild}_*/**/*.html`,
       `!${CONFIG_PATH.sourceBuild}__*/**/*.html`,
@@ -118,7 +119,7 @@ let CONFIG = {
     ]
   },
 
-  deployDirectory: [
+  copyDirectory: [
     `${CONFIG_PATH.source}**/*`,
     `!${CONFIG_PATH.source}_*/**`,
     `!${CONFIG_PATH.source}__*/**`,
@@ -131,7 +132,23 @@ let CONFIG = {
     `!${CONFIG_PATH.source}**/_*.css`,
     `!${CONFIG_PATH.source}**/*.scss`,
     `!${CONFIG_PATH.source}**/_*.js`,
-    `!${CONFIG_PATH.source}**/*.es*`,
+    `!${CONFIG_PATH.source}**/*.es`,
+  ],
+
+  deployDirectory: [
+    `${CONFIG_PATH.sourceBuild}**/*`,
+    `!${CONFIG_PATH.sourceBuild}_*/**`,
+    `!${CONFIG_PATH.sourceBuild}__*/**`,
+    `!${CONFIG_PATH.sourceBuild}___*/**`,
+    `!${CONFIG_PATH.sourceBuild}vender/**`,
+    `!${CONFIG_PATH.sourceBuild}vendor/**`,
+    `!${CONFIG_PATH.sourceBuild}**/*.ejs`,
+    `!${CONFIG_PATH.sourceBuild}**/*.pug`,
+    `!${CONFIG_PATH.sourceBuild}**/*.slim`,
+    `!${CONFIG_PATH.sourceBuild}**/_*.css`,
+    `!${CONFIG_PATH.sourceBuild}**/*.scss`,
+    `!${CONFIG_PATH.sourceBuild}**/_*.js`,
+    `!${CONFIG_PATH.sourceBuild}**/*.es`,
   ],
 
   imageMinDirectory: [
@@ -160,7 +177,9 @@ if(CONFIG.user.twig || CONFIG.env.twig){
   CONFIG.user.proxy = '127.0.0.1:3333';
   CONFIG.env.htmlLint = false;
   CONFIG.env.jsLint = false;
-  CONFIG.deployDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+    CONFIG.copyDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+  }
 }
 
 export default CONFIG;

@@ -19,3 +19,5 @@ src/_twig/data/html/
 _v*/
 _src*/
 _data*/
+
+dist/

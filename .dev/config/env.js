@@ -1,7 +1,40 @@
+/**
+ * @typedef _envType
+ * @property {boolean | null} sourcemaps
+ * @property {boolean | null} htmlLint
+ * @property {boolean | null} htmlMin
+ * @property {boolean} php
+ * @property {boolean} jsLint
+ * @property {boolean} jsMin
+ * @property {boolean} hide
+ * @property {boolean} obfuscator
+ * @property {boolean} obfuscatorMax
+ * @property {boolean | null} cssMin
+ * @property {boolean | null} cssSortPropaty
+ * @property {boolean | null} cssMergeMediaQuery
+ * @property {boolean | null} cssCascade
+ *
+ * @property {boolean=} twig
+ * @property {boolean=} silent
+ * @property {boolean=} webpack
+ *
+ * @property {string=} proxy
+ * @property {string=} host
+ * @property {string=} startPath
+ *
+ * @property {boolean=} develop
+ * @property {boolean=} production
+ * @property {boolean=} prod
+ */
+
+/**
+ * @type {_envType} _env
+ */
 let _env = {
-  sourcemaps: false,
+  sourcemaps: null,
 
   htmlLint: true,
+  htmlMin: null,
 
   php: false,
 
@@ -11,9 +44,10 @@ let _env = {
   obfuscator: false,
   obfuscatorMax: false,
 
-  cssMin: false, // https://github.com/cssnano/cssnano
-  cssSortPropaty: true, // https://github.com/Siilwyn/css-declaration-sorter
-  cssMergeMediaQuery: true, // https://github.com/SassNinja/postcss-combine-media-query
+  cssMin: null, // https://github.com/cssnano/cssnano
+  cssSortPropaty: null, // https://github.com/Siilwyn/css-declaration-sorter
+  cssMergeMediaQuery: null, // https://github.com/SassNinja/postcss-combine-media-query
+  cssCascade: null,
 };
 
 const ARGV = process.argv.slice(2);

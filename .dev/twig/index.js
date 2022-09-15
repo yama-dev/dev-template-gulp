@@ -1,9 +1,9 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import { exec } from 'child_process';
-import fs from 'fs';
+// import fs from 'fs';
 
 /**
  * Twig Task

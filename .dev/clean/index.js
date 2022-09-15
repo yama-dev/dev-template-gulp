@@ -1,7 +1,7 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from '../config';
+import CONFIG from '../config/index.js';
 import del from 'del';
 
 /**

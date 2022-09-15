@@ -1,8 +1,8 @@
 /**
  * IMPORT MODULES
  */
-import path from 'path';
-import CONFIG        from '../config';
+// import path from 'path';
+import CONFIG        from '../config/index.js';
 import { src, dest } from 'gulp';
 import imagemin      from 'gulp-imagemin';
 import ignore        from 'gulp-ignore';

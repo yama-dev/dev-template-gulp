@@ -1,21 +1,28 @@
 /**
  * IMPORT MODULES
  */
-import CONFIG from './config';
+import CONFIG from '../config/index.js';
 import notifier       from 'node-notifier';
 
 import { src, dest } from 'gulp';
 
 import gulpSass from 'gulp-sass';
-import nodeSass from 'node-sass';
-const sass = gulpSass(nodeSass);
+// import nodeSass from 'node-sass';
+import dartSass from 'sass';
+// const sass = gulpSass(nodeSass);
+const sass = gulpSass(dartSass);
 
 import postcss        from 'gulp-postcss';
-import pixrem         from 'pixrem';
 import autoprefixer   from 'autoprefixer';
 import cssnano        from 'cssnano';
 import cssSorter      from 'css-declaration-sorter';
 import postcssCombineMediaQuery from 'postcss-combine-media-query';
+
+import postcssCustomMedia from 'postcss-custom-media';
+import postcssCustomSelectors from 'postcss-custom-selectors';
+import postcssMediaMinmax from 'postcss-media-minmax';
+import postcssColorHexAlpha from 'postcss-color-hex-alpha';
+
 
 import cache          from 'gulp-cached';
 import plumber        from 'gulp-plumber';
@@ -30,14 +37,14 @@ const taskSass = (isRefresh = false) => {
 
   // Sourcemap setting.
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps === true || CONFIG.user.sourcemap === true){
+  if(CONFIG.user.sourcemaps === true
+    || CONFIG.user.sourcemap === true
+    || CONFIG.env.sourcemaps === true){
     sourcemaps = true;
-  } else if(CONFIG.user.sourcemaps === false || CONFIG.user.sourcemap === false){
-    sourcemaps = false;
   }
-  if(CONFIG.env.sourcemaps === true || CONFIG.env.sourcemap === true){
-    sourcemaps = true;
-  } else if(CONFIG.env.sourcemaps === false || CONFIG.env.sourcemap === false){
+  if(CONFIG.user.sourcemaps === false
+    || CONFIG.user.sourcemap === false
+    || CONFIG.env.sourcemaps === false){
     sourcemaps = false;
   }
   if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
@@ -54,7 +61,16 @@ const taskSass = (isRefresh = false) => {
     cascade: false
   };
 
-  let _config_postcss = [];
+  if(CONFIG.env.cssCascade === true || CONFIG.user.cssCascade === true){
+    _config_autoprefixer.cascade = true;
+  }
+
+  let _config_postcss = [
+    postcssCustomMedia,
+    postcssCustomSelectors,
+    postcssMediaMinmax,
+    postcssColorHexAlpha,
+  ];
 
   if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
     _config_postcss.push( cssSorter({order: 'concentric-css'}) );
@@ -67,7 +83,6 @@ const taskSass = (isRefresh = false) => {
   _config_postcss = [
     ..._config_postcss,
     autoprefixer(_config_autoprefixer),
-    pixrem(),
   ];
 
   if(CONFIG.env.cssMin || CONFIG.user.cssMin){
