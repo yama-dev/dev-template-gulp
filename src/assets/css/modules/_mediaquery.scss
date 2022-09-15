@@ -60,32 +60,3 @@ $sp: 767px;
   }
 }
 
-// iPhone、iPad、およびRetinaディスプレイ用
-
-// Retinaではない場合
-@media screen and (-webkit-max-device-pixel-ratio: 1) { }
-
-// Retinaの場合
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) { }
-
-// iPhoneポートレイト
-@media screen and (max-device-width: 480px) and (orientation:portrait) { }
-
-// iPhoneランドスケープ
-@media screen and (max-device-width: 480px) and (orientation:landscape) { }
-
-// iPadポートレイト
-@media screen and (min-device-width: 481px) and (orientation:portrait) { }
-
-// iPadランドスケープ
-@media screen and (min-device-width: 481px) and (orientation:landscape) { }
-
-// Portrait.
-@media screen and (orientation: portrait) { }
-
-// Landscape.
-@media screen and (orientation: landscape) { }
-
