@@ -43,7 +43,7 @@ let taskServer = ()=>{
 
   // COPY.
   if(CONFIG.path.source !== CONFIG.path.sourceBuild){
-    let _target = CONFIG.deployDirectory.slice();
+    let _target = CONFIG.copyDirectory.slice();
     if(CONFIG.user.webpack){
       let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
       let _webpackConfig = require(_configfile_webpack);
