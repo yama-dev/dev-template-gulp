@@ -37,17 +37,15 @@ const taskSass = (isRefresh = false) => {
 
   // Sourcemap setting.
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps === true
-    || CONFIG.user.sourcemap === true
-    || CONFIG.env.sourcemaps === true){
+  if(CONFIG.env.sourcemaps === true){
     sourcemaps = true;
   }
-  if(CONFIG.user.sourcemaps === false
-    || CONFIG.user.sourcemap === false
-    || CONFIG.env.sourcemaps === false){
+  if(CONFIG.env.sourcemaps === false){
     sourcemaps = false;
   }
-  if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
+  if(CONFIG.env.production == true || CONFIG.env.prod == true){
+    sourcemaps = false;
+  }
 
   const _config_sass = {
     outputStyle: 'expanded', //nested, compact, compressed, expanded.
@@ -61,7 +59,7 @@ const taskSass = (isRefresh = false) => {
     cascade: false
   };
 
-  if(CONFIG.env.cssCascade === true || CONFIG.user.cssCascade === true){
+  if(CONFIG.env.cssCascade === true){
     _config_autoprefixer.cascade = true;
   }
 
@@ -72,11 +70,11 @@ const taskSass = (isRefresh = false) => {
     postcssColorHexAlpha,
   ];
 
-  if(CONFIG.env.cssSortPropaty || CONFIG.user.cssSortPropaty){
+  if(CONFIG.env.cssSortPropaty){
     _config_postcss.push( cssSorter({order: 'concentric-css'}) );
   }
 
-  if(CONFIG.env.cssMergeMediaQuery || CONFIG.user.cssMergeMediaQuery){
+  if(CONFIG.env.cssMergeMediaQuery){
     _config_postcss.push( postcssCombineMediaQuery() );
   }
 
@@ -85,7 +83,7 @@ const taskSass = (isRefresh = false) => {
     autoprefixer(_config_autoprefixer),
   ];
 
-  if(CONFIG.env.cssMin || CONFIG.user.cssMin){
+  if(CONFIG.env.cssMin){
     _config_postcss.push( cssnano({autoprefixer: false}) );
   }
 

@@ -24,31 +24,28 @@ let taskServer = ()=>{
     logLevel: 'info',
     logPrefix: 'dev-template'
   };
-  if(CONFIG.user.proxy){
-    _config_bs.proxy = CONFIG.user.proxy;
-  } else if(CONFIG.env.proxy){
+  if(CONFIG.env.proxy){
     _config_bs.proxy = CONFIG.env.proxy;
   } else {
     _config_bs.server = {
       baseDir: CONFIG.outputDirectory.dev
     };
   }
-  if(CONFIG.user.host) _config_bs.host = CONFIG.user.host;
   if(CONFIG.env.host) _config_bs.host = CONFIG.env.host;
 
-  if(CONFIG.user.startPath) _config_bs.startPath = CONFIG.user.startPath;
+  // 起動時に開くパス
   if(CONFIG.env.startPath) _config_bs.startPath = CONFIG.env.startPath;
   
   browserSync.init(_config_bs);
 
   // COPY.
-  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+  if(CONFIG.env.source !== CONFIG.env.sourceBuild){
     let _target = CONFIG.copyDirectory.slice();
-    if(CONFIG.user.webpack){
-      let _configfile_webpack = CONFIG.user.webpackConfig ? `../${CONFIG.user.webpackConfig}` : '../webpack.config.js';
+    if(CONFIG.env.webpack){
+      let _configfile_webpack = CONFIG.env.webpackConfig ? `../${CONFIG.env.webpackConfig}` : '../webpack.config.js';
       let _webpackConfig = require(_configfile_webpack);
       Object.keys(_webpackConfig.entry).forEach(function (key) {
-        _target.push(`!${CONFIG.path.source}**/*${path.basename(_webpackConfig.entry[key])}`);
+        _target.push(`!${CONFIG.env.source}**/*${path.basename(_webpackConfig.entry[key])}`);
       });
     }
     watch(_target).on('change', taskCopy);
@@ -68,7 +65,7 @@ let taskServer = ()=>{
       });
     }
     watch(_target_html).on('change', browserSync.reload);
-    if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+    if(CONFIG.env.source !== CONFIG.env.sourceBuild){
       watch([CONFIG.watchDirectory.htmlpre]).on('change', taskCopy);
     }
   }
@@ -76,10 +73,10 @@ let taskServer = ()=>{
   // JS.
   const _target_js = CONFIG.watchIgnoreDirectory.js.slice();
   _target_js.unshift(CONFIG.watchDirectory.js);
-  if(CONFIG.env.jsMin || CONFIG.user.jsMin){
+  if(CONFIG.env.jsMin){
     // watch(_target_js).on('change', taskJsMin);
   } else {
-    if(CONFIG.env.jsLint || CONFIG.user.jsLint){
+    if(CONFIG.env.jsLint){
       // watch(_target_js).on('change', taskJsLint);
     }
   }
@@ -96,7 +93,7 @@ let taskServer = ()=>{
   // PHP.
   watch(CONFIG.watchDirectory.php).on('change', browserSync.reload);
 
-  if(CONFIG.user.outputDirectory){
+  if(CONFIG.env.outputDirectory){
     browserSync.reload();
   }
 

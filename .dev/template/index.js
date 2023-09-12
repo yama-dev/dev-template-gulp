@@ -22,7 +22,7 @@ let taskTemplateEjs = () => {
   _target.unshift(CONFIG.watchDirectory.ejs);
 
   let min = false;
-  if(CONFIG.user.htmlMin === true || CONFIG.env.htmlMin === true){
+  if(CONFIG.env.htmlMin === true){
     min = true;
   }
 
@@ -32,8 +32,8 @@ let taskTemplateEjs = () => {
     env: CONFIG.env,
     data: null
   };
-  if(CONFIG.user.ejs){
-    _config_ejs_data.ejs = CONFIG.user.ejs;
+  if(CONFIG.env.ejs){
+    _config_ejs_data.ejs = CONFIG.env.ejs;
   }
 
   if(CONFIG.user.data){
@@ -62,7 +62,7 @@ let taskTemplateEjs = () => {
   return src(_target)
     .pipe(plumber())
     .pipe(streamUtil(function(){
-      if(CONFIG.user.ejs){
+      if(CONFIG.env.ejs){
         let _current_data = _config_ejs_data.ejs.pages.find(item => item.slug == this.dir);
         _config_ejs_data.ejs.current = {};
         if(_current_data) _config_ejs_data.ejs.current = _current_data;

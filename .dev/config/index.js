@@ -6,179 +6,176 @@
  */
 
 import {
-  CONFIG_PATH,
   CONFIG_USER,
-} from './pathuser.js';
-import { CONFIG_ENV  } from './env.js';
+  CONFIG_ENV,
+} from './env.js';
 
 /**
  * Set CONFIG.
  */
 let CONFIG = {
-  path: CONFIG_PATH,
   user: CONFIG_USER,
   env: CONFIG_ENV,
 
   outputDirectory: {
-    dev     : CONFIG_PATH.sourceBuild,
-    release : CONFIG_PATH.release
+    dev     : CONFIG_ENV.sourceBuild,
   },
 
   watchDirectory: {
-    htmlpre : `${CONFIG_PATH.source}**/*.html`,
-    html    : `${CONFIG_PATH.sourceBuild}**/*.html`,
-    ejs     : `${CONFIG_PATH.source}**/*.ejs`,
-    pug     : `${CONFIG_PATH.source}**/*.pug`,
-    slim    : `${CONFIG_PATH.source}**/*.slim`,
-    php     : `${CONFIG_PATH.sourceBuild}**/*.php`,
-    css     : `${CONFIG_PATH.sourceBuild}**/*.css`,
-    sass    : `${CONFIG_PATH.source}**/*.scss`,
-    jspre   : `${CONFIG_PATH.source}**/!(vender|vendor|libs|lib)/*.js`,
-    js      : `${CONFIG_PATH.sourceBuild}**/*.js`,
-    es      : `${CONFIG_PATH.source}**/*.es`
+    htmlpre : `${CONFIG_ENV.source}**/*.html`,
+    html    : `${CONFIG_ENV.sourceBuild}**/*.html`,
+    ejs     : `${CONFIG_ENV.source}**/*.ejs`,
+    pug     : `${CONFIG_ENV.source}**/*.pug`,
+    slim    : `${CONFIG_ENV.source}**/*.slim`,
+    php     : `${CONFIG_ENV.sourceBuild}**/*.php`,
+    css     : `${CONFIG_ENV.sourceBuild}**/*.css`,
+    sass    : `${CONFIG_ENV.source}**/*.scss`,
+    jspre   : `${CONFIG_ENV.source}**/!(vender|vendor|libs|lib)/*.js`,
+    js      : `${CONFIG_ENV.sourceBuild}**/*.js`,
+    es      : `${CONFIG_ENV.source}**/*.es`
   },
 
   watchIgnoreDirectory: {
     html : [
-      `!${CONFIG_PATH.source}**/wp/**/*.html`,
-      `!${CONFIG_PATH.source}**/vender/**/*.html`,
-      `!${CONFIG_PATH.source}**/vendor/**/*.html`,
-      `!${CONFIG_PATH.source}**/inc/**/*.html`,
-      `!${CONFIG_PATH.source}**/include/**/*.html`,
-      `!${CONFIG_PATH.source}**/ssi/**/*.html`,
-      `!${CONFIG_PATH.source}_*/**/*.html`,
-      `!${CONFIG_PATH.source}__*/**/*.html`,
-      `!${CONFIG_PATH.source}___*/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/wp/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/vender/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/vendor/**/*.html`,
-      // `!${CONFIG_PATH.sourceBuild}**/inc/**/*.html`,
-      // `!${CONFIG_PATH.sourceBuild}**/include/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}**/ssi/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}_*/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}__*/**/*.html`,
-      `!${CONFIG_PATH.sourceBuild}___*/**/*.html`,
+      `!${CONFIG_ENV.source}**/wp/**/*.html`,
+      `!${CONFIG_ENV.source}**/vender/**/*.html`,
+      `!${CONFIG_ENV.source}**/vendor/**/*.html`,
+      `!${CONFIG_ENV.source}**/inc/**/*.html`,
+      `!${CONFIG_ENV.source}**/include/**/*.html`,
+      `!${CONFIG_ENV.source}**/ssi/**/*.html`,
+      `!${CONFIG_ENV.source}_*/**/*.html`,
+      `!${CONFIG_ENV.source}__*/**/*.html`,
+      `!${CONFIG_ENV.source}___*/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}**/wp/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}**/vender/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}**/vendor/**/*.html`,
+      // `!${CONFIG_ENV.sourceBuild}**/inc/**/*.html`,
+      // `!${CONFIG_ENV.sourceBuild}**/include/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}**/ssi/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}_*/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}__*/**/*.html`,
+      `!${CONFIG_ENV.sourceBuild}___*/**/*.html`,
     ],
     ejs : [
-      `!${CONFIG_PATH.source}**/_*.ejs`,
-      `!${CONFIG_PATH.source}_*/**/*.ejs`,
-      `!${CONFIG_PATH.source}__*/**/*.ejs`,
-      `!${CONFIG_PATH.source}___*/**/*.ejs`,
+      `!${CONFIG_ENV.source}**/_*.ejs`,
+      `!${CONFIG_ENV.source}_*/**/*.ejs`,
+      `!${CONFIG_ENV.source}__*/**/*.ejs`,
+      `!${CONFIG_ENV.source}___*/**/*.ejs`,
     ],
     pug : [
-      `!${CONFIG_PATH.source}**/_*.pug`,
-      `!${CONFIG_PATH.source}_*/**/*.pug`,
-      `!${CONFIG_PATH.source}__*/**/*.pug`,
-      `!${CONFIG_PATH.source}___*/**/*.pug`,
+      `!${CONFIG_ENV.source}**/_*.pug`,
+      `!${CONFIG_ENV.source}_*/**/*.pug`,
+      `!${CONFIG_ENV.source}__*/**/*.pug`,
+      `!${CONFIG_ENV.source}___*/**/*.pug`,
     ],
     slim : [
-      `!${CONFIG_PATH.source}**/_*.slim`,
-      `!${CONFIG_PATH.source}_*/**/*.slim`,
-      `!${CONFIG_PATH.source}__*/**/*.slim`,
-      `!${CONFIG_PATH.source}___*/**/*.slim`,
+      `!${CONFIG_ENV.source}**/_*.slim`,
+      `!${CONFIG_ENV.source}_*/**/*.slim`,
+      `!${CONFIG_ENV.source}__*/**/*.slim`,
+      `!${CONFIG_ENV.source}___*/**/*.slim`,
     ],
     sass : [
-      `!${CONFIG_PATH.source}**/wp/**/*.scss`,
-      `!${CONFIG_PATH.source}**/vender/**/*.scss`,
-      `!${CONFIG_PATH.source}**/vendor/**/*.scss`,
-      `!${CONFIG_PATH.source}**/lib/**/*.scss`,
-      `!${CONFIG_PATH.source}**/libs/**/*.scss`,
-      `!${CONFIG_PATH.source}_*/**/*.scss`,
-      `!${CONFIG_PATH.source}__*/**/*.scss`,
-      `!${CONFIG_PATH.source}___*/**/*.scss`,
+      `!${CONFIG_ENV.source}**/wp/**/*.scss`,
+      `!${CONFIG_ENV.source}**/vender/**/*.scss`,
+      `!${CONFIG_ENV.source}**/vendor/**/*.scss`,
+      `!${CONFIG_ENV.source}**/lib/**/*.scss`,
+      `!${CONFIG_ENV.source}**/libs/**/*.scss`,
+      `!${CONFIG_ENV.source}_*/**/*.scss`,
+      `!${CONFIG_ENV.source}__*/**/*.scss`,
+      `!${CONFIG_ENV.source}___*/**/*.scss`,
     ],
     css : [
-      `!${CONFIG_PATH.source}**/_*.css`,
-      `!${CONFIG_PATH.source}_*/**/*.css`,
-      `!${CONFIG_PATH.source}__*/**/*.css`,
-      `!${CONFIG_PATH.source}___*/**/*.css`,
-      `!${CONFIG_PATH.sourceBuild}**/_*.css`,
-      `!${CONFIG_PATH.sourceBuild}_*/**/*.css`,
-      `!${CONFIG_PATH.sourceBuild}__*/**/*.css`,
-      `!${CONFIG_PATH.sourceBuild}___*/**/*.css`,
+      `!${CONFIG_ENV.source}**/_*.css`,
+      `!${CONFIG_ENV.source}_*/**/*.css`,
+      `!${CONFIG_ENV.source}__*/**/*.css`,
+      `!${CONFIG_ENV.source}___*/**/*.css`,
+      `!${CONFIG_ENV.sourceBuild}**/_*.css`,
+      `!${CONFIG_ENV.sourceBuild}_*/**/*.css`,
+      `!${CONFIG_ENV.sourceBuild}__*/**/*.css`,
+      `!${CONFIG_ENV.sourceBuild}___*/**/*.css`,
     ],
     js : [
-      `!${CONFIG_PATH.source}**/wp/**/*.js`,
-      `!${CONFIG_PATH.source}**/vender/**/*.js`,
-      `!${CONFIG_PATH.source}**/vendor/**/*.js`,
-      `!${CONFIG_PATH.source}**/lib/**/*.js`,
-      `!${CONFIG_PATH.source}**/libs/**/*.js`,
-      `!${CONFIG_PATH.source}**/*.min.js`,
-      `!${CONFIG_PATH.source}_*/**/*.js`,
-      `!${CONFIG_PATH.source}__*/**/*.js`,
-      `!${CONFIG_PATH.source}___*/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/wp/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/vender/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/vendor/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/lib/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/libs/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}**/*.min.js`,
-      `!${CONFIG_PATH.sourceBuild}_*/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}__*/**/*.js`,
-      `!${CONFIG_PATH.sourceBuild}___*/**/*.js`,
+      `!${CONFIG_ENV.source}**/wp/**/*.js`,
+      `!${CONFIG_ENV.source}**/vender/**/*.js`,
+      `!${CONFIG_ENV.source}**/vendor/**/*.js`,
+      `!${CONFIG_ENV.source}**/lib/**/*.js`,
+      `!${CONFIG_ENV.source}**/libs/**/*.js`,
+      `!${CONFIG_ENV.source}**/*.min.js`,
+      `!${CONFIG_ENV.source}_*/**/*.js`,
+      `!${CONFIG_ENV.source}__*/**/*.js`,
+      `!${CONFIG_ENV.source}___*/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/wp/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/vender/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/vendor/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/lib/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/libs/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}**/*.min.js`,
+      `!${CONFIG_ENV.sourceBuild}_*/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}__*/**/*.js`,
+      `!${CONFIG_ENV.sourceBuild}___*/**/*.js`,
     ]
   },
 
   copyDirectory: [
-    `${CONFIG_PATH.source}**/*`,
-    `!${CONFIG_PATH.source}_*/**`,
-    `!${CONFIG_PATH.source}__*/**`,
-    `!${CONFIG_PATH.source}___*/**`,
-    `!${CONFIG_PATH.source}vender/**`,
-    `!${CONFIG_PATH.source}vendor/**`,
-    `!${CONFIG_PATH.source}**/*.ejs`,
-    `!${CONFIG_PATH.source}**/*.pug`,
-    `!${CONFIG_PATH.source}**/*.slim`,
-    `!${CONFIG_PATH.source}**/_*.css`,
-    `!${CONFIG_PATH.source}**/*.scss`,
-    `!${CONFIG_PATH.source}**/_*.js`,
-    `!${CONFIG_PATH.source}**/*.es`,
+    `${CONFIG_ENV.source}**/*`,
+    `!${CONFIG_ENV.source}_*/**`,
+    `!${CONFIG_ENV.source}__*/**`,
+    `!${CONFIG_ENV.source}___*/**`,
+    `!${CONFIG_ENV.source}vender/**`,
+    `!${CONFIG_ENV.source}vendor/**`,
+    `!${CONFIG_ENV.source}**/*.ejs`,
+    `!${CONFIG_ENV.source}**/*.pug`,
+    `!${CONFIG_ENV.source}**/*.slim`,
+    `!${CONFIG_ENV.source}**/_*.css`,
+    `!${CONFIG_ENV.source}**/*.scss`,
+    `!${CONFIG_ENV.source}**/_*.js`,
+    `!${CONFIG_ENV.source}**/*.es`,
   ],
 
   deployDirectory: [
-    `${CONFIG_PATH.sourceBuild}**/*`,
-    `!${CONFIG_PATH.sourceBuild}_*/**`,
-    `!${CONFIG_PATH.sourceBuild}__*/**`,
-    `!${CONFIG_PATH.sourceBuild}___*/**`,
-    `!${CONFIG_PATH.sourceBuild}vender/**`,
-    `!${CONFIG_PATH.sourceBuild}vendor/**`,
-    `!${CONFIG_PATH.sourceBuild}**/*.ejs`,
-    `!${CONFIG_PATH.sourceBuild}**/*.pug`,
-    `!${CONFIG_PATH.sourceBuild}**/*.slim`,
-    `!${CONFIG_PATH.sourceBuild}**/_*.css`,
-    `!${CONFIG_PATH.sourceBuild}**/*.scss`,
-    `!${CONFIG_PATH.sourceBuild}**/_*.js`,
-    `!${CONFIG_PATH.sourceBuild}**/*.es`,
+    `${CONFIG_ENV.sourceBuild}**/*`,
+    `!${CONFIG_ENV.sourceBuild}_*/**`,
+    `!${CONFIG_ENV.sourceBuild}__*/**`,
+    `!${CONFIG_ENV.sourceBuild}___*/**`,
+    `!${CONFIG_ENV.sourceBuild}vender/**`,
+    `!${CONFIG_ENV.sourceBuild}vendor/**`,
+    `!${CONFIG_ENV.sourceBuild}**/*.ejs`,
+    `!${CONFIG_ENV.sourceBuild}**/*.pug`,
+    `!${CONFIG_ENV.sourceBuild}**/*.slim`,
+    `!${CONFIG_ENV.sourceBuild}**/_*.css`,
+    `!${CONFIG_ENV.sourceBuild}**/*.scss`,
+    `!${CONFIG_ENV.sourceBuild}**/_*.js`,
+    `!${CONFIG_ENV.sourceBuild}**/*.es`,
   ],
 
   imageMinDirectory: [
-    `${CONFIG_PATH.source}**/*.png`,
-    `${CONFIG_PATH.source}**/*.jpg`,
-    `${CONFIG_PATH.source}**/*.jpeg`,
-    `${CONFIG_PATH.source}**/*.gif`,
-    `${CONFIG_PATH.source}**/*.svg`,
+    `${CONFIG_ENV.source}**/*.png`,
+    `${CONFIG_ENV.source}**/*.jpg`,
+    `${CONFIG_ENV.source}**/*.jpeg`,
+    `${CONFIG_ENV.source}**/*.gif`,
+    `${CONFIG_ENV.source}**/*.svg`,
   ],
 
   cleanDirectory: [
-    `${CONFIG_PATH.source}**/*.map`,
-    `${CONFIG_PATH.sourceBuild}**/*.map`,
-    `${CONFIG_PATH.source}**/*.sourcemap`,
-    `${CONFIG_PATH.sourceBuild}**/*.sourcemap`,
+    `${CONFIG_ENV.source}**/*.map`,
+    `${CONFIG_ENV.sourceBuild}**/*.map`,
+    `${CONFIG_ENV.source}**/*.sourcemap`,
+    `${CONFIG_ENV.sourceBuild}**/*.sourcemap`,
   ]
 };
 
-if(CONFIG.user.php || CONFIG.env.php){
-  CONFIG.user.proxy = '127.0.0.1:3333';
+if(CONFIG.env.php){
+  CONFIG.env.proxy = '127.0.0.1:3333';
   CONFIG.env.htmlLint = false;
   CONFIG.env.jsLint = false;
 }
 
-if(CONFIG.user.twig || CONFIG.env.twig){
-  CONFIG.user.proxy = '127.0.0.1:3333';
+if(CONFIG.env.twig){
+  CONFIG.env.proxy = '127.0.0.1:3333';
   CONFIG.env.htmlLint = false;
   CONFIG.env.jsLint = false;
-  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
-    CONFIG.copyDirectory.push(`${CONFIG_PATH.source}**/_twig/**`);
+  if(CONFIG_ENV.source !== CONFIG_ENV.sourceBuild){
+    CONFIG.copyDirectory.push(`${CONFIG_ENV.source}**/_twig/**`);
   }
 }
 

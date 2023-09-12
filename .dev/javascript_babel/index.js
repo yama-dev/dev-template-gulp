@@ -30,44 +30,38 @@ let taskJsBabel = ()=>{
 
   _target.unshift(CONFIG.watchDirectory.es);
 
-  if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+  if(CONFIG.env.source !== CONFIG.env.sourceBuild){
     _target.unshift(CONFIG.watchDirectory.jspre);
     _target = [..._target, ...CONFIG.watchIgnoreDirectory.js];
   }
 
-  if(CONFIG.user.webpack || CONFIG.env.webpack){
-    let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+  if(CONFIG.env.webpack){
+    let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
     let _webpackConfig = require(_configfile_webpack);
 
     Object.keys(_webpackConfig.entry).forEach(function (key) {
-      _target.push(`!${CONFIG.path.source}**/${path.basename(_webpackConfig.entry[key])}`);
+      _target.push(`!${CONFIG.env.source}**/${path.basename(_webpackConfig.entry[key])}`);
     });
   }
 
   let sourcemaps = false;
-  if(CONFIG.user.sourcemaps === true
-    || CONFIG.user.sourcemap === true
-    || CONFIG.env.sourcemaps === true){
+  if(CONFIG.env.sourcemaps === true){
     sourcemaps = true;
   }
-  if(CONFIG.user.sourcemaps === false
-    || CONFIG.user.sourcemap === false
-    || CONFIG.env.sourcemaps === false){
+  if(CONFIG.env.sourcemaps === false){
     sourcemaps = false;
   }
-  if(CONFIG.env.production == true || CONFIG.env.prod == true) sourcemaps = false;
+  if(CONFIG.env.production == true){
+    sourcemaps = false;
+  }
 
   let jsmin = false;
-  if(CONFIG.user.jsMin === true
-    || CONFIG.env.jsMin === true){
+  if(CONFIG.env.jsMin === true){
     jsmin = true;
   }
 
   let obfuscator = false;
-  if(CONFIG.user.obfuscator === true
-    || CONFIG.env.obfuscator === true
-    || CONFIG.user.hide === true
-    || CONFIG.env.hide === true){
+  if(CONFIG.env.obfuscator === true || CONFIG.env.hide === true){
     jsmin = false;
     obfuscator = true;
   }
@@ -128,7 +122,7 @@ let taskJsBabel = ()=>{
   };
 
   let _config_obfuscator = _config_obfuscator_default;
-  if(CONFIG.user.obfuscatorMax === true || CONFIG.env.obfuscatorMax === true){
+  if(CONFIG.env.obfuscatorMax === true){
     _config_obfuscator = _config_obfuscator_max;
   }
 
@@ -166,8 +160,8 @@ let taskJsWebpack = ()=>{
   let _target = CONFIG.watchIgnoreDirectory.js.slice();
   _target.unshift(CONFIG.watchDirectory.es);
 
-  if(CONFIG.user.webpack || CONFIG.env.webpack){
-    let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+  if(CONFIG.env.webpack){
+    let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
 
     if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
       // @ts-ignore

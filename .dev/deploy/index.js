@@ -13,11 +13,11 @@ import prompt        from 'gulp-prompt';
 let taskDeploy = ()=>{
   let _target = CONFIG.deployDirectory.slice();
 
-  if(CONFIG.user.webpack){
-    let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+  if(CONFIG.env.webpack){
+    let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
     let _webpackConfig = require(_configfile_webpack);
     Object.keys(_webpackConfig.entry).forEach(function (key) {
-      _target.push(`!${CONFIG.path.source}**/*${path.basename(_webpackConfig.entry[key])}`);
+      _target.push(`!${CONFIG.env.source}**/*${path.basename(_webpackConfig.entry[key])}`);
     });
   }
 

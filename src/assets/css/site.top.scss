@@ -1,5 +1,27 @@
-
 @use "./modules/settings" as *;
 @use "./modules/mediaquery" as *;
 @use "./modules/mixins" as *;
+
+// Color Hex Alpha
+body {
+  /* for Color Hex Alpha */
+  background: #dddc;
+}
+
+// Custom Selectors
+@custom-selector :--heading h1, h2, h3;
+article :--heading + p {
+  /* for Custom Selectors */
+}
+
+// Custom Media Queries
+@custom-media --small-viewport (max-width: 30em);
+@media (--small-viewport) {
+  /* for Custom Media Queries */
+}
+
+// Media Query Ranges
+@media screen and (width >= 500px) and (width <= 1200px) {
+  /* for Media Query Ranges */
+}
 

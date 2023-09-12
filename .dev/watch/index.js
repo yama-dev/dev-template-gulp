@@ -37,7 +37,7 @@ let taskWatch = ()=>{
 
     let _target_es = [];
     if(filesJs.length){
-      if(CONFIG.path.source !== CONFIG.path.sourceBuild){
+      if(CONFIG.env.source !== CONFIG.env.sourceBuild){
         console.log('[dev-template] use js files.');
         _target_es.unshift(CONFIG.watchDirectory.jspre);
         _target_es = [..._target_es, ...CONFIG.watchIgnoreDirectory.js];
@@ -48,15 +48,15 @@ let taskWatch = ()=>{
       _target_es.unshift(CONFIG.watchDirectory.es);
     }
 
-    if(CONFIG.user.webpack || CONFIG.env.webpack){
+    if(CONFIG.env.webpack){
       let _target_webpack = [];
 
-      let _configfile_webpack = CONFIG.user.webpackConfig ? `../../${CONFIG.user.webpackConfig}` : '../../webpack.config.js';
+      let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
       let _webpackConfig = require(_configfile_webpack);
 
       Object.keys(_webpackConfig.entry).forEach(function (key) {
-        _target_es.push(`!${CONFIG.path.source}**/${path.basename(_webpackConfig.entry[key])}`);
-        _target_webpack.unshift(`${CONFIG.path.source}**/*${path.basename(_webpackConfig.entry[key])}`);
+        _target_es.push(`!${CONFIG.env.source}**/${path.basename(_webpackConfig.entry[key])}`);
+        _target_webpack.unshift(`${CONFIG.env.source}**/*${path.basename(_webpackConfig.entry[key])}`);
       });
 
       watch(_target_es, taskJsBabel);

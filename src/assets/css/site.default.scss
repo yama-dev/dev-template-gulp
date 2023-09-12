@@ -1,7 +1,11 @@
-
 @use "./vender/reset.scss";
+
+@use "./modules/settings" as *;
 @use "./modules/mediaquery" as *;
+@use "./modules/mixins" as *;
 @use "./modules/variable" as *;
+
+// @use "./modules/utility" as *;
 
 // Style Image Fit
 img {

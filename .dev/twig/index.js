@@ -19,7 +19,6 @@ let taskTwig = (done)=>{
     port: '3333',
     router: '_twig/router.php'
   };
-  if(CONFIG.user.twig) _config.twig = CONFIG.user.twig;
   if(CONFIG.env.twig) _config.twig = CONFIG.env.twig;
 
   // BOOT.
