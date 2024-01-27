@@ -29,7 +29,9 @@ import fs from 'fs';
  *
  * @property {boolean} develop
  * @property {boolean} production
-  *
+ *
+ * @property {string} config
+ *
  * @property {string} source
  * @property {string} sourceBuild
  */
@@ -70,53 +72,65 @@ let _env_default = {
   develop: true,
   production: false,
 
+  config: './config.json',
+
   source: 'src/',
   sourceBuild: '',
 };
 
-// .config.jsonのデータを取得
-let _user = {};
-try {
-  _user = fs.readFileSync('./.config.json', 'utf8');
-  _user = JSON.parse(String(_user));
-} catch (e) {
-  console.log('[dev-template] not use .config.json');
-}
-
-// 全データをマージ
-let _env = {
-  ..._env_default,
-  ..._user,
-};
-
-// 入力フォルダと出力フォルダを調整
-if(_user.inputDirectory){
-  _env.source = _user.inputDirectory;
-  _env.sourceBuild = _user.inputDirectory;
-}
-if(_user.outputDirectory){
-  _env.sourceBuild = _user.outputDirectory;
-}
-
+let _env_stdin = {};
 // CLIのパラメータを調整
 const ARGV = process.argv.slice(2);
 ARGV.map((item,i)=>{
   if(/--/.test(item)){
     let _item = item.replace('--','');
     if(ARGV[i+1]){
-      if(!/--/.test(ARGV[i+1])) _env[_item] = ARGV[i+1];
-      else _env[_item] = true;
-      let _env_item = _env[_item] === 'false' ? false : _env[_item];
+      if(!/--/.test(ARGV[i+1])) _env_stdin[_item] = ARGV[i+1];
+      else _env_stdin[_item] = true;
+      let _env_item = _env_stdin[_item] === 'false' ? false : _env_stdin[_item];
       if(_env_item === 'true') _env_item = true;
-      _env[_item] = _env_item;
+      _env_stdin[_item] = _env_item;
     } else {
-      _env[_item] = true;
+      _env_stdin[_item] = true;
     }
   }
 });
 
-if(!_env.sourceBuild){
-  _env.sourceBuild = _env.source;
+// .config.jsonのデータを取得
+let _user = {};
+try {
+  let _config_file = _env_stdin.config;
+  _user = fs.readFileSync(_config_file, 'utf8');
+  _user = JSON.parse(String(_user));
+} catch (e) {
+  console.log('[dev-template] not use .config.json');
+}
+
+// 入力フォルダと出力フォルダを調整
+if(_user.inputDirectory){
+  _user.source = _user.inputDirectory;
+}
+if(_user.outputDirectory){
+  _user.sourceBuild = _user.outputDirectory;
+}
+
+// 設定をマージ
+let _env = {
+  ..._env_default,
+  ..._user,
+  ..._env_stdin,
+};
+
+if(!_env_stdin.sourceBuild && !_user.sourceBuild){
+  _env.sourceBuild = _env.source.replace(/\/$/,'')+'/';
+}
+
+// 末尾を調整
+if(_env.source){
+  _env.source = _env.source.replace(/\/$/,'')+'/';
+}
+if(_env.sourceBuild){
+  _env.sourceBuild = _env.sourceBuild.replace(/\/$/,'')+'/';
 }
 
 export let CONFIG_USER = _user;
