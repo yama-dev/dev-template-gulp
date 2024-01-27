@@ -50,13 +50,13 @@
     "autoprefixer": "^10.4.14",
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.27.4",
-    "del": "^6.0.0",
     "css-declaration-sorter": "^6.3.1",
     "cssnano": "^5.1.15",
+    "del": "^6.0.0",
     "dotenv": "^16.0.1",
     "eslint": "^7.31.0",
-    "glob": "^7.1.7",
     "esm": "https://github.com/jsg2021/esm/releases/download/v3.x.x-pr883/esm-3.x.x-pr883.tgz",
+    "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
@@ -84,9 +84,9 @@
     "postcss-custom-media": "~9.1.2",
     "postcss-custom-selectors": "~7.1.2",
     "postcss-media-minmax": "~5.0.0",
-    "sass": "~1.59.2",
-    "webpack": "^4.41.5",
-    "webpack-stream": "^5.2.1"
+    "sass": "~1.70.0",
+    "webpack": "^5.90.0",
+    "webpack-stream": "^7.0.0"
   },
   "babel": {
     "presets": [

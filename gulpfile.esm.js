@@ -28,8 +28,8 @@ export default series(
   taskTemplate,
   taskSass,
   taskJsBabel,
-  taskJsWebpack,
   parallel(
+    taskJsWebpack,
     taskPhp,
     taskTwig,
     taskServer,
@@ -41,8 +41,8 @@ export const prod = series(
   taskTemplate,
   taskSass,
   taskJsBabel,
-  taskJsWebpack,
   parallel(
+    taskJsWebpack,
     taskPhp,
     taskTwig,
     taskServer,
