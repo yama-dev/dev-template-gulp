@@ -19,8 +19,8 @@ let taskServer = ()=>{
 
   // Set BrowserSync server.
   let _config_bs = {
-    reloadDelay: 100,
-    reloadDebounce: 100,
+    reloadDelay: 0,
+    reloadDebounce: 0,
     logLevel: 'info',
     logPrefix: 'dev-template'
   };
