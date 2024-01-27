@@ -3,7 +3,7 @@
  */
 import CONFIG from '../config/index.js';
 import notifier from 'node-notifier';
-import fs from 'fs';
+// import fs from 'fs';
 import path from 'path';
 // import glob from 'glob';
 
@@ -25,7 +25,7 @@ import prettier from 'gulp-prettier';
 
 import babel from 'gulp-babel';
 
-let taskJsBabel = ()=>{
+const taskJsBabel = () => {
   let _target = [];
 
   _target.unshift(CONFIG.watchDirectory.es);
@@ -153,42 +153,4 @@ let taskJsBabel = ()=>{
     .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: sourcemaps }));
 };
 
-import webpack from 'webpack';
-import webpackStream from 'webpack-stream';
-
-let taskJsWebpack = ()=>{
-  let _target = CONFIG.watchIgnoreDirectory.js.slice();
-  _target.unshift(CONFIG.watchDirectory.es);
-
-  if(CONFIG.env.webpack){
-    let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
-
-    if(!fs.existsSync(path.join(__dirname,_configfile_webpack))){
-      // @ts-ignore
-      console.log(`[dev-template] NOT FOUND ${path.join(__dirname,_configfile_webpack)}`.white.bgRed);
-      return Promise.resolve('not use webpack.');
-    }
-
-    return src(_target)
-      .pipe(plumber({
-        errorHandler(error){
-          notifier.notify({ title: 'WEBPACK コンパイル エラー', message: error.message });
-        }
-      }))
-      .pipe(webpackStream({
-        config : require(_configfile_webpack)
-      }, webpack))
-      .on('error', function(e) {
-        console.log('[dev-template] ERROR ', e);
-        this.emit('end');
-      })
-      .pipe(dest(CONFIG.outputDirectory.dev));
-  } else {
-    return Promise.resolve('not use webpack.');
-  }
-};
-
-export {
-  taskJsWebpack,
-  taskJsBabel,
-};
+export default taskJsBabel;

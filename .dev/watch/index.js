@@ -8,10 +8,8 @@ import glob from 'glob';
 import { watch } from 'gulp';
 import { taskTemplateEjs } from '../template/index.js';
 import taskSass from '../sass/index.js';
-import {
-  taskJsBabel,
-  taskJsWebpack,
-} from '../javascript_babel/index.js';
+import taskJsBabel from '../javascript_babel/index.js';
+import taskJsWebpack from '../javascript_babel/index.js';
 
 /**
  * Watch Task
