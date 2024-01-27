@@ -62,9 +62,9 @@ let taskTemplateEjs = () => {
   return src(_target)
     .pipe(plumber())
     .pipe(streamUtil(function(){
-      if(CONFIG.env.ejs){
+      _config_ejs_data.ejs.current = {};
+      if(CONFIG.env.ejs && CONFIG.env.ejs.pages){
         let _current_data = _config_ejs_data.ejs.pages.find(item => item.slug == this.dir);
-        _config_ejs_data.ejs.current = {};
         if(_current_data) _config_ejs_data.ejs.current = _current_data;
       }
     }))
