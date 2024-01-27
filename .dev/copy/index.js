@@ -21,11 +21,13 @@ let taskCopy = ()=>{
   }
 
   if(CONFIG.env.webpack){
-    let _configfile_webpack = CONFIG.env.webpackConfig ? `../../${CONFIG.env.webpackConfig}` : '../../webpack.config.js';
+    let _configfile_webpack = CONFIG.env.webpackConfig ? path.join(process.cwd(),CONFIG.env.webpackConfig) : path.join(process.cwd(),'webpack.config.js');
     let _webpackConfig = require(_configfile_webpack);
-    Object.keys(_webpackConfig.entry).forEach(function (key) {
-      _target.push(`!${CONFIG.env.source}**/*${path.basename(_webpackConfig.entry[key])}`);
-    });
+    for (const key in _webpackConfig.entry) {
+      if (Object.hasOwnProperty.call(_webpackConfig.entry, key)) {
+        _target.push(`!${CONFIG.env.source}**/*${path.basename(_webpackConfig.entry[key])}`);
+      }
+    }
   }
 
   return src(_target)
