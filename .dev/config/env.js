@@ -72,7 +72,7 @@ let _env_default = {
   develop: true,
   production: false,
 
-  config: './config.json',
+  config: './.config.json',
 
   source: 'src/',
   sourceBuild: '',
@@ -99,9 +99,10 @@ ARGV.map((item,i)=>{
 // .config.jsonのデータを取得
 let _user = {};
 try {
-  let _config_file = _env_stdin.config;
+  let _config_file = _env_stdin.config ? _env_stdin.config : _env_default.config;
   _user = fs.readFileSync(_config_file, 'utf8');
   _user = JSON.parse(String(_user));
+  console.log('[dev-template] use .config.json');
 } catch (e) {
   console.log('[dev-template] not use .config.json');
 }
