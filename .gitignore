@@ -9,7 +9,7 @@ tmp/
 
 # node.js
 node_modules/
-package-lock.json
+# package-lock.json
 
 # Development environment.
 .sass-cache

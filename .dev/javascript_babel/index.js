@@ -14,7 +14,7 @@ import gulpif from 'gulp-if';
 // import cache from 'gulp-cached';
 // import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
-import javascriptObfuscator from 'gulp-javascript-obfuscator';
+// import javascriptObfuscator from 'gulp-javascript-obfuscator';
 import terser from 'gulp-terser';
 import eslint from 'gulp-eslint';
 import prettier from 'gulp-prettier';
@@ -149,7 +149,7 @@ const taskJsBabel = () => {
       bracketSpacing: false,
     }))
     .pipe(gulpif(jsmin ,terser()))
-    .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
+    // .pipe(gulpif(obfuscator ,javascriptObfuscator(_config_obfuscator)))
     .pipe(dest(CONFIG.outputDirectory.dev, { sourcemaps: sourcemaps }));
 };
 

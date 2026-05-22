@@ -1,6 +1,6 @@
 {
   "name": "dev-template-gulp",
-  "version": "1.14.2",
+  "version": "1.15.0",
   "description": "Development environment for web site development",
   "keywords": [
     "web",
@@ -76,7 +76,6 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-ignore": "^3.0.0",
-    "gulp-javascript-obfuscator": "^1.1.6",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "~9.0.1",
     "gulp-prettier": "~4.0.0",
@@ -145,6 +144,6 @@
     }
   },
   "volta": {
-    "node": "18.12.0"
+    "node": "21.7.3"
   }
 }
